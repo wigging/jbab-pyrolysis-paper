@@ -4,10 +4,10 @@ LaTeX and associated files for generating the paper titled "Modeling Gas Effects
 
 ## Project structure
 
+**code** - Python scripts and models for generating results. See comments in each file for more details.
+
 **diagrams** - Files for creating diagrams on the [draw.io](https://www.draw.io) website.
 
 **misc** - Outlines and tables for planning the paper.
-
-**python** - Python scripts and models for generating results. See comments in each file for more details.
 
 **tex** - LaTeX files for generating the paper.
