@@ -1,0 +1,59 @@
+%!TEX root = main.tex
+
+\section{Modeling approach}
+
+Engineering correlations, reduced-order models, and CFD modeling techniques were used to investigate the effects of recycled gas on the operation of a fluidized-bed biomass pyrolysis reactor. The following sections discuss approaches implemented in this work for calculating gas properties and the associated effects on fluidization conditions and pyrolysis yields.
+
+\subsection{Gas properties}
+
+Density (kg/m$^3$) of an individual gas is calculated from the ideal gas law
+
+\begin{equation}
+    \rho_{gas} = \frac{P\;M}{R\;T}
+\end{equation}
+
+\noindent where P is pressure (Pa), M is molecular weight (g/mol), R is the gas constant [(m$^3$ Pa) / (K mol)], and T is temperature (K). Gas viscosity ($\mu$P) is given as
+
+\begin{equation}
+    \mu_{gas} = A + B\,T + C\,T^2 + D\,T^3
+\end{equation}
+
+\noindent where coefficients A, B, C, and D are obtained for a given gas from tables in Yaws' Handbook and T is gas temperature (K).
+
+For a gas mixture, density is calculated as a weighted average of the individual gas densities. The viscosity of a gas mixture can be calculated from a variety of correlations.
+
+\subsection{Fluidization correlations}
+
+Here.
+
+\subsection{CFD simulation}
+
+Here.
+
+\subsection{Pyrolysis kinetics}
+
+Here.
+
+\subsection{Parameters}
+
+Parameters for the reduced-order model and CFD simulations are provided in Table \ref{tab:params}. Biomass particle parameters and properties are representative of loblolly pine. Bed particle parameters are for typical sand material. Operating conditions and reactor dimensions are based on the previously discussed NREL 2FBR fluidized bed pyrolysis unit.
+
+\begin{table}[ht]
+    \centering
+    \caption{Biomass, bed, and reactor modeling parameters. Particle diameters represent the Sauter-mean diameter.}
+    \begin{tabular}{lll}
+        \hline
+        Parameter & Description & Value \\
+        \hline
+        d$_\textrm{p,\,bed}$    & diameter of bed particle          & 235 $\mu$m \\
+        $\phi_\textrm{bed}$     & sphericity of bed particle        & 0.0 \\
+        d$_\textrm{p,\,bio}$    & diameter of biomass particle      & 135 $\mu$m \\
+        $\phi_\textrm{bio}$     & sphericity of biomass particle    & 0.0 \\
+        $\rho_\textrm{bio}$     & density of biomass particle       & 540 kg/m$^3$ \\
+        h$_\textrm{reactor}$    & reactor height                    & 43.18 cm \\
+        h$_\textrm{static}$     & static bed height                 & 10.16 cm\\
+        tk                      & reactor temperature               & 773 K \\
+        \hline
+    \end{tabular}
+    \label{tab:params}
+\end{table}
