@@ -10,13 +10,13 @@ import matplotlib.pyplot as plt
 # ----------------------------------------------------------------------------
 
 # gas mixtures where each item is a mixture of two gases.
-mix_gas = [('H2', 'N2'), ('CO', 'N2'), ('CO', 'N2'), ('C2H6', 'N2')]
+mix_gas = [('H2', 'N2'), ('CO2', 'N2'), ('CO', 'N2'), ('H2O', 'N2')]
 
 # weights for gas mixture where each item is fraction of the two gases [-]
-mix_wts = [(0.8, 0.2), (0.7, 0.3), (0.3, 0.7), (0.8, 0.2)]
+mix_wts = [(0.8, 0.2), (0.7, 0.3), (0.7, 0.3), (0.8, 0.2)]
 
 # pressure [Pa] and temperature [K] of gas in the reactor
-p_gas = 115000
+p_gas = 101_325
 tk_gas = 773.15
 
 # Mixture Properties
