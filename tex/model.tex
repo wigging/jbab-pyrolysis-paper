@@ -38,13 +38,20 @@ Here.
 
 \subsection{Pyrolysis kinetics}
 
-Here.
+The Di Blasi kinetic scheme was implemented to predict the conversion of the biomass into gas, tar, and char products. Figure \ref{fig:blasi} gives an overview of the Di Blasi scheme and its reaction mechanisms. Reactions 1--3 are the primary conversion of the biomass while reactions 4--5 are secondary reactions that reduce tar yield at long residence times.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.35\textwidth]{blasi.pdf}
+    \caption{Diagram of the Di Blasi pyrolysis kinetics for conversion of biomass to gas, tar, and char products.}
+    \label{fig:blasi}
+\end{figure}
 
 \subsection{Parameters}
 
 Parameters for the reduced-order model and CFD simulations are provided in Table \ref{tab:params}. Biomass particle parameters and properties are representative of loblolly pine. Bed particle parameters are for typical sand material. Operating conditions and reactor dimensions are based on the previously discussed NREL 2FBR fluidized bed pyrolysis unit.
 
-\begin{table}[ht]
+\begin{table}[H]
     \centering
     \caption{Biomass, bed, and reactor modeling parameters. Particle diameters represent the Sauter-mean diameter.}
     \begin{tabular}{lll}
