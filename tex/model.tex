@@ -47,25 +47,41 @@ The Di Blasi kinetic scheme was implemented to predict the conversion of the bio
     \label{fig:blasi}
 \end{figure}
 
+\begin{table}[H]
+    \centering
+    \caption{Kinetic parameters for the Di Blasi biomass pyrolysis scheme.}
+    \begin{tabular}{crrr}
+        \hline
+        Reaction    & A (1/s)               & E (kJ/mol)    & Reference     \\
+        \hline
+        1           & $1.3 \times 10^8$     & 140           & ??            \\
+        2           & $2.0 \times 10^8$     & 133           & ??            \\
+        3           & $1.08 \times 10^7$    & 121           & ??            \\
+        4           & $4.28 \times 10^6$    & 108           & ??            \\
+        5           & $1.0 \times 10^6$     & 108           & ??            \\
+        \hline
+    \end{tabular}
+\end{table}
+
 \subsection{Parameters}
 
-Parameters for the reduced-order model and CFD simulations are provided in Table \ref{tab:params}. Biomass particle parameters and properties are representative of loblolly pine. Bed particle parameters are for typical sand material. Operating conditions and reactor dimensions are based on the previously discussed NREL 2FBR fluidized bed pyrolysis unit.
+Parameters for the reduced-order model and CFD simulations are provided in Table \ref{tab:params}. Biomass particle characteristics and properties are representative of loblolly pine. Bed particle characteristics are for typical sand material. Operating conditions and reactor dimensions are based on the previously discussed NREL 2FBR fluidized bed pyrolysis unit.
 
 \begin{table}[H]
     \centering
     \caption{Biomass, bed, and reactor modeling parameters. Particle diameters represent the Sauter-mean diameter.}
-    \begin{tabular}{lll}
+    \begin{tabular}{lrll}
         \hline
-        Parameter & Description & Value \\
+        Parameter & Value & Units & Description \\
         \hline
-        d$_\textrm{p,\,bed}$    & diameter of bed particle          & 235 $\mu$m \\
-        $\phi_\textrm{bed}$     & sphericity of bed particle        & 0.0 \\
-        d$_\textrm{p,\,bio}$    & diameter of biomass particle      & 135 $\mu$m \\
-        $\phi_\textrm{bio}$     & sphericity of biomass particle    & 0.0 \\
-        $\rho_\textrm{bio}$     & density of biomass particle       & 540 kg/m$^3$ \\
-        h$_\textrm{reactor}$    & reactor height                    & 43.18 cm \\
-        h$_\textrm{static}$     & static bed height                 & 10.16 cm\\
-        tk                      & reactor temperature               & 773 K \\
+        d$_\textrm{p,\,bed}$            & 235   & \textmugreek m & diameter of bed Particle      \\
+        \straightphi$_\textrm{bed}$     & 0.0   &                & sphericity of bed particle    \\
+        d$_\textrm{p,\,bio}$            & 135   & \textmugreek m & diameter of biomass particle  \\
+        \straightphi$_\textrm{bio}$     & 0.0   &                & sphericity of biomass particle\\
+        \textrho$_\textrm{bio}$         & 540   & kg/m$^3$       & density of biomass particle   \\
+        h$_\textrm{reactor}$            & 43.18 & cm             & reactor height                \\
+        h$_\textrm{static}$             & 10.16 & cm             & static bed height             \\
+        T                               & 773   & K              & reactor temperature           \\
         \hline
     \end{tabular}
     \label{tab:params}
