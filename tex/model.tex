@@ -26,7 +26,15 @@ Density (kg/m$^3$) of an individual gas is calculated from the ideal gas law
 
 \noindent where coefficients A, B, C, and D are also from the Yaws' Handbook and T is again the gas temperature (K).
 
-For a gas mixture, density is calculated as a weighted average of the individual gas densities. The viscosity of a gas mixture can be calculated from a variety of correlations.
+Several methods are available to calculate the viscosity of a gas mixture. Equation \ref{eq:graham} calculates the mixture viscosity from the sum of the mole fraction and viscosity product of each gas component in the mixture \cite{Graham-1846} while Equation \ref{eq:herning} accounts for the molecular weight of each gas component \cite{Herning-1936}.
+
+\begin{equation}\label{eq:graham}
+    \mu_{mix} = \sum(x_i \cdot \mu_i)
+\end{equation}
+
+\begin{equation}\label{eq:herning}
+    \mu_{mix} = \frac{\sum(\mu_i \cdot x_i \cdot \sqrt{MW_i})}{\sum(x_i \cdot \sqrt{MW_i})}
+\end{equation}
 
 \subsection{Fluidization correlations}
 

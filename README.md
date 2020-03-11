@@ -14,7 +14,7 @@ LaTeX and associated files for generating the paper titled "Modeling Gas Effects
 
 ## To-do list for paper
 
-- [ ] equations for gas mixtures
+- [x] equations and references for gas mixtures
 - [ ] table and references for pyrolysis kinetic parameters
 - [ ] table of parameters used for models
 - [ ] table of simulation cases
