@@ -1,8 +1,6 @@
 """
-
 Compare properties such as molecular weight, viscosity, thermal conductivity,
-and density of individual gases.
-
+and density for different gases.
 """
 
 import chemics as cm
@@ -12,7 +10,7 @@ import matplotlib.pyplot as plt
 # ----------------------------------------------------------------------------
 
 # properties are calculated for each gas item
-gas = ['CO', 'CO2', 'H2', 'H2O', 'N2']
+gas = ['N2', 'H2', 'H2O', 'CO', 'CO2', 'CH4']
 
 # pressure [Pa] and temperature [K] of gas in the reactor
 p_gas = 101_325
@@ -28,9 +26,12 @@ rho = []    # store density of each gas
 
 for i in range(len(gas)):
     mw.append(cm.mw(gas[i]))
-    k.append(cm.k_gas_inorganic(gas[i], tk_gas))
     mu.append(cm.mu_gas(gas[i], tk_gas))
     rho.append(cm.rhog(mw[i], p_gas, tk_gas))
+    if gas[i] == 'CH4':
+        k.append(cm.k_gas_organic(gas[i], tk_gas))
+    else:
+        k.append(cm.k_gas_inorganic(gas[i], tk_gas))
 
 # Print
 # ----------------------------------------------------------------------------

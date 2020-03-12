@@ -2,10 +2,11 @@
 
 \section{Results and discussion}
 
+This section provides results and related discussions for the effects of different fluidization gases on the operation and conversion of a bubbling fluidized bed reactor.
 
 \subsection{Comparison of gas properties}
 
-Molecular weight, viscosity, density, and thermal conductivity of the individual gases investigated in this paper are shown in Figure \ref{fig:gas-properties}. The gas properties were calculated at a pressure of 101,325 Pa and a temperature of 773.15 K (500$^\circ$C). The lightest gas in terms of molecular weight and density is hydrogen while the heaviest gas is carbon dioxide. Viscosity for all the gases except hydrogen ranged from 300--350 \textmugreek P. Thermal conductivity for all the gases is near 0.05 W/(m\,K) except for hydrogen which is approximately 0.35 W/(m\,K).
+Molecular weight, viscosity, density, and thermal conductivity of the individual gases investigated in this paper are shown in Figure \ref{fig:gas-properties}. The gas properties were calculated at a pressure of 101,325 Pa and a temperature of 773.15 K (500$^\circ$C). The lightest gas in terms of molecular weight and density is hydrogen while the heaviest gas is carbon dioxide. Viscosity for all the gases except hydrogen and methane ranged from 300--350 \textmugreek P. Thermal conductivity for all the gases is near 0.05 W/(m\,K) except for hydrogen which is approximately 0.35 W/(m\,K) and methane which is near 0.12 W/(m\,K).
 
 \begin{figure}[H]
     \centering
@@ -23,24 +24,13 @@ Properties for molecular weight, viscosity, and density for the gas mixtures inv
     \label{fig:mix-properties}
 \end{figure}
 
-\subsection{CFD simulations}
+\subsection{Fluidization effects}
 
-Table \ref{tab:cases} represents the simulation cases conducted for this paper. Each row is for a different simulation case which is performed for a particular gas composition.
+Minimum fluidization velocity (Umf) of the bed material for the different fluidization gases is presented in Figure \ref{fig:gas-umf}. The hydrogen gas requires about twice the gas velocity to fluidize the sand bed compared to the nitrogen gas.
 
-\begin{table}[H]
+\begin{figure}[H]
     \centering
-    \caption{Simulation cases for different gas mixtures where columns denote gas percentage.}
-    \begin{tabular}{crrrrr}
-        \hline
-        Case    & CO    & CO$_2$    & H$_2$     & H$_2$O    & N$_2$     \\
-        \hline
-        1       & 0     & 0         & 0         & 0         & 100       \\
-        2       & 0     & 0         & 20        & 0         & 80        \\
-        3       & 0     & 0         & 40        & 0         & 60        \\
-        4       & 0     & 0         & 60        & 0         & 40        \\
-        5       & 0     & 0         & 80        & 0         & 20        \\
-        6       & 0     & 0         & 100       & 0         & 0         \\
-        \hline
-    \end{tabular}
-    \label{tab:cases}
-\end{table}
+    \includegraphics[width=0.8\textwidth]{gas-umf.pdf}
+    \caption{Comparison of minimum fluidization velocity (Umf) for different fluidization gases. Values calculated with the Ergun, Grace, and Wen and Yu correlations.}
+    \label{fig:gas-umf}
+\end{figure}

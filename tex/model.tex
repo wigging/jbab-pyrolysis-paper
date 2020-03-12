@@ -9,7 +9,7 @@ Engineering correlations, reduced-order models, and CFD modeling techniques were
 Density (kg/m$^3$) of an individual gas is calculated from the ideal gas law
 
 \begin{equation}
-    \rho_{gas} = \frac{P\;M}{R\;T}
+    \rho_{gas} = \frac{P\,M}{R\,T}
 \end{equation}
 
 \noindent where P is pressure (Pa), M is molecular weight (g/mol), R is the gas constant [(m$^3$ Pa) / (K mol)], and T is temperature (K). Gas viscosity ($\mu$P) is given as
@@ -38,11 +38,11 @@ Several methods are available to calculate the viscosity of a gas mixture. Equat
 
 \subsection{Fluidization correlations}
 
-Here.
+For a bed of particles, the minimum fluidization velocity (Umf) is the gas velocity at which the drag force of the upward moving gas equals the weight of the particles.
 
-\subsection{CFD simulation}
-
-Here.
+\begin{equation}
+    \frac{1.75}{\epsilon_{mf}^3 \phi} \left( \frac{d_p u_{mf} \rho_g}{\mu} \right)^2 + \frac{150(1-\epsilon_{mf})}{\epsilon_{mf}^3 \phi^2} \left( \frac{d_p u_{mf} \rho_g}{\mu} \right) = \frac{d_p^3 \rho_g (\rho_s - \rho_g) g}{\mu^2}
+\end{equation}
 
 \subsection{Pyrolysis kinetics}
 
@@ -50,7 +50,7 @@ The Di Blasi kinetic scheme was implemented to predict the conversion of the bio
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.35\textwidth]{blasi.pdf}
+    \includegraphics[width=0.4\textwidth]{blasi.pdf}
     \caption{Diagram of the Di Blasi pyrolysis kinetics for conversion of biomass to gas, tar, and char products.}
     \label{fig:blasi}
 \end{figure}
@@ -93,4 +93,41 @@ Parameters for the reduced-order model and CFD simulations are provided in Table
         \hline
     \end{tabular}
     \label{tab:params}
+\end{table}
+
+\subsection{Simulation cases}
+
+Table \ref{tab:cases} represents the CFD simulations conducted for this paper. Each row is for a different simulation case which is performed for a particular gas composition.
+
+\begin{table}[H]
+    \centering
+    \caption{Simulation cases for different gas mixtures where columns denote gas percentage.}
+    \begin{tabular}{crrrrrr}
+        \hline
+        Case    & N$_2$ & H$_2$     & H$_2$O    & CO    & CO$_2$    & CH$_4$    \\
+        \hline
+        1       & 100   & 0         & 0         & 0     & 0         & 0         \\
+        2       & 0     & 100       & 0         & 0     & 0         & 0         \\
+        3       & 0     & 0         & 100       & 0     & 0         & 0         \\
+        4       & 0     & 0         & 0         & 100   & 0         & 0         \\
+        5       & 0     & 0         & 0         & 0     & 100       & 0         \\
+        6       & 0     & 0         & 0         & 0     & 0         & 100       \\
+        7       & 20    & 20        & 0         & 20    & 20        & 20        \\
+        8       & 50    & 0         & 0         & 0     & 50        & 0         \\
+        9       & 50    & 0         & 0         & 50    & 0         & 0         \\
+        10      & 0     & 0         & 50        & 50    & 0         & 0         \\
+        11      & 100   & 0         & 0         & 0     & 0         & 0         \\
+        12      & 80    & 20        & 0         & 0     & 0         & 0         \\
+        13      & 60    & 40        & 0         & 0     & 0         & 0         \\
+        14      & 50    & 50        & 0         & 0     & 0         & 0         \\
+        15      & 40    & 60        & 0         & 0     & 0         & 0         \\
+        16      & 30    & 70        & 0         & 0     & 0         & 0         \\
+        17      & 20    & 80        & 0         & 0     & 0         & 0         \\
+        18      & 15    & 85        & 0         & 0     & 0         & 0         \\
+        19      & 10    & 90        & 0         & 0     & 0         & 0         \\
+        20      & 5     & 95        & 0         & 0     & 0         & 0         \\
+        21      & 0     & 100       & 0         & 0     & 0         & 0         \\
+        \hline
+    \end{tabular}
+    \label{tab:cases}
 \end{table}
