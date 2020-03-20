@@ -12,14 +12,6 @@ LaTeX and associated files for generating the paper titled "Modeling Gas Effects
 
 **tex** - LaTeX files for generating the paper.
 
-## To-do list for paper
-
-- [x] equations and references for gas mixtures
-- [ ] equations and references for Umf
-- [ ] table and references for pyrolysis kinetic parameters
-- [ ] table of parameters used for models
-- [ ] table of simulation cases
-
 ## Contributing
 
-Contributions to this repository should be done on a separate branch. Not the master branch. When you are ready to add a contribution, submit a Pull Request from your branch to the master branch. Use the Issues page in the repository if you have questions or comments.
+Contributions to this repository should be done on a separate branch. Not the master branch. When you are ready to make a contribution, submit a Pull Request from your branch to the master branch. Use the Issues page in the repository if you have questions or comments.
