@@ -12,19 +12,19 @@ Density (kg/m$^3$) of an individual gas is calculated from the ideal gas law
     \rho_{gas} = \frac{P\,M}{R\,T}
 \end{equation}
 
-\noindent where P is pressure (Pa), M is molecular weight (g/mol), R is the gas constant [(m$^3$ Pa) / (K mol)], and T is temperature (K). Gas viscosity (\textmugreek P) is given as
+\noindent where $P$ is pressure (Pa), $M$ is molecular weight (g/mol), $R$ is the gas constant [(m$^3$ Pa) / (K mol)], and $T$ is temperature (K). Gas viscosity (\textmugreek P) is given as
 
 \begin{equation}
     \mu_{gas} = A + B\,T + C\,T^2 + D\,T^3
 \end{equation}
 
-\noindent where coefficients A, B, C, and D are obtained for a given gas from tables in Yaws' Handbook and T is gas temperature (K). Thermal conductivity (k) of the gas is given as
+\noindent where coefficients $A$, $B$, $C$, and $D$ are obtained for a given gas from tables in Yaws' Handbook and $T$ is gas temperature (K). Thermal conductivity ($k$) of the gas is given as
 
 \begin{equation}
     k_{gas} = A + B\,T + C\,T^2 + D\,T^3
 \end{equation}
 
-\noindent where coefficients A, B, C, and D are also from the Yaws' Handbook and T is again the gas temperature (K).
+\noindent where coefficients $A$, $B$, $C$, and $D$ are also from the Yaws' Handbook and $T$ is again the gas temperature (K).
 
 Several methods are available to calculate the viscosity of a gas mixture. Equation \ref{eq:graham} calculates the mixture viscosity from the sum of the mole fraction and viscosity product of each gas component in the mixture \cite{Graham-1846} while Equation \ref{eq:herning} accounts for the molecular weight of each gas component \cite{Herning-1936}.
 
@@ -46,29 +46,38 @@ For a bed of particles, the minimum fluidization velocity (Umf) is the gas veloc
 
 \subsection{Pyrolysis kinetics}
 
-The Di Blasi kinetic scheme was implemented to predict the conversion of the biomass into gas, tar, and char products. Figure \ref{fig:blasi} gives an overview of the Di Blasi scheme and its reaction mechanisms. Reactions 1--3 are the primary conversion of the biomass while reactions 4--5 are secondary reactions that reduce tar yield at long residence times.
+A pyrolysis kinetics scheme based on the work of Di Blasi was implemented to predict the conversion of biomass into gas, tar, and char products \cite{Blasi-1993,Blasi-2001}. Figure \ref{fig:blasi} gives an overview of the scheme and its reaction mechanisms. Reactions 1--3 represent the primary conversion of biomass while reactions 4--5 are secondary reactions that reduce tar yield at long residence times.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.4\textwidth]{blasi.pdf}
-    \caption{Diagram of the Di Blasi pyrolysis kinetics for conversion of biomass to gas, tar, and char products.}
+    \caption{Diagram of the Di Blasi pyrolysis kinetics scheme for conversion of biomass to gas, tar, and char products.}
     \label{fig:blasi}
 \end{figure}
+
+The pyrolysis reactions were modeled as first-order Arrhenius type equations where the rate constant $k$ for each reaction is given as
+
+\begin{equation}
+    k = A\,e^{E / RT}
+\end{equation}
+
+\noindent such that $A$ is the pre-factor, $E$ is the activation energy, $R$ is the gas constant, and $T$ is the reaction temperature. Kinetic parameters for each reaction are listed in Table \ref{tab:kinetic-params}.
 
 \begin{table}[H]
     \centering
     \caption{Kinetic parameters for the Di Blasi biomass pyrolysis scheme.}
-    \begin{tabular}{crrr}
+    \begin{tabular}{cllc}
         \hline
         Reaction    & A (1/s)               & E (kJ/mol)    & Reference     \\
         \hline
-        1           & $1.3 \times 10^8$     & 140           & ??            \\
-        2           & $2.0 \times 10^8$     & 133           & ??            \\
-        3           & $1.08 \times 10^7$    & 121           & ??            \\
-        4           & $4.28 \times 10^6$    & 108           & ??            \\
-        5           & $1.0 \times 10^6$     & 108           & ??            \\
+        1           & $4.38 \times 10^9$    & 152.7         & \cite{Blasi-2001} \\
+        2           & $3.27 \times 10^6$    & 111.7         & \cite{Blasi-2001} \\
+        3           & $1.08 \times 10^{10}$ & 148.0         & \cite{Blasi-2001} \\
+        4           & $4.28 \times 10^6$    & 108.0         & \cite{Blasi-1993} \\
+        5           & $1.00 \times 10^6$    & 108.0         & \cite{Blasi-1993} \\
         \hline
     \end{tabular}
+    \label{tab:kinetic-params}
 \end{table}
 
 \subsection{Parameters}
