@@ -38,11 +38,34 @@ Several methods are available to calculate the viscosity of a gas mixture. Equat
 
 \subsection{Fluidization correlations}
 
-For a bed of particles, the minimum fluidization velocity (Umf) is the gas velocity at which the drag force of the upward moving gas equals the weight of the particles.
+For a bed of particles, the minimum fluidization velocity $U_{mf}$ is the gas velocity at which the drag force of the upward moving gas equals the weight of the particles. Kunii and Levenspiel \cite{Levenspiel-1991} provide the following equation for calculating minimum fluidization velocity
 
 \begin{equation}
-    \frac{1.75}{\epsilon_{mf}^3 \phi} \left( \frac{d_p u_{mf} \rho_g}{\mu} \right)^2 + \frac{150(1-\epsilon_{mf})}{\epsilon_{mf}^3 \phi^2} \left( \frac{d_p u_{mf} \rho_g}{\mu} \right) = \frac{d_p^3 \rho_g (\rho_s - \rho_g) g}{\mu^2}
+    U_{mf} = \frac{Re_{p,mf} \mu}{d_p \rho_g}
 \end{equation}
+
+\noindent where $\mu$ is gas viscosity (kg/m\,s), $d_p$ is particle diameter (m), $\rho_g$ is gas density (kg/m$^3$), and $Re_{p,mf}$ is the particle Reynolds number (-) at minimum fluidization conditions.
+
+The Reynolds number is calculated from the Archimedes number ($Ar$) and two dimensionless constants ($a$, $b$) which represent experimental coefficients.
+
+\begin{equation}
+    Re_{p,mf} = \left( a^2 + b Ar \right)^{1/2} - a
+\end{equation}
+
+\begin{equation}
+    Ar = \frac{d_p^3 \rho_g (\rho_s - \rho_g) g}{\mu^2} \qquad
+    a = \frac{K_2}{2 K_1} \qquad
+    b = \frac{1}{K_1}
+\end{equation}
+
+\noindent The constants $K_1$ and $K_2$ are determined from the following equations which are based on the Ergun pressure drop equation for a bed of particles
+
+\begin{equation}
+    K_1 = \frac{1.75}{\epsilon_{mf}^3 \phi} \qquad
+    K_2 = \frac{150(1-\epsilon_{mf})}{\epsilon_{mf}^3 \phi^2}
+\end{equation}
+
+\noindent where $\epsilon_{mf}$ is the bed void fraction (-) at minimum fluidization and $\phi$ is sphericity (-) of the bed particles. For this paper, three correlations based on the work of Ergun, Wen and Yu, and Grace were used to calculate $U_{mf}$. The Ergun approach applied the void fraction $\epsilon_{mf}$ and particle sphericity $\phi$. The Wen and Yu approach utilized the experimental coefficients of $a = 33.7, b = 0.0408$ while the Grace approach used $a = 27.2, b = 0.0408$.
 
 \subsection{Pyrolysis kinetics}
 
