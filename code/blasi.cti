@@ -1,0 +1,75 @@
+# Kinetic reactions for biomass fast pyrolysis based on the Di Blasi 1993 and
+# 2001 papers.
+#
+# References
+# ----------
+# Colomba Di Blasi. “Analysis of Convection and Secondary Reaction Ef- fects
+# Within Porous Solid Fuels Undergoing Pyrolysis”. Combustion Science and
+# Technology, vol. 90, pp. 315–340, 1993.
+#
+# Colomba Di Blasi and Carmen Branca. “Kinetics of Primary Product Formation
+# from Wood Pyrolysis”. Industrial & Engineering Chemistry Research, vol. 40,
+# pp. 5547–5556, 2001.
+
+# -----------------------------------------------------------------------------
+# Phases data
+# -----------------------------------------------------------------------------
+
+units(
+    length="m",
+    mass="kg",
+    quantity="mol",
+    time="s",
+    energy="J",
+    act_energy="kJ/mol",
+    pressure="Pa"
+)
+
+ideal_gas(
+    elements="C",
+    species="biomass gas tar char",
+    reactions="all"
+)
+
+# -----------------------------------------------------------------------------
+# Species data
+# -----------------------------------------------------------------------------
+
+species(
+    name="biomass",
+    atoms="C:1"
+)
+
+species(
+    name="gas",
+    atoms="C:1"
+)
+
+species(
+    name="tar",
+    atoms="C:1"
+)
+
+species(
+    name="char",
+    atoms="C:1"
+)
+
+# -----------------------------------------------------------------------------
+# Reaction data
+# -----------------------------------------------------------------------------
+
+# Reaction 1 from Di Blasi 2001
+reaction("biomass => gas", [4.38e9, 0, 152.7])
+
+# Reaction 2 from Di Blasi 2001
+reaction("biomass => char", [3.27e6, 0, 111.7])
+
+# Reaction 3 from Di Blasi 2001
+reaction("biomass => tar", [1.08e10, 0, 148.0])
+
+# Reaction 4 from Di Blasi 1993
+reaction("tar => gas", [4.28e6, 0, 108.0])
+
+# Reaction 5 from Di Blasi 1993
+reaction("tar => char", [1.00e6, 0, 108.0])
