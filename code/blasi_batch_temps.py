@@ -1,6 +1,7 @@
 """
-Batch reactor comparing biomass, gas, tar, and char yields using biomass
-pyrolysis kinetic reactions from the Di Blasi 1993 and 2001 papers.
+Batch reactor comparing biomass, gas, tar, and char yields for a range of
+temperatures using biomass pyrolysis kinetic reactions from the Di Blasi 1993
+and 2001 papers.
 
 References
 ----------
@@ -30,12 +31,14 @@ y = {'biomass': 1, 'gas': 0, 'tar': 0, 'char': 0}
 # Cantera batch reactor example with Blasi biomass pyrolysis kinetics
 # ----------------------------------------------------------------------------
 
-# store products at each temperature
+# store biomass conversion and product yields at each temperature
 biomass = []
 gas = []
 tar = []
 char = []
 
+# calculate biomass conversion and product yields for each temperature over a
+# specified time range
 for temp in temps:
     sol = ct.Solution('blasi.cti')
     sol.TPY = temp, p, y
@@ -54,7 +57,6 @@ for temp in temps:
     gas.append(states('gas').Y[:, 0])
     tar.append(states('tar').Y[:, 0])
     char.append(states('char').Y[:, 0])
-
 
 # Print
 # ----------------------------------------------------------------------------
@@ -76,7 +78,6 @@ for i in range(len(temps)):
     ax2.plot(time, tar[i], label=f'{temps[i]} K')
 
 ax1.grid(color='0.9')
-# ax1.legend(loc='best')
 ax1.set_frame_on(False)
 ax1.tick_params(color='0.9')
 ax1.set_xlabel('Time [s]')
@@ -88,15 +89,5 @@ ax2.set_frame_on(False)
 ax2.tick_params(color='0.9')
 ax2.set_xlabel('Time [s]')
 ax2.set_ylabel('Tar mass fraction [-]')
-
-fig, ax = plt.subplots(tight_layout=True)
-for i in range(len(temps)):
-    ax.plot(time, biomass[i], label=f'{temps[i]} K')
-ax.grid(color='0.9')
-ax.legend(loc='best')
-ax.set_frame_on(False)
-ax.tick_params(color='0.9')
-ax.set_xlabel('Time [s]')
-ax.set_ylabel('Biomass mass fraction [-]')
 
 plt.show()
