@@ -9,23 +9,18 @@ import matplotlib.pyplot as plt
 # Parameters
 # ----------------------------------------------------------------------------
 
-# umf is calculated for each gas item
-gas = ['N2', 'H2', 'H2O', 'CO', 'CO2', 'CH4']
-
-# pressure [Pa] and temperature [K] of gas in the reactor
-p_gas = 101_325
-tk_gas = 773.15
-
-# bed particle diameter [m], sphericity [-], and density [kg/m³]
-dp = 0.0005
-phi = 0.86
-rhos = 2500
-
-# void fraction of the bed
-ep = 0.46
+from params import dp_bed
+from params import ep
+from params import phi
+from params import press
+from params import rhop_bed
+from params import temp
 
 # Minimum fluidization velocity
 # ----------------------------------------------------------------------------
+
+# umf is calculated for each gas item
+gas = ['N2', 'H2', 'H2O', 'CO', 'CO2', 'CH4']
 
 umf_ergun = []
 umf_grace = []
@@ -33,11 +28,21 @@ umf_wenyu = []
 
 for i in range(len(gas)):
     mw_gas = cm.mw(gas[i])
-    mu_gas = cm.mu_gas(gas[i], tk_gas) / 1e7    # convert µP to kg/(ms)
-    rho_gas = cm.rhog(mw_gas, p_gas, tk_gas)
-    umf_ergun.append(cm.umf_ergun(dp, ep, mu_gas, phi, rho_gas, rhos))
-    umf_grace.append(cm.umf_coeff(dp, mu_gas, rho_gas, rhos, coeff='grace'))
-    umf_wenyu.append(cm.umf_coeff(dp, mu_gas, rho_gas, rhos, coeff='wenyu'))
+    mu_gas = cm.mu_gas(gas[i], temp) / 1e7    # convert µP to kg/(ms)
+    rho_gas = cm.rhog(mw_gas, press, temp)
+    umf_ergun.append(cm.umf_ergun(dp_bed, ep, mu_gas, phi, rho_gas, rhop_bed))
+    umf_grace.append(cm.umf_coeff(dp_bed, mu_gas, rho_gas, rhop_bed, coeff='grace'))
+    umf_wenyu.append(cm.umf_coeff(dp_bed, mu_gas, rho_gas, rhop_bed, coeff='wenyu'))
+
+# Print
+# ----------------------------------------------------------------------------
+
+print(f"""
+Parameters
+----------
+temp    {temp} K
+press   {press:,} Pa
+""")
 
 # Plot
 # ----------------------------------------------------------------------------

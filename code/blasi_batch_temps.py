@@ -21,15 +21,16 @@ import numpy as np
 # Parameters
 # ----------------------------------------------------------------------------
 
-# temperature [K] and pressure [Pa]
-temps = (753.15, 773.15, 793.15, 813.15, 833.15, 853.15)
-p = 101_325.0
-
-# initial mass fractions [-]
-y = {'biomass': 1, 'gas': 0, 'tar': 0, 'char': 0}
+from params import temp_min
+from params import temp_max
+from params import press
+from params import y0
 
 # Cantera batch reactor example with Blasi biomass pyrolysis kinetics
 # ----------------------------------------------------------------------------
+
+# create range of temperatures [K] in increments of 20
+temps = np.arange(temp_min, temp_max + 20, 20)
 
 # store biomass conversion and product yields at each temperature
 biomass = []
@@ -41,7 +42,7 @@ char = []
 # specified time range
 for temp in temps:
     sol = ct.Solution('blasi.cti')
-    sol.TPY = temp, p, y
+    sol.TPY = temp, press, y0
     r = ct.IdealGasConstPressureReactor(sol, energy='off')
 
     sim = ct.ReactorNet([r])
@@ -64,8 +65,14 @@ for temp in temps:
 print(f"""
 Parameters
 ----------
-T {temps} K
-P {p:,} Pa
+temp_min    {temp_min} K
+temp_max    {temp_max} K
+press       {press:,} Pa
+y0          {y0}
+
+Calculations
+------------
+temps       {temps} K
 """)
 
 # Plot

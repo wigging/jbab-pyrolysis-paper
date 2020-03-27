@@ -9,18 +9,17 @@ import matplotlib.pyplot as plt
 # Parameters
 # ----------------------------------------------------------------------------
 
+from params import temp
+from params import press
+
+# Mixture properties
+# ----------------------------------------------------------------------------
+
 # gas mixtures where each item is a mixture of two gases.
 mix_gas = [('H2', 'N2'), ('CO2', 'N2'), ('CO', 'N2'), ('H2O', 'N2')]
 
 # weights for gas mixture where each item is fraction of the two gases [-]
 mix_wts = [(0.8, 0.2), (0.7, 0.3), (0.7, 0.3), (0.8, 0.2)]
-
-# pressure [Pa] and temperature [K] of gas in the reactor
-p_gas = 101_325
-tk_gas = 773.15
-
-# Mixture Properties
-# ----------------------------------------------------------------------------
 
 mw_mix = []     # store molecular weight of each gas mixture
 mu_mix = []     # store viscosity of each gas mixture
@@ -29,8 +28,8 @@ rho_mix = []    # store density of each gas mixture
 for i in range(len(mix_gas)):
     mw1 = cm.mw(mix_gas[i][0])
     mw2 = cm.mw(mix_gas[i][1])
-    mu1 = cm.mu_gas(mix_gas[i][0], tk_gas)
-    mu2 = cm.mu_gas(mix_gas[i][1], tk_gas)
+    mu1 = cm.mu_gas(mix_gas[i][0], temp)
+    mu2 = cm.mu_gas(mix_gas[i][1], temp)
     wts = mix_wts[i]
 
     mw_mixture = cm.mw_mix((mw1, mw2), wts)
@@ -39,8 +38,18 @@ for i in range(len(mix_gas)):
     mu_mixture = cm.mu_herning((mu1, mu2), (mw1, mw2), wts)
     mu_mix.append(mu_mixture)
 
-    rho_mixture = cm.rhog(mw_mixture, p_gas, tk_gas)
+    rho_mixture = cm.rhog(mw_mixture, press, temp)
     rho_mix.append(rho_mixture)
+
+# Print
+# ----------------------------------------------------------------------------
+
+print(f"""
+Parameters
+----------
+temp    {temp} K
+press   {press:,} Pa
+""")
 
 # Plot
 # ----------------------------------------------------------------------------

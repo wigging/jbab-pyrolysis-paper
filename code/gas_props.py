@@ -9,15 +9,14 @@ import matplotlib.pyplot as plt
 # Parameters
 # ----------------------------------------------------------------------------
 
-# properties are calculated for each gas item
-gas = ['N2', 'H2', 'H2O', 'CO', 'CO2', 'CH4']
-
-# pressure [Pa] and temperature [K] of gas in the reactor
-p_gas = 101_325
-tk_gas = 773.15
+from params import temp
+from params import press
 
 # Gas Properties
 # ----------------------------------------------------------------------------
+
+# properties are calculated for each gas item
+gas = ['N2', 'H2', 'H2O', 'CO', 'CO2', 'CH4']
 
 mw = []     # store molecular weight of each gas
 k = []      # store thermal conductivity of each gas
@@ -26,12 +25,12 @@ rho = []    # store density of each gas
 
 for i in range(len(gas)):
     mw.append(cm.mw(gas[i]))
-    mu.append(cm.mu_gas(gas[i], tk_gas))
-    rho.append(cm.rhog(mw[i], p_gas, tk_gas))
+    mu.append(cm.mu_gas(gas[i], temp))
+    rho.append(cm.rhog(mw[i], press, temp))
     if gas[i] == 'CH4':
-        k.append(cm.k_gas_organic(gas[i], tk_gas))
+        k.append(cm.k_gas_organic(gas[i], temp))
     else:
-        k.append(cm.k_gas_inorganic(gas[i], tk_gas))
+        k.append(cm.k_gas_inorganic(gas[i], temp))
 
 # Print
 # ----------------------------------------------------------------------------
@@ -39,8 +38,8 @@ for i in range(len(gas)):
 print(f"""
 Parameters
 ----------
-P gas \t {p_gas:,} Pa \t\t gas pressure
-T gas \t {tk_gas} K ({tk_gas - 273.15}°C) \t gas temperature
+temp    {temp} K
+press   {press:,} Pa
 """)
 
 # Plot
