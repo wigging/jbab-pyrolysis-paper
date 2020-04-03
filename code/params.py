@@ -18,7 +18,7 @@ press = 101_325.0
 rhop_bed = 2500
 
 # reactor temperature [K]
-temp = 773.15       # 500°C
+temp = 773.15   # 500°C
 
 # minimum and maximum temperatures [K]
 temp_min = 753.15   # 480°C
