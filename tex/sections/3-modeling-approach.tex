@@ -6,25 +6,25 @@ Engineering correlations, reduced-order models, and CFD modeling techniques were
 
 \subsection{Gas properties}
 
-Density (kg/m$^3$) of an individual gas is calculated from the ideal gas law
+Density of the gas is calculated from the ideal gas law as shown in Equation \ref{eq:density} where $\rho_{gas}$ is density (kg/m$^3$), $P$ is pressure (Pa), $MW$ is molecular weight (g/mol), $R$ is the gas constant [(m$^3$ Pa) / (K mol)], and $T$ is temperature (K).
 
-\begin{equation}
-    \rho_{gas} = \frac{P\,M}{R\,T}
+\begin{equation}\label{eq:density}
+    \rho_{gas} = \frac{P\,MW}{R\,T}
 \end{equation}
 
-\noindent where $P$ is pressure (Pa), $M$ is molecular weight (g/mol), $R$ is the gas constant [(m$^3$ Pa) / (K mol)], and $T$ is temperature (K). Gas viscosity (\textmugreek P) is given as
+Gas viscosity ($\mu_{gas}$ as \textmugreek P) is determined from Equation \ref{eq:viscosity}, thermal conductivity ($k_{gas}$ as W/m\,K) is estimated from Equation \ref{eq:thermlcond}, and heat capacity (C$_{p\,gas}$ as J/mol\,K) is calculated from Equation \ref{eq:heatcap}. Temperature of the gas in Kelvin is represented by $T$ while the regression coefficients $A$, $B$, $C$, $D$, $E$, $F$, and $G$ for each gas are obtained from Yaws' Handbook \cite{Yaws2014}.
 
-\begin{equation}
+\begin{equation}\label{eq:viscosity}
     \mu_{gas} = A + B\,T + C\,T^2 + D\,T^3
 \end{equation}
 
-\noindent where coefficients $A$, $B$, $C$, and $D$ are obtained for a given gas from tables in Yaws' Handbook and $T$ is gas temperature (K). Thermal conductivity ($k$) of the gas is given as
-
-\begin{equation}
+\begin{equation}\label{eq:thermlcond}
     k_{gas} = A + B\,T + C\,T^2 + D\,T^3
 \end{equation}
 
-\noindent where coefficients $A$, $B$, $C$, and $D$ are also from the Yaws' Handbook and $T$ is again the gas temperature (K).
+\begin{equation}\label{eq:heatcap}
+    C_{p\,gas} = A + B\,T + C\,T^2 + D\,T^3 + E\,T^4 + F\,T^5 + G\,T^6
+\end{equation}
 
 Several methods are available to calculate the viscosity of a gas mixture. Equation \ref{eq:graham} calculates the mixture viscosity from the sum of the mole fraction and viscosity product of each gas component in the mixture \cite{Graham-1846} while Equation \ref{eq:herning} accounts for the molecular weight of each gas component \cite{Herning-1936}.
 
@@ -44,28 +44,24 @@ For a bed of particles, the minimum fluidization velocity $U_{mf}$ is the gas ve
     U_{mf} = \frac{Re_{p,mf} \mu}{d_p \rho_g}
 \end{equation}
 
-\noindent where $\mu$ is gas viscosity (kg/m\,s), $d_p$ is particle diameter (m), $\rho_g$ is gas density (kg/m$^3$), and $Re_{p,mf}$ is the particle Reynolds number (-) at minimum fluidization conditions.
+\noindent where $\mu$ is gas viscosity (kg/m\,s), $d_p$ is particle diameter (m), $\rho_g$ is gas density (kg/m$^3$), and $Re_{p,mf}$ is the particle Reynolds number (-) at minimum fluidization conditions. The Reynolds number is calculated from the Archimedes number ($Ar$) and two dimensionless constants ($a, b$) which represent experimental coefficients. Different $U_{mf}$ correlations were evalutaed based on experimental data from Wen and Yu where $(a, b) = (33.7, 0.0408)$, from Richardson where $(a, b) = (25.7, 0.0365)$, and from Grace where $(a, b) = (27.2, 0.0408)$ \cite{Levenspiel-1991}.
 
-The Reynolds number is calculated from the Archimedes number ($Ar$) and two dimensionless constants ($a$, $b$) which represent experimental coefficients.
+\begin{align}
+    Re_{p,mf} &= \left( a^2 + b Ar \right)^{1/2} - a \\
+    Ar &= \frac{d_p^3 \rho_g (\rho_s - \rho_g) g}{\mu^2}
+\end{align}
+
+According to Kunii and Levenspiel \cite{Levenspiel-1991}, the constants ($a, b$) can be derived from the Ergun pressure drop equation based on the constants $K_1$ and $K_2$ where $\epsilon_{mf}$ is the bed void fraction (-) at minimum fluidization and $\phi$ is sphericity (-) of the bed particles. For this paper, $U_{mf}$ is estimated based on the Ergun, Grace, Richardson, and Wen and Yu correlations.
 
 \begin{equation}
-    Re_{p,mf} = \left( a^2 + b Ar \right)^{1/2} - a
-\end{equation}
-
-\begin{equation}
-    Ar = \frac{d_p^3 \rho_g (\rho_s - \rho_g) g}{\mu^2} \qquad
     a = \frac{K_2}{2 K_1} \qquad
     b = \frac{1}{K_1}
 \end{equation}
-
-\noindent The constants $K_1$ and $K_2$ are determined from the following equations which are based on the Ergun pressure drop equation for a bed of particles
 
 \begin{equation}
     K_1 = \frac{1.75}{\epsilon_{mf}^3 \phi} \qquad
     K_2 = \frac{150(1-\epsilon_{mf})}{\epsilon_{mf}^3 \phi^2}
 \end{equation}
-
-\noindent where $\epsilon_{mf}$ is the bed void fraction (-) at minimum fluidization and $\phi$ is sphericity (-) of the bed particles. For this paper, three correlations based on the work of Ergun, Wen and Yu, and Grace were used to calculate $U_{mf}$. The Ergun approach applied the void fraction $\epsilon_{mf}$ and particle sphericity $\phi$. The Wen and Yu approach utilized the experimental coefficients of $a = 33.7, b = 0.0408$ while the Grace approach used $a = 27.2, b = 0.0408$.
 
 \subsection{Pyrolysis kinetics}
 
@@ -78,53 +74,69 @@ A pyrolysis kinetics scheme based on the work of Di Blasi was implemented to pre
     \label{fig:blasi}
 \end{figure}
 
-The pyrolysis reactions were modeled as first-order Arrhenius type equations where the rate constant $k$ for each reaction is given as
+The pyrolysis reactions were modeled as first-order Arrhenius type equations where the reaction rate is given as
 
 \begin{equation}
-    k = A\,e^{E / RT}
+    r_i = C_i\,A_i\,e^{-E_i / R\,T}
 \end{equation}
 
-\noindent such that $A$ is the pre-factor, $E$ is the activation energy, $R$ is the gas constant, and $T$ is the reaction temperature. Kinetic parameters for each reaction are listed in Table \ref{tab:kinetic-params}.
+\noindent where $r_i$ is the rate of reaction $i$ such that $C_i$ is a mass based concentration, $A_i$ is the pre-factor (1/s), $E_i$ is the activation energy (kJ/mol), $R$ is the gas constant, and $T$ is the reaction temperature (K). Kinetic parameters for each reaction are listed in Table \ref{tab:kinetic-params}.
 
 \begin{table}[H]
     \centering
     \caption{Kinetic parameters for the Di Blasi biomass pyrolysis scheme.}
     \begin{tabular}{cllc}
-        \hline
+        \toprule
         Reaction    & A (1/s)               & E (kJ/mol)    & Reference     \\
-        \hline
+        \midrule
         1           & $4.38 \times 10^9$    & 152.7         & \cite{Blasi-2001} \\
         2           & $3.27 \times 10^6$    & 111.7         & \cite{Blasi-2001} \\
         3           & $1.08 \times 10^{10}$ & 148.0         & \cite{Blasi-2001} \\
         4           & $4.28 \times 10^6$    & 108.0         & \cite{Blasi-1993} \\
         5           & $1.00 \times 10^6$    & 108.0         & \cite{Blasi-1993} \\
-        \hline
+        \bottomrule
     \end{tabular}
     \label{tab:kinetic-params}
 \end{table}
 
 \subsection{Parameters}
 
-Parameters for the reduced-order model and CFD simulations are provided in Table \ref{tab:params}. Biomass particle characteristics and properties are representative of loblolly pine. Bed particle characteristics are for typical sand material. Operating conditions and reactor dimensions are based on the previously discussed NREL 2FBR fluidized bed pyrolysis unit.
+Parameters for the reduced-order model and CFD simulations are provided in Tables \ref{tab:params-particle} and \ref{tab:params-reactor}. Biomass particle characteristics and properties are representative of loblolly pine. Bed particle characteristics are for typical sand material. Operating conditions and reactor dimensions are based on the previously discussed NREL 2FBR fluidized bed pyrolysis unit.
 
 \begin{table}[H]
     \centering
-    \caption{Biomass, bed, and reactor modeling parameters. Particle diameters represent the Sauter-mean diameter.}
+    \caption{Particle parameters for the biomass and bed material (sand). Diameters represent the Sauter-mean diameter.}
+    \label{tab:params-particle}
     \begin{tabular}{lrll}
-        \hline
+        \toprule
         Parameter & Value & Units & Description \\
-        \hline
-        d$_\textrm{p,\,bed}$            & 235   & \textmugreek m & diameter of bed Particle      \\
-        \straightphi$_\textrm{bed}$     & 0.0   &                & sphericity of bed particle    \\
-        d$_\textrm{p,\,bio}$            & 135   & \textmugreek m & diameter of biomass particle  \\
-        \straightphi$_\textrm{bio}$     & 0.0   &                & sphericity of biomass particle\\
-        \textrho$_\textrm{bio}$         & 540   & kg/m$^3$       & density of biomass particle   \\
-        h$_\textrm{reactor}$            & 43.18 & cm             & reactor height                \\
-        h$_\textrm{static}$             & 10.16 & cm             & static bed height             \\
-        T                               & 773   & K              & reactor temperature           \\
-        \hline
+        \midrule
+        d$_\textrm{p\,bed}$          & 235    & \textmugreek m  & bed particle diameter        \\
+        \straightphi$_\textrm{bed}$  & 0.86   & --              & bed particle sphericity      \\
+        \textrho$_\textrm{bed}$      & 2,500  & kg/m$^3$        & bed particle density         \\
+        d$_\textrm{p\,bio}$          & 135    & \textmugreek m  & biomass particle diameter    \\
+        \straightphi$_\textrm{bio}$  & 0.0    & --              & biomass particle sphericity  \\
+        \textrho$_\textrm{bio}$      & 540    & kg/m$^3$        & biomass particle density     \\
+        \bottomrule
     \end{tabular}
-    \label{tab:params}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Reactor parameters for the bubbling fluidized bed pyrolysis reactor.}
+    \label{tab:params-reactor}
+    \begin{tabular}{lrll}
+        \toprule
+        Parameter & Value & Units & Description \\
+        \midrule
+        d$_\textrm{inner}$    & 5.25     & cm   & inner reactor diameter  \\
+        H$_\textrm{reactor}$  & 43.18    & cm   & reactor height          \\
+        H$_\textrm{static}$   & 10.16    & cm   & static bed height       \\
+        P$_\textrm{gas}$      & 101.325  & kPa  & gas pressure            \\
+        T$_\textrm{gas}$      & 773.15   & K    & gas temperature         \\
+        Q$_\textrm{gas}$      & 14       & SLM  & inlet gas flowrate      \\
+        \bottomrule
+    \end{tabular}
 \end{table}
 
 \subsection{Simulation cases}
