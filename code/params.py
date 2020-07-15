@@ -2,6 +2,9 @@
 Parameters for the various Python scripts and models.
 """
 
+# inner diameter of the bfb reactor [m]
+di = 0.05232
+
 # bed particle diameter [m]
 dp_bed = 0.0005
 
@@ -13,6 +16,9 @@ phi = 0.86
 
 # reactor pressure [Pa]
 press = 101_325.0
+
+# volumetric flowrate of gas into bfb reactor [SLM]
+q_gas = 14
 
 # density of a bed particle [kg/m³]
 rhop_bed = 2500
