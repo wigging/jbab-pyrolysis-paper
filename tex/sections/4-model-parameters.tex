@@ -1,0 +1,144 @@
+%!TEX root = ../main.tex
+
+\section{Model parameters}
+
+Parameters for the reduced-order model and CFD simulations are provided in Tables \ref{tab:params-particle} and \ref{tab:params-reactor}. Biomass particle characteristics and properties are representative of loblolly pine. Bed particle characteristics are for typical sand material. Operating conditions and reactor dimensions are based on the previously discussed NREL 2FBR fluidized bed pyrolysis unit.
+
+\begin{table}[H]
+    \centering
+    \caption{Particle parameters for the biomass and bed material (sand). Diameters represent the Sauter-mean diameter.}
+    \label{tab:params-particle}
+    \begin{tabular}{lrll}
+        \toprule
+        Parameter & Value & Units & Description \\
+        \midrule
+        d$_\textrm{p\,bed}$          & 235    & \textmugreek m  & bed particle diameter        \\
+        \straightphi$_\textrm{bed}$  & 0.86   & --              & bed particle sphericity      \\
+        \textrho$_\textrm{bed}$      & 2,500  & kg/m$^3$        & bed particle density         \\
+        d$_\textrm{p\,bio}$          & 135    & \textmugreek m  & biomass particle diameter    \\
+        \straightphi$_\textrm{bio}$  & 0.0    & --              & biomass particle sphericity  \\
+        \textrho$_\textrm{bio}$      & 540    & kg/m$^3$        & biomass particle density     \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Reactor parameters for the bubbling fluidized bed pyrolysis reactor.}
+    \label{tab:params-reactor}
+    \begin{tabular}{lrll}
+        \toprule
+        Parameter & Value & Units & Description \\
+        \midrule
+        d$_\textrm{inner}$    & 5.25     & cm   & inner reactor diameter  \\
+        H$_\textrm{reactor}$  & 43.18    & cm   & reactor height          \\
+        H$_\textrm{static}$   & 10.16    & cm   & static bed height       \\
+        P$_\textrm{gas}$      & 101.325  & kPa  & gas pressure            \\
+        T$_\textrm{gas}$      & 773.15   & K    & gas temperature         \\
+        Q$_\textrm{gas}$      & 14       & SLM  & inlet gas flowrate      \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Table \ref{tab:cases} represents the CFD simulations conducted for this paper. Each row is for a different simulation case which is performed for a particular gas composition.
+
+\begin{table}[H]
+    \centering
+    \caption{Simulation cases for different gas mixtures where columns denote gas percentage.}
+    \begin{tabular}{crrrrrr}
+        \hline
+        Case    & N$_2$ & H$_2$     & H$_2$O    & CO    & CO$_2$    & CH$_4$    \\
+        \hline
+        1       & 100   & 0         & 0         & 0     & 0         & 0         \\
+        2       & 0     & 100       & 0         & 0     & 0         & 0         \\
+        3       & 0     & 0         & 100       & 0     & 0         & 0         \\
+        4       & 0     & 0         & 0         & 100   & 0         & 0         \\
+        5       & 0     & 0         & 0         & 0     & 100       & 0         \\
+        6       & 0     & 0         & 0         & 0     & 0         & 100       \\
+        7       & 20    & 20        & 0         & 20    & 20        & 20        \\
+        8       & 50    & 0         & 0         & 0     & 50        & 0         \\
+        9       & 50    & 0         & 0         & 50    & 0         & 0         \\
+        10      & 0     & 0         & 50        & 50    & 0         & 0         \\
+        11      & 100   & 0         & 0         & 0     & 0         & 0         \\
+        12      & 80    & 20        & 0         & 0     & 0         & 0         \\
+        13      & 60    & 40        & 0         & 0     & 0         & 0         \\
+        14      & 50    & 50        & 0         & 0     & 0         & 0         \\
+        15      & 40    & 60        & 0         & 0     & 0         & 0         \\
+        16      & 30    & 70        & 0         & 0     & 0         & 0         \\
+        17      & 20    & 80        & 0         & 0     & 0         & 0         \\
+        18      & 15    & 85        & 0         & 0     & 0         & 0         \\
+        19      & 10    & 90        & 0         & 0     & 0         & 0         \\
+        20      & 5     & 95        & 0         & 0     & 0         & 0         \\
+        21      & 0     & 100       & 0         & 0     & 0         & 0         \\
+        \hline
+    \end{tabular}
+    \label{tab:cases}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Particle properties for biomass and bed material (sand).}
+    \begin{tabular}{lrrll}
+        \toprule
+        Parameter & Biomass & Sand & Units & Description \\
+        \midrule
+        d$_\text{p}$    & see Table X & 453   & $\mu\text{m}$ & particle diameter \\
+        $\rho_\text{p}$ & see Table X & 2,500 & kg/m$^3$      & particle density \\
+        C$_\text{p}$    & *           & 830   & kJ/(kg K)     & particle heat capacity \\
+        $\phi$          & --          & 0.94  & --            & particle sphericity \\
+        e$_\text{p}$    & 0.2         & 0.61  & --            & particle-particle coefficient of restitution \\
+        e$_\text{w}$    & 0.2         & 0.61  & --            & particle-wall coefficient of restitution \\
+        e$_\text{s}$    & 0.2         & --    & --            & particle-sand coefficient of restitution \\
+        $\mu_\text{p}$  & 0.1         & 0.1   & --            & particle-particle coefficient of friction \\
+        $\mu_\text{w}$  & 0.2         & 0.2   & --            & particle-wall coefficient of friction \\
+        $\mu_\text{s}$  & 0.1         & --    & --            & particle-sand coefficient of friction \\
+        k$_\text{n}$    & 100         & 100   & N/m           & sand particle spring constant \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Particle size distribution of biomass feedstock.}
+    \begin{tabular}{rrr}
+        \toprule
+        Sauter mean diameter ($\mu$m) & Mass fraction (\%) & Mass flow rate (kg/hr) \\
+        \midrule
+        278 & 12.1 & 0.018 \\
+        344 & 51.0 & 0.076 \\
+        426 & 34.2 & 0.051 \\
+        543 & 2.7  & 0.004 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Chemical species composition of biomass feedstock.}
+    \begin{tabular}{lrr}
+        \toprule
+        Species & Mass fraction (\%) & Density (kg/m$^3$) \\
+        \midrule
+        moisture & 4.0  & 1,000 \\
+        wood     & 95.9 & 500 \\
+        ash      & 0.1  & 2,000 \\
+        char     & 0.0  & 300 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Simulation parameters settings.}
+    \begin{tabular}{ll}
+        \toprule
+        Parameter & Value \\
+        \midrule
+        CFD cell size, $\Delta_x \times \Delta_y \times \Delta_z$ (mm) & 4.2857 $\times$ 4.4 $\times$ 4.3750 \\
+        time step, $\Delta_x$ (s) & varies \\
+        biomass parcel statistical weight & 10 \\
+        sand parcel statistical weight & 20 \\
+        gas phase equation of state & ideal \\
+        \bottomrule
+    \end{tabular}
+\end{table}

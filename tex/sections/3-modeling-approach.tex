@@ -99,79 +99,122 @@ The pyrolysis reactions were modeled as first-order Arrhenius type equations whe
     \label{tab:kinetic-params}
 \end{table}
 
-\subsection{Parameters}
+\subsection{CFD-DEM simulation}
 
-Parameters for the reduced-order model and CFD simulations are provided in Tables \ref{tab:params-particle} and \ref{tab:params-reactor}. Biomass particle characteristics and properties are representative of loblolly pine. Bed particle characteristics are for typical sand material. Operating conditions and reactor dimensions are based on the previously discussed NREL 2FBR fluidized bed pyrolysis unit.
+A coarse-grained CFD-DEM model was implemented for biomass pyrolysis in MFiX, an open-source, Fortran-based code [X]. The implemented coarse-grained CFD-DEM model in this research is an extension of the standard MFiX release. Gas phase transport was described using conservation equations of mass, momentum, energy, and chemical species in the Eulerian framework (Equations \ref{eq:gas-trans-mass}--\ref{eq:gas-trans-chemical}, respectively).
 
-\begin{table}[H]
-    \centering
-    \caption{Particle parameters for the biomass and bed material (sand). Diameters represent the Sauter-mean diameter.}
-    \label{tab:params-particle}
-    \begin{tabular}{lrll}
-        \toprule
-        Parameter & Value & Units & Description \\
-        \midrule
-        d$_\textrm{p\,bed}$          & 235    & \textmugreek m  & bed particle diameter        \\
-        \straightphi$_\textrm{bed}$  & 0.86   & --              & bed particle sphericity      \\
-        \textrho$_\textrm{bed}$      & 2,500  & kg/m$^3$        & bed particle density         \\
-        d$_\textrm{p\,bio}$          & 135    & \textmugreek m  & biomass particle diameter    \\
-        \straightphi$_\textrm{bio}$  & 0.0    & --              & biomass particle sphericity  \\
-        \textrho$_\textrm{bio}$      & 540    & kg/m$^3$        & biomass particle density     \\
-        \bottomrule
-    \end{tabular}
-\end{table}
+\begin{align}
+    \frac{d(\epsilon_g \rho_g)}{dt} + \nabla (\epsilon_g \rho_g u_g) &= S_\rho \label{eq:gas-trans-mass} \\
+    \frac{d(\epsilon_g \rho_g u_g)}{dt} + \nabla (\epsilon_g \rho_g u_g u_g) &= -\epsilon_g \nabla p + \nabla (\epsilon_g \tau) + \epsilon_g \rho_g g + S_u \\
+    \frac{d(\epsilon_g \rho_g E)}{dt} + \nabla (\epsilon_g \rho_g u_g E) &= -\nabla Q + S_E \\
+    \frac{d(\epsilon_g \rho_g Y_i)}{dt} + \nabla (\epsilon_g \rho_g u_g Y_i) &= -\nabla (D_i \nabla Y_i) + S_{Y_i} \label{eq:gas-trans-chemical}
+\end{align}
 
-\begin{table}[H]
-    \centering
-    \caption{Reactor parameters for the bubbling fluidized bed pyrolysis reactor.}
-    \label{tab:params-reactor}
-    \begin{tabular}{lrll}
-        \toprule
-        Parameter & Value & Units & Description \\
-        \midrule
-        d$_\textrm{inner}$    & 5.25     & cm   & inner reactor diameter  \\
-        H$_\textrm{reactor}$  & 43.18    & cm   & reactor height          \\
-        H$_\textrm{static}$   & 10.16    & cm   & static bed height       \\
-        P$_\textrm{gas}$      & 101.325  & kPa  & gas pressure            \\
-        T$_\textrm{gas}$      & 773.15   & K    & gas temperature         \\
-        Q$_\textrm{gas}$      & 14       & SLM  & inlet gas flowrate      \\
-        \bottomrule
-    \end{tabular}
-\end{table}
+where $\epsilon_g$, $\rho_g$, $u_g$, $p$, $\tau$, $Q$, and $Y_i$ are gas phase volume fraction, density, velocity, pressure, stress tensor, conductive heat flux, and ith chemical species, respectively, $t$ is time, $g$ is acceleration due to gravity, $D_i$ is mass diffusion coefficient for species, $S_\rho$, $S_u$, $S_E$, and $S_{Y_i}$ are mass, momentum, energy, and chemical species source terms, respectively. Fixed quantities of discrete particles with identical initial conditions were lumped into a computational coarse-grained parcel (CGP), whose motion was governed by Newton’s second law of motion. All particle forces and contact dynamics were calculated on the parcel scale, whereas heat and mass transfers were calculated on particle scale and projected to the entire parcel. Accordingly, all particles in same coarse- grained parcel possess identical temperature, chemical species concentration, and momentum. The mass and diameter of each coarse-grained parcel was such that:
 
-\subsection{Simulation cases}
+\begin{align}
+    m_{CGP} &= m_p W \\
+    d_{CGP} &= d_p W^{1/3}
+\end{align}
 
-Table \ref{tab:cases} represents the CFD simulations conducted for this paper. Each row is for a different simulation case which is performed for a particular gas composition.
+where $m_{CGP}$ is CGP mass, $m_p$ is distinct particle mass, $W$ parcel statistical weight, $d_{CGP}$ is CGP diameter, and $d_p$ is distinct particle diameter. Instantaneous accelerations (translational and rotational) for each coarse-grained parcel were calculated as:
 
-\begin{table}[H]
-    \centering
-    \caption{Simulation cases for different gas mixtures where columns denote gas percentage.}
-    \begin{tabular}{crrrrrr}
-        \hline
-        Case    & N$_2$ & H$_2$     & H$_2$O    & CO    & CO$_2$    & CH$_4$    \\
-        \hline
-        1       & 100   & 0         & 0         & 0     & 0         & 0         \\
-        2       & 0     & 100       & 0         & 0     & 0         & 0         \\
-        3       & 0     & 0         & 100       & 0     & 0         & 0         \\
-        4       & 0     & 0         & 0         & 100   & 0         & 0         \\
-        5       & 0     & 0         & 0         & 0     & 100       & 0         \\
-        6       & 0     & 0         & 0         & 0     & 0         & 100       \\
-        7       & 20    & 20        & 0         & 20    & 20        & 20        \\
-        8       & 50    & 0         & 0         & 0     & 50        & 0         \\
-        9       & 50    & 0         & 0         & 50    & 0         & 0         \\
-        10      & 0     & 0         & 50        & 50    & 0         & 0         \\
-        11      & 100   & 0         & 0         & 0     & 0         & 0         \\
-        12      & 80    & 20        & 0         & 0     & 0         & 0         \\
-        13      & 60    & 40        & 0         & 0     & 0         & 0         \\
-        14      & 50    & 50        & 0         & 0     & 0         & 0         \\
-        15      & 40    & 60        & 0         & 0     & 0         & 0         \\
-        16      & 30    & 70        & 0         & 0     & 0         & 0         \\
-        17      & 20    & 80        & 0         & 0     & 0         & 0         \\
-        18      & 15    & 85        & 0         & 0     & 0         & 0         \\
-        19      & 10    & 90        & 0         & 0     & 0         & 0         \\
-        20      & 5     & 95        & 0         & 0     & 0         & 0         \\
-        21      & 0     & 100       & 0         & 0     & 0         & 0         \\
-        \hline
-    \end{tabular}
-    \label{tab:cases}
-\end{table}
+\begin{align}
+    \frac{d u_{CGP}}{dt} &= g - \frac{F_p}{m_{CGP}} + \frac{F_c}{m_{CGP}} + \frac{F_d}{m_{CGP}} \\
+    \frac{d \omega_{CGP}}{dt} &= \frac{T_{CGP}}{I_{CGP}}
+\end{align}
+
+where $u_{CGP}$ and $\omega_{CGP}$ are the CGP translational and rotational velocities, $g$ is acceleration due to gravity, $m_{CGP}$ is CGP mass, $T_{CGP}$ is net torque on the CGP, and $I_{CGP}$ is CGP moment of inertia. The term $F_p$ represents pressure gradient force and is calculated as product of the CGP volume and pressure gradient. The CGP collision forces $F_C$ (parcel-parcel and parcel-wall collisions) was modeled according linear spring-dashpot model [X]. Since the number of CGP collisions is significantly lower than the number of collisions expected in system with distinct particles, the CGP coefficient of restitution was modified as a correction for energy dissipations during collisions. The proposed modification to the CGP coefficient of restitution is calculated following kinetic theory of granular flow [X] as:
+
+\begin{equation}
+    e_{CGP} = \sqrt{1 + (e_p^2 - 1) W^{1/3}}
+\end{equation}
+
+where $e_{CGP}$ is CGP coefficient of restitution and $e_p$ is distinct particle coefficient of restitution. Two different drag models were used to estimate CGP drag force $F_d$ based on well-documented difference in the fluidization behavior of sand and biomass in the literature [X]. Drag force was estimated following Ganser-corrected Gidaspow drag model for sand (bed material) particles and a filtered drag model for biomass particles. Ganser correction [X] was coupled to Gidaspow model [X] to account for non-sphericity of the sand particles as expressed below:
+
+\begin{equation}
+    \beta_{Ganser} =
+    \begin{cases}
+        \beta_{Ergun} & \text{if } \epsilon_g \leq 0.8 \\
+        \beta_{WenYu} & \text{if } \epsilon_g > 0.8
+    \end{cases}
+\end{equation}
+
+\begin{align}
+    \beta_{Ergun} &= 150 \frac{(1 - \epsilon_g)^2 \mu_g}{\epsilon_g d^2_{CGP} \phi^2} + 1.75 \frac{(1 - \epsilon_g) \rho_g}{\epsilon_g d_{CGP} \phi} |u_g - u_{CGP}| \\
+    \beta_{WenYu} &= \frac{3}{4} C_d \frac{(1 - \epsilon_g) \rho_g}{d_{CGP} \phi} |u_g - u_{CGP}| \epsilon_g^{-2.65}
+\end{align}
+
+\begin{equation}
+    C_d =
+    \begin{cases}
+        \frac{24}{Re K_1} (1 + 0.1118(Re K_1 K_2)^{0.6567}) + \frac{0.4305 K_2}{1 + \frac{3305}{Re K_1 K_2}} & \text{if } Re < 1,000 \\
+        0.44 & \text{if } Re \geq 1,000 \\
+        0.0 & \text{if } Re = 0.0
+    \end{cases}
+\end{equation}
+
+\begin{align}
+    K_1 &= \left(\frac{1}{3} + \frac{2}{3} \phi^{-0.5} \right)^{-1} - 2.25 \frac{d_{CGP}}{D} \\
+    K_2 &= 10^{1.8148 (-log \phi)^{0.5743}}
+\end{align}
+
+The filtered drag model (modified Sarkar drag model) used in this research for biomass particles was proposed by Gao et al. [X] and was found by the authors to have relatively high prediction strength across multiple flow regimes in fluidized bed. The modified Sarkar drag model is derived fine-grid simulation with Wen-Yu drag model and can be computed as:
+
+\begin{equation}
+    \beta_{Sarkar} = \beta_{WenYu} (1 - H_{Sakar})
+\end{equation}
+
+\begin{equation}
+    H_{Sakar} =
+    \begin{cases}
+        0.95 \left(1 - e^{-\alpha_1 \alpha_2 (u_{\text{slip}}^* - u_0)^p} \right) & u_{\text{slip}}^* > u_0 \\
+        0.0 & u_{\text{slip}}^* \leq u_0
+    \end{cases}
+\end{equation}
+
+\begin{equation}
+    u_{\text{slip}}^* = \frac{|u_g - u_{CGP}|}{u_t}
+\end{equation}
+
+\begin{align}
+    \alpha_1 &= \frac{\left(a_1 + a_2(1 - \epsilon_g) + a_3(1 - \epsilon_g)^2 + a_4(1 - \epsilon_g)^3 + a_5(1 - \epsilon_g)^4 \right)}{1 + e^{100 \left((1 - \epsilon_g) - 0.55 \right)}} \\
+    \alpha_2 &= \left(1 + \frac{a_6}{\Delta_{\text{filter}}^*} + \frac{a_7}{(\Delta_{\text{filter}}^*)^2} \right) \left(1 + \frac{a_8}{(u_{\text{slip}}^*)^2} \right)
+\end{align}
+
+\begin{equation}
+    u_0 = \frac{a_9 + a_{10} (1 - \epsilon_g)}{0.01 + (1 - \epsilon_g)^{a_{11}}} \left(1 + \frac{a_{12}}{\Delta_{\text{filter}}^*} + \frac{a_{13}}{(\Delta_{\text{filter}}^*)^2} \right)
+\end{equation}
+
+\begin{equation}
+    p = \left(a_{14} + a_{15}(1 - \epsilon_g) + a_{16}(1 - \epsilon_g)^2 \right) \left(1 + \frac{a_{17}}{\Delta_{\text{filter}}^*} + \frac{a_{18}}{(\Delta_{\text{filter}}^*)^2} \right)
+\end{equation}
+
+\begin{align}
+    \Delta_{\text{filter}}^* &= max\left( \frac{g \Delta_{\text{filter}}}{u_t^2}, \; \frac{1}{2} \right) \\
+    \Delta_{\text{filter}} &= 2 (\Delta_x \times \Delta_y \times \Delta_z)^{1/3}
+\end{align}
+
+\begin{equation}
+    u_t = \frac{g d_{CGP}^2 (\rho_{CGP} - \rho_g)}{18 \mu_g}
+\end{equation}
+
+\begin{equation}
+    \begin{matrix}
+        a_1    & a_2    & a_3 \\
+        a_4    & a_5    & a_6 \\
+        a_7    & a_8    & a_9 \\
+        a_{10} & a_{11} & a_{12} \\
+        a_{13} & a_{14} & a_{15} \\
+        a_{16} & a_{17} & a_{18} \\
+    \end{matrix}
+    \; =
+    \begin{array}{rrr}
+        0.75597773   & 2.73931487  & -5.60196497 \\
+        -1.65853820  & 16.70299223 & -0.44145335 \\
+        0.18195034   & -0.01827347 & 0.28441799  \\
+        -1.943573770 & 0.22177961  & 0.31175890  \\
+        -0.15971960  & 0.47750002  & 0.062794180 \\
+        5.13011673   & 0.67680355  & -0.54535726 \\
+    \end{array}
+\end{equation}
