@@ -36,6 +36,12 @@ Several methods are available to calculate the viscosity of a gas mixture. Equat
     \mu_{mix} = \frac{\sum(\mu_i \cdot x_i \cdot \sqrt{MW_i})}{\sum(x_i \cdot \sqrt{MW_i})}
 \end{equation}
 
+The Prandtl number is a dimensionless number representing the ratio of momentum diffusivity to thermal diffusivity. It is calculated from the equation shown below where $C_p$ is heat capacity (J/kg$\cdot$K), $\mu$ is dynamic gas viscosity (kg/m$\cdot$s), and $k$ is thermal conductivity (W/m$\cdot$K).
+
+\begin{equation}
+    Pr = \frac{C_p\, \mu}{k}
+\end{equation}
+
 \subsection{Fluidization correlations}
 
 For a bed of particles, the minimum fluidization velocity $U_{mf}$ is the gas velocity at which the drag force of the upward moving gas equals the weight of the particles. Kunii and Levenspiel \cite{Levenspiel-1991} provide the following equation for calculating minimum fluidization velocity
@@ -94,6 +100,7 @@ The pyrolysis reactions were modeled as first-order Arrhenius type equations whe
         3           & $1.08 \times 10^{10}$ & 148.0      & 255               & \cite{Blasi-2001} \\
         4           & $4.28 \times 10^6$    & 108.0      & -42               & \cite{Blasi-1993} \\
         5           & $1.00 \times 10^6$    & 108.0      & -42               & \cite{Blasi-1993} \\
+        6           & $5.13 \times 10^6$    & 87.6       & 2700              & ? \\
         \bottomrule
     \end{tabular}
     \label{tab:kinetic-params}
