@@ -80,20 +80,20 @@ The pyrolysis reactions were modeled as first-order Arrhenius type equations whe
     r_i = C_i\,A_i\,e^{-E_i / R\,T}
 \end{equation}
 
-\noindent where $r_i$ is the rate of reaction $i$ such that $C_i$ is a mass based concentration, $A_i$ is the pre-factor (1/s), $E_i$ is the activation energy (kJ/mol), $R$ is the gas constant, and $T$ is the reaction temperature (K). Kinetic parameters for each reaction are listed in Table \ref{tab:kinetic-params}.
+\noindent where $r_i$ is the rate of reaction $i$ such that $C_i$ is a mass based concentration, $A_i$ is the pre-factor (1/s), $E_i$ is the activation energy (kJ/mol), $R$ is the gas constant, and $T$ is the reaction temperature (K). Kinetic parameters for each reaction are listed in Table \ref{tab:kinetic-params} where $\Delta H$ is the heat of reaction (kJ/kg).
 
 \begin{table}[H]
     \centering
     \caption{Kinetic parameters for the Di Blasi biomass pyrolysis scheme.}
-    \begin{tabular}{cllc}
+    \begin{tabular}{clrrc}
         \toprule
-        Reaction    & A (1/s)               & E (kJ/mol)    & Reference     \\
+        Reaction    & A (1/s)               & E (kJ/mol) & $\Delta$H (kJ/kg) & Reference \\
         \midrule
-        1           & $4.38 \times 10^9$    & 152.7         & \cite{Blasi-2001} \\
-        2           & $3.27 \times 10^6$    & 111.7         & \cite{Blasi-2001} \\
-        3           & $1.08 \times 10^{10}$ & 148.0         & \cite{Blasi-2001} \\
-        4           & $4.28 \times 10^6$    & 108.0         & \cite{Blasi-1993} \\
-        5           & $1.00 \times 10^6$    & 108.0         & \cite{Blasi-1993} \\
+        1           & $4.38 \times 10^9$    & 152.7      & -20               & \cite{Blasi-2001} \\
+        2           & $3.27 \times 10^6$    & 111.7      & -20               & \cite{Blasi-2001} \\
+        3           & $1.08 \times 10^{10}$ & 148.0      & 255               & \cite{Blasi-2001} \\
+        4           & $4.28 \times 10^6$    & 108.0      & -42               & \cite{Blasi-1993} \\
+        5           & $1.00 \times 10^6$    & 108.0      & -42               & \cite{Blasi-1993} \\
         \bottomrule
     \end{tabular}
     \label{tab:kinetic-params}
@@ -124,13 +124,13 @@ where $m_{CGP}$ is CGP mass, $m_p$ is distinct particle mass, $W$ parcel statist
     \frac{d \omega_{CGP}}{dt} &= \frac{T_{CGP}}{I_{CGP}}
 \end{align}
 
-where $u_{CGP}$ and $\omega_{CGP}$ are the CGP translational and rotational velocities, $g$ is acceleration due to gravity, $m_{CGP}$ is CGP mass, $T_{CGP}$ is net torque on the CGP, and $I_{CGP}$ is CGP moment of inertia. The term $F_p$ represents pressure gradient force and is calculated as product of the CGP volume and pressure gradient. The CGP collision forces $F_C$ (parcel-parcel and parcel-wall collisions) was modeled according linear spring-dashpot model [X]. Since the number of CGP collisions is significantly lower than the number of collisions expected in system with distinct particles, the CGP coefficient of restitution was modified as a correction for energy dissipations during collisions. The proposed modification to the CGP coefficient of restitution is calculated following kinetic theory of granular flow [X] as:
+where $u_{CGP}$ and $\omega_{CGP}$ are the CGP translational and rotational velocities, $g$ is acceleration due to gravity, $m_{CGP}$ is CGP mass, $T_{CGP}$ is net torque on the CGP, and $I_{CGP}$ is CGP moment of inertia. The term $F_p$ represents pressure gradient force and is calculated as product of the CGP volume and pressure gradient. The CGP collision forces $F_C$ (parcel-parcel and parcel-wall collisions) was modeled according linear spring-dashpot model \cite{Navarro-2013}. Since the number of CGP collisions is significantly lower than the number of collisions expected in system with distinct particles, the CGP coefficient of restitution was modified as a correction for energy dissipations during collisions. The proposed modification to the CGP coefficient of restitution is calculated following kinetic theory of granular flow \cite{Lu-2014} as:
 
 \begin{equation}
     e_{CGP} = \sqrt{1 + (e_p^2 - 1) W^{1/3}}
 \end{equation}
 
-where $e_{CGP}$ is CGP coefficient of restitution and $e_p$ is distinct particle coefficient of restitution. Two different drag models were used to estimate CGP drag force $F_d$ based on well-documented difference in the fluidization behavior of sand and biomass in the literature [X]. Drag force was estimated following Ganser-corrected Gidaspow drag model for sand (bed material) particles and a filtered drag model for biomass particles. Ganser correction [X] was coupled to Gidaspow model [X] to account for non-sphericity of the sand particles as expressed below:
+where $e_{CGP}$ is CGP coefficient of restitution and $e_p$ is distinct particle coefficient of restitution. Two different drag models were used to estimate CGP drag force $F_d$ based on well-documented difference in the fluidization behavior of sand and biomass in the literature \cite{Oliveira-2013}. Drag force was estimated following Ganser-corrected Gidaspow drag model for sand (bed material) particles and a filtered drag model for biomass particles. Th Ganser correction \cite{Ganser-1993} was coupled to the Gidaspow model \cite{Gidaspow-1994} to account for non-sphericity of the sand particles as expressed below:
 
 \begin{equation}
     \beta_{Ganser} =
@@ -159,7 +159,7 @@ where $e_{CGP}$ is CGP coefficient of restitution and $e_p$ is distinct particle
     K_2 &= 10^{1.8148 (-log \phi)^{0.5743}}
 \end{align}
 
-The filtered drag model (modified Sarkar drag model) used in this research for biomass particles was proposed by Gao et al. [X] and was found by the authors to have relatively high prediction strength across multiple flow regimes in fluidized bed. The modified Sarkar drag model is derived fine-grid simulation with Wen-Yu drag model and can be computed as:
+The filtered drag model (modified Sarkar drag model) used in this research for biomass particles was proposed by Gao et al. \cite{Gao-2018} and was found by the authors to have relatively high prediction strength across multiple flow regimes in fluidized bed. The modified Sarkar drag model is derived fine-grid simulation with Wen-Yu drag model and can be computed as:
 
 \begin{equation}
     \beta_{Sarkar} = \beta_{WenYu} (1 - H_{Sakar})
