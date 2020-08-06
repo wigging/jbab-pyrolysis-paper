@@ -6,18 +6,43 @@ Parameters for the reduced-order model and CFD simulations are provided in Table
 
 \begin{table}[H]
     \centering
-    \caption{Particle parameters for the biomass and bed material (sand). Diameters represent the Sauter-mean diameter.}
-    \label{tab:params-particle}
-    \begin{tabular}{lrll}
+    \caption{Particle size distribution for biomass feedstock.}
+    \begin{tabular}{>{\centering}p{2.5cm} >{\raggedleft}p{2.2cm} >{\raggedleft\arraybackslash}p{2.5cm}}
         \toprule
-        Parameter & Value & Units & Description \\
+        Sauter mean diameter (\textmugreek m) & Mass fraction (\%) & Mass flow rate (kg/hr) \\
         \midrule
-        d$_\textrm{p\,bed}$          & 235    & \textmugreek m  & bed particle diameter        \\
-        \straightphi$_\textrm{bed}$  & 0.86   & --              & bed particle sphericity      \\
-        \textrho$_\textrm{bed}$      & 2,500  & kg/m$^3$        & bed particle density         \\
-        d$_\textrm{p\,bio}$          & 135    & \textmugreek m  & biomass particle diameter    \\
-        \straightphi$_\textrm{bio}$  & 0.0    & --              & biomass particle sphericity  \\
-        \textrho$_\textrm{bio}$      & 540    & kg/m$^3$        & biomass particle density     \\
+        278 & 12.1 & 0.018 \\
+        344 & 51.0 & 0.076 \\
+        426 & 34.2 & 0.051 \\
+        543 & 2.7  & 0.004 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Particle properties for biomass and sand (bed material). Biomass C$_\textrm{p}$ calculated from particle composition.}
+    \label{tab:params-particle}
+    \begin{tabular}{lll}
+        \toprule
+        Parameter & Value & Description \\
+        \midrule
+        d$_\textrm{p sand}$         & 453 \textmugreek m    & sand particle diameter \\
+        \textrho $_\textrm{p sand}$ & 2500 kg/m$^3$         & sand particle density \\
+        C$_\textrm{p sand}$         & 830 kJ/(kg\,K)        & sand particle heat capacity \\
+        \straightphi$_\textrm{sand}$& 0.94                  & sand particle sphericity \\
+        e$_\textrm{p biomass}$      & 0.2                   & biomass particle-particle coefficient of restitution \\
+        e$_\textrm{p sand}$         & 0.61                  & sand particle-particle coefficient of restitution \\
+        e$_\textrm{w biomass}$      & 0.2                   & biomass particle-wall coefficient of restitution \\
+        e$_\textrm{w sand}$         & 0.61                  & sand particle-wall coefficient of restitution \\
+        e$_\textrm{s biomass}$      & 0.2                   & biomass particle-sand coefficient of restitution \\
+        \textmugreek$_\textrm{p biomass}$   & 0.1           & biomass particle-particle coefficient of friction \\
+        \textmugreek$_\textrm{p sand}$      & 0.1           & sand particle-particle coefficient of friction \\
+        \textmugreek$_\textrm{w biomass}$   & 0.2           & biomass particle-wall coefficient of friction \\
+        \textmugreek$_\textrm{w sand}$      & 0.2           & sand particle-wall coefficient of friction \\
+        \textmugreek$_\textrm{s biomass}$   & 0.1           & biomass particle-sand coefficient of friction \\
+        k$_\textrm{n biomass}$              & 100 N/m       & sand particle spring constant \\
+        k$_\textrm{n sand}$                 & 100 N/m       & sand particle spring constant \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -77,43 +102,6 @@ Table \ref{tab:cases} represents the CFD simulations conducted for this paper. E
 
 \begin{table}[H]
     \centering
-    \caption{Particle properties for biomass and bed material (sand).}
-    \begin{tabular}{lrrll}
-        \toprule
-        Parameter & Biomass & Sand & Units & Description \\
-        \midrule
-        d$_\text{p}$    & see Table X & 453   & $\mu\text{m}$ & particle diameter \\
-        $\rho_\text{p}$ & see Table X & 2,500 & kg/m$^3$      & particle density \\
-        C$_\text{p}$    & *           & 830   & kJ/(kg K)     & particle heat capacity \\
-        $\phi$          & --          & 0.94  & --            & particle sphericity \\
-        e$_\text{p}$    & 0.2         & 0.61  & --            & particle-particle coefficient of restitution \\
-        e$_\text{w}$    & 0.2         & 0.61  & --            & particle-wall coefficient of restitution \\
-        e$_\text{s}$    & 0.2         & --    & --            & particle-sand coefficient of restitution \\
-        $\mu_\text{p}$  & 0.1         & 0.1   & --            & particle-particle coefficient of friction \\
-        $\mu_\text{w}$  & 0.2         & 0.2   & --            & particle-wall coefficient of friction \\
-        $\mu_\text{s}$  & 0.1         & --    & --            & particle-sand coefficient of friction \\
-        k$_\text{n}$    & 100         & 100   & N/m           & sand particle spring constant \\
-        \bottomrule
-    \end{tabular}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \caption{Particle size distribution of biomass feedstock.}
-    \begin{tabular}{rrr}
-        \toprule
-        Sauter mean diameter ($\mu$m) & Mass fraction (\%) & Mass flow rate (kg/hr) \\
-        \midrule
-        278 & 12.1 & 0.018 \\
-        344 & 51.0 & 0.076 \\
-        426 & 34.2 & 0.051 \\
-        543 & 2.7  & 0.004 \\
-        \bottomrule
-    \end{tabular}
-\end{table}
-
-\begin{table}[H]
-    \centering
     \caption{Chemical species composition of biomass feedstock.}
     \begin{tabular}{lrr}
         \toprule
@@ -134,7 +122,7 @@ Table \ref{tab:cases} represents the CFD simulations conducted for this paper. E
         \toprule
         Parameter & Value \\
         \midrule
-        CFD cell size, $\Delta_x \times \Delta_y \times \Delta_z$ (mm) & 4.2857 $\times$ 4.4 $\times$ 4.3750 \\
+        CFD cell size, $\Delta_x \times \Delta_y \times \Delta_z$ (mm) & $4.3 \times 4.4 \times 4.3$ \\
         time step, $\Delta_x$ (s) & varies \\
         biomass parcel statistical weight & 10 \\
         sand parcel statistical weight & 20 \\
