@@ -13,7 +13,7 @@ import numpy as np
 from params import di
 from params import dp_bed
 from params import ep
-from params import phi
+from params import phi_bed
 from params import press
 from params import rhop_bed
 from params import temp
@@ -50,7 +50,7 @@ for i in range(len(gas)):
     mu_gas = cm.mu_gas(gas[i], temp) / 1e7    # convert µP to kg/(ms)
     rho_gas = cm.rhog(mw_gas, press, temp)
 
-    umf_ergun.append(cm.umf_ergun(dp_bed, ep, mu_gas, phi, rho_gas, rhop_bed))
+    umf_ergun.append(cm.umf_ergun(dp_bed, ep, mu_gas, phi_bed, rho_gas, rhop_bed))
     us_umf_ergun.append(us / umf_ergun[i])
 
     umf_grace.append(cm.umf_coeff(dp_bed, mu_gas, rho_gas, rhop_bed, coeff='grace'))
@@ -62,6 +62,13 @@ for i in range(len(gas)):
     umf_wenyu.append(cm.umf_coeff(dp_bed, mu_gas, rho_gas, rhop_bed, coeff='wenyu'))
     us_umf_wenyu.append(us / umf_wenyu[i])
 
+# average for each gas
+umfs = np.array([umf_ergun, umf_grace, umf_rich, umf_wenyu])
+umfs_avg = np.mean(umfs, axis=0)
+
+us_umfs = np.array([us_umf_ergun, us_umf_grace, us_umf_rich, us_umf_wenyu])
+us_umfs_avg = np.mean(us_umfs, axis=0)
+breakpoint()
 # Print
 # ----------------------------------------------------------------------------
 
@@ -82,7 +89,8 @@ print(
     f'Ergun          {"".join(f"{u:<8.2f}" for u in umf_ergun)}\n'
     f'Grace          {"".join(f"{u:<8.2f}" for u in umf_grace)}\n'
     f'Rich           {"".join(f"{u:<8.2f}" for u in umf_rich)}\n'
-    f'WenYu          {"".join(f"{u:<8.2f}" for u in umf_wenyu)}'
+    f'WenYu          {"".join(f"{u:<8.2f}" for u in umf_wenyu)}\n'
+    f'avg.           {"".join(f"{a:<8.2f}" for a in umfs_avg)}'
 )
 
 print(
@@ -91,7 +99,8 @@ print(
     f'Ergun          {"".join(f"{u:<8.2f}" for u in us_umf_ergun)}\n'
     f'Grace          {"".join(f"{u:<8.2f}" for u in us_umf_grace)}\n'
     f'Rich           {"".join(f"{u:<8.2f}" for u in us_umf_rich)}\n'
-    f'WenYu          {"".join(f"{u:<8.2f}" for u in us_umf_wenyu)}'
+    f'WenYu          {"".join(f"{u:<8.2f}" for u in us_umf_wenyu)}\n'
+    f'avg.           {"".join(f"{a:<8.2f}" for a in us_umfs_avg)}'
 )
 
 # Plot
@@ -132,5 +141,35 @@ ax.set_ylabel('Us / Umf [-]')
 ax.tick_params(bottom=False, left=False)
 ax.xaxis.grid(False)
 ax.yaxis.grid(True, color='0.9')
+
+fig, ax = plt.subplots(tight_layout=True)
+ax.plot(umf_ergun, 'o', label='Ergun')
+ax.plot(umf_grace, 'o', label='Grace')
+ax.plot(umf_rich, 'o', label='Rich')
+ax.plot(umf_wenyu, 'o', label='WenYu')
+ax.fill_between(range(len(xlabels)), umf_ergun, umf_wenyu, color='0.9')
+ax.set_xlabel('Fluidization gas')
+ax.set_ylabel('Umf [m/s]')
+ax.grid(color='0.9')
+ax.legend(frameon=False, loc='best')
+ax.set_frame_on(False)
+ax.set_xticks(range(len(xlabels)))
+ax.set_xticklabels(xlabels)
+ax.tick_params(color='0.9')
+
+fig, ax = plt.subplots(tight_layout=True)
+ax.plot(us_umf_ergun, 'o', label='Ergun')
+ax.plot(us_umf_grace, 'o', label='Grace')
+ax.plot(us_umf_rich, 'o', label='Rich')
+ax.plot(us_umf_wenyu, 'o', label='WenYu')
+ax.fill_between(range(len(xlabels)), us_umf_ergun, us_umf_wenyu, color='0.9')
+ax.set_xlabel('Fluidization gas')
+ax.set_ylabel('Us / Umf [-]')
+ax.grid(color='0.9')
+ax.legend(frameon=False, loc='best')
+ax.set_frame_on(False)
+ax.set_xticks(range(len(xlabels)))
+ax.set_xticklabels(xlabels)
+ax.tick_params(color='0.9')
 
 plt.show()

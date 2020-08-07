@@ -2,11 +2,12 @@
 
 \section{Model parameters}
 
-Parameters for the reduced-order model and CFD simulations are provided in Tables \ref{tab:params-particle} and \ref{tab:params-reactor}. Biomass particle characteristics and properties are representative of loblolly pine. Bed particle characteristics are for typical sand material. Operating conditions and reactor dimensions are based on the previously discussed NREL 2FBR fluidized bed pyrolysis unit.
+Parameters for the reduced-order model and CFD simulations are provides in Tables \ref{tab:params-part-size} and \ref{tab:params}. Biomass particle characteristics and properties are representative of loblolly pine. Bed particle characteristics are for typical sand material. Operating conditions and reactor dimensions are based on the previously discussed NREL 2FBR fluidized bed pyrolysis unit.
 
 \begin{table}[H]
     \centering
     \caption{Particle size distribution for biomass feedstock.}
+    \label{tab:params-part-size}
     \begin{tabular}{>{\centering}p{2.5cm} >{\raggedleft}p{2.2cm} >{\raggedleft\arraybackslash}p{2.5cm}}
         \toprule
         Sauter mean diameter (\textmugreek m) & Mass fraction (\%) & Mass flow rate (kg/hr) \\
@@ -21,46 +22,39 @@ Parameters for the reduced-order model and CFD simulations are provided in Table
 
 \begin{table}[H]
     \centering
-    \caption{Particle properties for biomass and sand (bed material). Biomass C$_\textrm{p}$ calculated from particle composition.}
-    \label{tab:params-particle}
+    \caption{Parameters for the biomass, sand (bed material), and reactor operation. Biomass $C_p$ calculated from particle composition.}
+    \label{tab:params}
     \begin{tabular}{lll}
         \toprule
         Parameter & Value & Description \\
         \midrule
-        d$_\textrm{p sand}$         & 453 \textmugreek m    & sand particle diameter \\
-        \textrho $_\textrm{p sand}$ & 2500 kg/m$^3$         & sand particle density \\
-        C$_\textrm{p sand}$         & 830 kJ/(kg\,K)        & sand particle heat capacity \\
-        \straightphi$_\textrm{sand}$& 0.94                  & sand particle sphericity \\
-        e$_\textrm{p biomass}$      & 0.2                   & biomass particle-particle coefficient of restitution \\
-        e$_\textrm{p sand}$         & 0.61                  & sand particle-particle coefficient of restitution \\
-        e$_\textrm{w biomass}$      & 0.2                   & biomass particle-wall coefficient of restitution \\
-        e$_\textrm{w sand}$         & 0.61                  & sand particle-wall coefficient of restitution \\
-        e$_\textrm{s biomass}$      & 0.2                   & biomass particle-sand coefficient of restitution \\
-        \textmugreek$_\textrm{p biomass}$   & 0.1           & biomass particle-particle coefficient of friction \\
-        \textmugreek$_\textrm{p sand}$      & 0.1           & sand particle-particle coefficient of friction \\
-        \textmugreek$_\textrm{w biomass}$   & 0.2           & biomass particle-wall coefficient of friction \\
-        \textmugreek$_\textrm{w sand}$      & 0.2           & sand particle-wall coefficient of friction \\
-        \textmugreek$_\textrm{s biomass}$   & 0.1           & biomass particle-sand coefficient of friction \\
-        k$_\textrm{n biomass}$              & 100 N/m       & sand particle spring constant \\
-        k$_\textrm{n sand}$                 & 100 N/m       & sand particle spring constant \\
-        \bottomrule
-    \end{tabular}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \caption{Reactor parameters for the bubbling fluidized bed pyrolysis reactor.}
-    \label{tab:params-reactor}
-    \begin{tabular}{lrll}
-        \toprule
-        Parameter & Value & Units & Description \\
-        \midrule
-        d$_\textrm{inner}$    & 5.25     & cm   & inner reactor diameter  \\
-        H$_\textrm{reactor}$  & 43.18    & cm   & reactor height          \\
-        H$_\textrm{static}$   & 10.16    & cm   & static bed height       \\
-        P$_\textrm{gas}$      & 101.325  & kPa  & gas pressure            \\
-        T$_\textrm{gas}$      & 773.15   & K    & gas temperature         \\
-        Q$_\textrm{gas}$      & 14       & SLM  & inlet gas flowrate      \\
+        biomass particle \\
+        $e_{p}$    & 0.2        & particle-particle coefficient of restitution \\
+        $e_{w}$    & 0.2        & particle-wall coefficient of restitution \\
+        $e_{s}$    & 0.2        & particle-sand coefficient of restitution \\
+        $\mu_{p}$  & 0.1        & particle-particle coefficient of friction \\
+        $\mu_{w}$  & 0.2        & particle-wall coefficient of friction \\
+        $\mu_{s}$  & 0.1        & particle-sand coefficient of friction \\
+        $k_{n}$    & 100 N/m    & particle spring constant \\
+        \\
+        sand particle \\
+        $d_{p}$       & 453 $\mu$m          & particle diameter \\
+        $\rho_{p}$    & 2500 kg/m$^3$       & particle density \\
+        $C_{p}$       & 830 kJ/(kg\,K)      & particle heat capacity \\
+        $\phi_{}$     & 0.94                & particle sphericity \\
+        $e_{p}$       & 0.61                & particle-particle coefficient of restitution \\
+        $e_{w}$       & 0.61                & particle-wall coefficient of restitution \\
+        $\mu_{p}$     & 0.1                 & particle-particle coefficient of friction \\
+        $\mu_{w}$     & 0.2                 & particle-wall coefficient of friction \\
+        $k_{n}$       & 100 N/m             & particle spring constant \\
+        \\
+        reactor operation \\
+        $d_\textrm{inner}$      & 5.25 cm       & inner reactor diameter \\
+        $H_\textrm{reactor}$    & 43.18 cm      & reactor height \\
+        $H_\textrm{static}$     & 10.16 cm      & static bed height \\
+        $p_\textrm{gas}$        & 101.325 kPa   & gas pressure \\
+        $T_\textrm{gas}$        & 773.15 K      & gas temperature \\
+        $Q_\textrm{gas}$        & 14 SLM        & inlet gas flowrate \\
         \bottomrule
     \end{tabular}
 \end{table}

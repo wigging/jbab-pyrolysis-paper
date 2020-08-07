@@ -1,27 +1,34 @@
 """
-Parameters for the various Python scripts and models.
+Parameters for the biomass particle, sand particle, and reactor. Units for
+each parameter are given in square brackets [].
 """
+
+# Bed material (sand)
+# ----------------------------------------------------------------------------
+
+# bed particle diameter [m]
+dp_bed = 0.000453
+
+# density of a bed particle [kg/m³]
+rhop_bed = 2500
+
+# sphericity of a bed particle [-]
+phi_bed = 0.94
+
+# Other
+# ----------------------------------------------------------------------------
 
 # inner diameter of the bfb reactor [m]
 di = 0.05232
 
-# bed particle diameter [m]
-dp_bed = 0.0005
-
 # void fraction of the bed [-]
 ep = 0.46
-
-# particle sphericity [-]
-phi = 0.86
 
 # reactor pressure [Pa]
 press = 101_325.0
 
 # volumetric flowrate of gas into bfb reactor [SLM]
 q_gas = 14
-
-# density of a bed particle [kg/m³]
-rhop_bed = 2500
 
 # reactor temperature [K]
 temp = 773.15   # 500°C
