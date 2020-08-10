@@ -68,18 +68,25 @@ umfs_avg = np.mean(umfs, axis=0)
 
 us_umfs = np.array([us_umf_ergun, us_umf_grace, us_umf_rich, us_umf_wenyu])
 us_umfs_avg = np.mean(us_umfs, axis=0)
-breakpoint()
+
+# adjusted Us for each gas to match nitrogen Us/Umf
+us_adj = [umf * us_umfs_avg[0] for umf in umfs_avg]
+us_adj[0] = us
+
+us_umf_adj = [us / umf for us, umf in zip(us_adj, umfs_avg)]
+us_umf_adj[0] = us_umfs_avg[0]
+
 # Print
 # ----------------------------------------------------------------------------
 
 print(
-    f'Parameters\n----------\n'
+    f'\n{" Parameters ":-^79}\n'
     f'temp    {temp} K\n'
     f'press   {press:,} Pa\n'
 )
 
 print(
-    f'Results\n-------\n'
+    f'\n{" Results ":-^79}\n'
     f'ac      {ac:.4g} m²\n'
     f'us      {us:.4g} m/s\n'
 )
@@ -142,34 +149,46 @@ ax.tick_params(bottom=False, left=False)
 ax.xaxis.grid(False)
 ax.yaxis.grid(True, color='0.9')
 
-fig, ax = plt.subplots(tight_layout=True)
-ax.plot(umf_ergun, 'o', label='Ergun')
-ax.plot(umf_grace, 'o', label='Grace')
-ax.plot(umf_rich, 'o', label='Rich')
-ax.plot(umf_wenyu, 'o', label='WenYu')
-ax.fill_between(range(len(xlabels)), umf_ergun, umf_wenyu, color='0.9')
-ax.set_xlabel('Fluidization gas')
-ax.set_ylabel('Umf [m/s]')
-ax.grid(color='0.9')
-ax.legend(frameon=False, loc='best')
-ax.set_frame_on(False)
-ax.set_xticks(range(len(xlabels)))
-ax.set_xticklabels(xlabels)
-ax.tick_params(color='0.9')
+fig, (ax1, ax2) = plt.subplots(2, tight_layout=True, figsize=(6.4, 4.8))
+ax1.bar(xticks, umfs_avg, color='forestgreen', width=0.4)
+ax1.set_axisbelow(True)
+ax1.set_frame_on(False)
+ax1.set_xticks(xticks)
+ax1.set_xticklabels(xlabels)
+ax1.set_ylabel('Umf [m/s]')
+ax1.tick_params(bottom=False, left=False)
+ax1.xaxis.grid(False)
+ax1.yaxis.grid(True, color='0.9')
 
-fig, ax = plt.subplots(tight_layout=True)
-ax.plot(us_umf_ergun, 'o', label='Ergun')
-ax.plot(us_umf_grace, 'o', label='Grace')
-ax.plot(us_umf_rich, 'o', label='Rich')
-ax.plot(us_umf_wenyu, 'o', label='WenYu')
-ax.fill_between(range(len(xlabels)), us_umf_ergun, us_umf_wenyu, color='0.9')
-ax.set_xlabel('Fluidization gas')
-ax.set_ylabel('Us / Umf [-]')
-ax.grid(color='0.9')
-ax.legend(frameon=False, loc='best')
-ax.set_frame_on(False)
-ax.set_xticks(range(len(xlabels)))
-ax.set_xticklabels(xlabels)
-ax.tick_params(color='0.9')
+ax2.bar(xticks, us_umfs_avg, color='slateblue', width=0.4)
+ax2.set_axisbelow(True)
+ax2.set_frame_on(False)
+ax2.set_xticks(xticks)
+ax2.set_xticklabels(xlabels)
+ax2.set_ylabel('Us / Umf [-]')
+ax2.tick_params(bottom=False, left=False)
+ax2.xaxis.grid(False)
+ax2.yaxis.grid(True, color='0.9')
+
+fig, (ax1, ax2) = plt.subplots(2, tight_layout=True, figsize=(6.4, 4.8))
+ax1.bar(xticks, us_adj, color='gray', width=0.4)
+ax1.set_axisbelow(True)
+ax1.set_frame_on(False)
+ax1.set_xticks(xticks)
+ax1.set_xticklabels(xlabels)
+ax1.set_ylabel('Us [m/s]')
+ax1.tick_params(bottom=False, left=False)
+ax1.xaxis.grid(False)
+ax1.yaxis.grid(True, color='0.9')
+
+ax2.bar(xticks, us_umf_adj, color='slateblue', width=0.4)
+ax2.set_axisbelow(True)
+ax2.set_frame_on(False)
+ax2.set_xticks(xticks)
+ax2.set_xticklabels(xlabels)
+ax2.set_ylabel('Us / Umf [-]')
+ax2.tick_params(bottom=False, left=False)
+ax2.xaxis.grid(False)
+ax2.yaxis.grid(True, color='0.9')
 
 plt.show()
