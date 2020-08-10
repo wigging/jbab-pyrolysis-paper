@@ -4,6 +4,8 @@
 
 This section provides results and related discussions for the effects of different fluidization gases on the operation and conversion of a bubbling fluidized bed reactor.
 
+% ----------------------------------------------------------------------------
+
 \subsection{Comparison of gas properties}
 
 Molecular weight, viscosity, density, thermal conductivity, heat capacity, and Prandtl number of the individual gases investigated in this paper are shown in Figure \ref{fig:gas-properties}. The gas properties were calculated at a pressure of 101,325 Pa and a temperature of 773.15 K (500$^\circ$C). The lightest gas in terms of molecular weight and density is hydrogen while the heaviest gas is carbon dioxide. The highest viscosity is noted for the nitrogen gas while hydrogen has the lowest viscosity. The largest thermal conductivity is for hydrogen at approximately 0.36 W/(m\,K) while the other gases remain below 0.12 W/(m\,K). The highest heat capacity is obtained for methane at 62 J/(mol\,K) while the lowest is for hydrogen at 29 J/(mol\,K). The Prandtl number is similar for all the gases except for water vapor.
@@ -24,16 +26,63 @@ Properties for molecular weight, viscosity, and density for the gas mixtures inv
     \label{fig:mix-properties}
 \end{figure}
 
+% ----------------------------------------------------------------------------
+
 \subsection{Fluidization effects}
 
-Minimum fluidization velocity (Umf) of the bed material for the different fluidization gases is presented in Figure \ref{fig:gas-umf}. The hydrogen gas requires about twice the gas velocity to fluidize the sand bed compared to the nitrogen gas.
+Minimum fluidization velocity (Umf) of the bed material for the different fluidization gases is presented in Table \ref{tab:umf-sand}. Hydrogen requires about twice the gas velocity to fluidize the bed of sand compared to the nitrogen, carbon monoxide, and carbon dioxide gases. This is due to hydrogen's lower viscosity and much lower density compared to the other gases. Water vapor and methane require moderately higher fluidization velocities compared to the nitrogen gas. A comparison of Umf for the various fluidization gases is displayed in Figure \ref{fig:umf-usumf-gases}.
+
+\begin{table}[H]
+    \centering
+    \caption{Minimum fluidization velocity (m/s) of the bed material calculated from various correlations for different fluidization gases. Last row represents the average Umf value for each gas.}
+    \label{tab:umf-sand}
+    \begin{tabular}{lrrrrrr}
+        \toprule
+        Correlation & N$_2$ & H$_2$ & H$_2$O & CO & CO$_2$ & CH$_4$ \\
+        \midrule
+        Ergun       & 0.14 & 0.30 & 0.18 & 0.15 & 0.16 & 0.23 \\
+        Grace       & 0.10 & 0.21 & 0.13 & 0.11 & 0.11 & 0.16 \\
+        Richardson  & 0.10 & 0.20 & 0.12 & 0.10 & 0.11 & 0.15 \\
+        Wen and Yu  & 0.08 & 0.17 & 0.11 & 0.09 & 0.09 & 0.13 \\
+        average     & 0.11 & 0.22 & 0.14 & 0.11 & 0.12 & 0.17 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+The superficial gas velocity (Us) of the nitrogen is calculated as 0.3072 m/s which is based on the 14 SLM gas flow through the distributor plate. Using this value, the ratio of Us to Umf is shown in Table \ref{tab:us-umf-ratio} for different fluidization gases. The BFB pyrolysis reactor at NREL typically operates at a Us/Umf of 3 with nitrogen gas. For gases such as H$_2$, H$_2$O, CO, CO$_2$, and CH$_4$, the gas flow into the reactor must be increased to have similar fluidized bed characteristics as the nitrogen case. A comparison of the increased Us for each gas along with the associated Us/Umf is shown in Figure \ref{fig:us-usumf-gases}. As expected, the hydrogen gas flow must be approximately doubled compared to the nitrogen case to achieve similar fluidization of the bed material.
+
+\begin{table}[H]
+    \centering
+    \caption{Ratio of Us to Umf for different fluidization gases. Last row represents the average Us/Umf value for each gas.}
+    \label{tab:us-umf-ratio}
+    \begin{tabular}{lrrrrrr}
+        \toprule
+        Correlation & N$_2$ & H$_2$ & H$_2$O & CO & CO$_2$ & CH$_4$ \\
+        \midrule
+        Ergun      & 2.13 & 1.04 & 1.67 & 2.02 & 1.97 & 1.34 \\
+        Grace      & 2.99 & 1.47 & 2.35 & 2.84 & 2.76 & 1.88 \\
+        Richardson & 3.16 & 1.55 & 2.48 & 3.00 & 2.91 & 1.98 \\
+        Wen and Yu & 3.69 & 1.82 & 2.90 & 3.50 & 3.39 & 2.32 \\
+        average    & 2.99 & 1.47 & 2.35 & 2.84 & 2.76 & 1.88 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{gas-umf.pdf}
-    \caption{Comparison of minimum fluidization velocity (Umf) for different fluidization gases. Values calculated with the Ergun, Grace, Richardson, and Wen and Yu correlations.}
-    \label{fig:gas-umf}
+    \includegraphics[width=0.8\textwidth]{figures/umf-usumf-gases.pdf}
+    \caption{Comparison of the minimum fluidization velocity (Umf) and the ratio of Us/Umf for different fluidization gases. Superficial gas velocity is Us.}
+    \label{fig:umf-usumf-gases}
 \end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/us-usumf-gases.pdf}
+    \caption{Comparison of the superficial gas velocity (Us) and the associated Us/Umf for different fluidization gases. Minimum fluidization velocity is Umf.}
+    \label{fig:us-usumf-gases}
+\end{figure}
+
+% ----------------------------------------------------------------------------
 
 \subsection{Evaluation of the kinetic scheme}
 
@@ -55,6 +104,8 @@ A range of reaction temperatures were applied to the Di Blasi kinetics in the ba
     \label{fig:batch-blasi-temps}
 \end{figure}
 
+% ----------------------------------------------------------------------------
+
 \subsection{CFD-DEM validation}
 
 The predicted yield of pyrolysis products (bio-oil, light gas, and biochar) was validated against experimental data reported by [XXX]. In their experimental work, [XXX] carried out biomass pyrolysis in the same NREL 2FBR fast pyrolysis system that is modeled and simulated in this research. Additionally, the process variables used in the experimental work are consistent with those implemented for the N2 and H2 cases in this research. Figure XXX shows that the predicted yields of pyrolysis products closely follow the experimental data with absolute deviation ranging between 1\% and 6\%. The largest observed deviations occur in the prediction of bio-oil and are attributed to the non-closure of mass balance for the experimental data. The reported mass closure for the experimental data was about 94\%. A mass-proportional adjustment of the experimental data to enforce 100\% mass closure decreases the absolute deviation of bio-oil prediction to about 2\% or less.
@@ -65,9 +116,11 @@ These results demonstrate that the CFD-DEM model implemented in this research is
 
 % FIGURE HERE
 
+% ----------------------------------------------------------------------------
+
 \subsection{Fluidizing gas effect on pyrolysis performance}
 
-Figure XXX presents the volume-time averaged pressure drop and temperature along the height of the fluidized bed reactor. The different fluidizing gases considered in this research demonstrated similar effects on the pressure drop profile along the reactor height. Overall, the averaged bed height – as evidenced by the inflection point on the pressure drop curve – was about 0.14 m, regardless of fluidized gas. Similarly, the total pressure drop across the reactor was consistently about 1440 Pa for all fluidizing gases and mixtures. The volume-time averaged gas temperature ranged between 495$^\circ$C and 500$^\circ$C, depending on position along the reactor height and fluidizing gas. Gas temperature generally dipped around the biomass inlet and at the dense-bed/dilute- phase interface. The most noticeable trend in gas temperature occurs in the dilute-phase, with increasing gas temperature along the height of the reactor. Also noteworthy is the fact that gas temperature in the dilute-phase was highest when H2 was used as fluidizing gas. This observation is attributable to the large difference in the thermal conductivity of H2 and the other fluidizing gases (Figure XXX). The impact of the difference in the thermal conductivity of fluidizing gases is also evident in the average particle temperature and mass loss profile (Figure XXX). When H2 was used as fluidizing gas, biomass particles experienced significantly higher heating rate, and consequently higher mass loss rate, compared to when other fluidizing gases were used. Biomass heatingandmasslossratefollowtheorder:H2 >CH4 >H2O>CO2 >N2 +CO2 >N2 >N2 +CO> CO, irrespective of the initial size of the biomass particle.
+Figure XXX presents the volume-time averaged pressure drop and temperature along the height of the fluidized bed reactor. The different fluidizing gases considered in this research demonstrated similar effects on the pressure drop profile along the reactor height. Overall, the averaged bed height – as evidenced by the inflection point on the pressure drop curve – was about 0.14 m, regardless of fluidized gas. Similarly, the total pressure drop across the reactor was consistently about 1440 Pa for all fluidizing gases and mixtures. The volume-time averaged gas temperature ranged between 495$^\circ$C and 500$^\circ$C, depending on position along the reactor height and fluidizing gas. Gas temperature generally dipped around the biomass inlet and at the dense-bed/dilute- phase interface. The most noticeable trend in gas temperature occurs in the dilute-phase, with increasing gas temperature along the height of the reactor. Also noteworthy is the fact that gas temperature in the dilute-phase was highest when H2 was used as fluidizing gas. This observation is attributable to the large difference in the thermal conductivity of H2 and the other fluidizing gases (Figure XXX). The impact of the difference in the thermal conductivity of fluidizing gases is also evident in the average particle temperature and mass loss profile (Figure XXX). When H2 was used as fluidizing gas, biomass particles experienced significantly higher heating rate, and consequently higher mass loss rate, compared to when other fluidizing gases were used. Biomass heating and mass loss rate follow the order: H$_2$ \textgreater CH$_4$ \textgreater H$_2$O \textgreater CO$_2$ \textgreater N$_2$ + CO$_2$ \textgreater N$_2$ \textgreater N$_2$ + CO \textgreater CO, irrespective of the initial size of the biomass particle.
 
 Furthermore, it was observed that tar conversion reactions (Reactions 4 and 5) slightly changed among fluidizing gas used, with the lowest being N2 and the highest being H2 (Figure 5). This observation explains the reason why despite H2 yielded the highest particle heating and mass loss rate (Figure XXX), and one of the longest residence times (Figure XXX), its bio-oil yield relative to biomass flow rate is negligibly different from the bio-oil yield with other fluidizing gases, especially N2. Nevertheless, the fact that we found that fluidizing gas can notably increase biomass heating and mass loss rate (pyrolysis conversion rate) suggest potential process intensification implication because increased heating and pyrolysis rate represents a system where pyrolysis can be completed at an increased rate and consequently offering increased system throughput. Our finding suggests that, at the least, fluidizing gas with produced light gases can be recirculated as fluidizing gas without detrimental consequences on pyrolysis performance.
 
