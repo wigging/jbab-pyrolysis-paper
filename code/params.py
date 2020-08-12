@@ -3,7 +3,20 @@ Parameters for the biomass particle, sand particle, and reactor. Units for
 each parameter are given in square brackets [].
 """
 
-# Bed material (sand)
+# Feedstock material (biomass particle)
+# ----------------------------------------------------------------------------
+
+# particle size distribution of biomass
+# 'd' is Sauter mean diameter as μm
+# 'mf' is mass fraction as %
+dp_feed = [
+    {'d': 278, 'mf': 12.1},
+    {'d': 344, 'mf': 51.0},
+    {'d': 426, 'mf': 34.2},
+    {'d': 543, 'mf': 2.7}
+]
+
+# Bed material (sand particle)
 # ----------------------------------------------------------------------------
 
 # bed particle diameter [m]
