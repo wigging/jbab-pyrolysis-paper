@@ -4,6 +4,8 @@
 
 Engineering correlations, reduced-order models, and CFD modeling techniques were used to investigate the effects of recycled gas on the operation of a fluidized-bed biomass pyrolysis reactor. The following sections discuss approaches implemented in this work for calculating gas properties and the associated effects on fluidization conditions and pyrolysis yields.
 
+% ----------------------------------------------------------------------------
+
 \subsection{Gas properties}
 
 Density of the gas is calculated from the ideal gas law as shown in Equation \ref{eq:density} where $\rho_{gas}$ is density (kg/m$^3$), $P$ is pressure (Pa), $MW$ is molecular weight (g/mol), $R$ is the gas constant [(m$^3$ Pa) / (K mol)], and $T$ is temperature (K).
@@ -42,6 +44,8 @@ The Prandtl number is a dimensionless number representing the ratio of momentum 
     Pr = \frac{C_p\, \mu}{k}
 \end{equation}
 
+% ----------------------------------------------------------------------------
+
 \subsection{Fluidization correlations}
 
 For a bed of particles, the minimum fluidization velocity $U_{mf}$ is the gas velocity at which the drag force of the upward moving gas equals the weight of the particles. Kunii and Levenspiel \cite{Levenspiel-1991} provide the following equation for calculating minimum fluidization velocity
@@ -68,6 +72,15 @@ According to Kunii and Levenspiel \cite{Levenspiel-1991}, the constants ($a, b$)
     K_1 = \frac{1.75}{\epsilon_{mf}^3 \phi} \qquad
     K_2 = \frac{150(1-\epsilon_{mf})}{\epsilon_{mf}^3 \phi^2}
 \end{equation}
+
+As shown in Equation \ref{eq:nusselt}, the convective heat transfer coefficient $h$ in W/m$^2$K can be determined from the Nusselt number $Nu$ where $Re$ is the Reynolds number, $d_p$ is the biomass particle diameter, $d_b$ is the sand particle diameter, and $k_g$ is the gas thermal conductivity W/mK; valid for $d_p < d_b$ \cite{Collier-2004}. The Reynolds number is determined from $\rho$ which is the gas density in kg/m$^3$, the minimum fluidization velocity $U_{mf}$ in m/s, and the gas viscosity $\mu$ in kg/m\,s \cite{Papadikis-2010}.
+
+\begin{align}
+    Nu &= 2 + 0.9\, Re^{0.62} \left(\frac{d_p}{d_b}\right)^{0.2} = \frac{h\, d_p}{k_g} \label{eq:nusselt} \\
+    Re &= \frac{\rho\, U_{mf}\, d_p}{\mu} \label{eq:reynolds}
+\end{align}
+
+% ----------------------------------------------------------------------------
 
 \subsection{Pyrolysis kinetics}
 
@@ -105,6 +118,8 @@ The pyrolysis reactions were modeled as first-order Arrhenius type equations whe
     \end{tabular}
     \label{tab:kinetic-params}
 \end{table}
+
+% ----------------------------------------------------------------------------
 
 \subsection{CFD-DEM simulation}
 

@@ -1,8 +1,9 @@
 """
-here
+Compare convective heat transfer coefficient for different fluidization gases.
 """
 
 import chemics as cm
+import matplotlib.pyplot as plt
 import numpy as np
 
 # Parameters
@@ -23,7 +24,6 @@ dps = []
 wts = []
 
 for x in dp_feed:
-    print('d', x['d'], 'mf', x['mf'])
     dps.append(x['d'])
     wts.append(x['mf'])
 
@@ -33,7 +33,14 @@ d_avg = np.average(dps, weights=wts)
 # Heat transfer coefficient
 # ----------------------------------------------------------------------------
 
+# average biomass particle diameter in meters [m]
+dp_feed = d_avg / 1e6
+
+# gases for calculations
 gas = ['N2', 'H2', 'H2O', 'CO', 'CO2', 'CH4']
+
+# Umf, Reynolds number, Nusselt number, and convective heat transfer
+# coefficient (h) for each gas
 umf = []
 reynolds = []
 nusselt = []
@@ -51,26 +58,25 @@ for g in gas:
     umf_avg = (umf_ergun + umf_grace + umf_rich + umf_wenyu) / 4
     umf.append(umf_avg)
 
-    dp_bio = d_avg / 1e6
-    re = (rho_gas * umf_avg * dp_bio) / mu_gas
+    re = (rho_gas * umf_avg * dp_feed) / mu_gas
     reynolds.append(re)
 
-    nu = 2 + (0.9 * re**0.62) * ((dp_bio / dp_bed)**0.2)
+    nu = 2 + (0.9 * re**0.62) * ((dp_feed / dp_bed)**0.2)
     nusselt.append(nu)
 
     if g == 'CH4':
         k_gas = cm.k_gas_organic(g, temp)
     else:
         k_gas = cm.k_gas_inorganic(g, temp)
-    h = (k_gas * nu) / dp_bio
+    h = (k_gas * nu) / dp_feed
     hconv.append(h)
-
 
 # Print
 # ----------------------------------------------------------------------------
 
 print(
-    f'\n{" Parameters ":-^79}\n'
+    f'\n{" Parameters ":-^79}\n\n'
+    f'dp bed        {dp_bed * 1e6:.1f} μm\n'
 )
 
 print('dp_feed [μm]    mf_feed [%]')
@@ -80,9 +86,30 @@ for d, mf in zip(dps, wts):
 print(
     f'\n{" Results ":-^79}\n\n'
     f'dp feed       {d_avg:.4g} μm (avg.)\n'
-    f'dp bed        {dp_bed * 1e6:.1f} μm\n'
+    f'dp feed       {dp_feed:.4g} m (avg.)\n'
 )
 
-print(f'{"gas":8} {"Umf":8} {"Re":12} {"Nu":8} {"h":12}')
+print(f'{"gas":8} {"Umf":8} {"Re":8} {"Nu":8} {"h":8}')
 for i in range(len(gas)):
-    print(f'{gas[i]:<8} {umf[i]:<8.2f} {reynolds[i]:<12.2f} {nusselt[i]:<8.2f} {hconv[i]:<12.2f}')
+    print(f'{gas[i]:<8} {umf[i]:<8.2f} {reynolds[i]:<8.2f} {nusselt[i]:<8.2f} {hconv[i]:<8.2f}')
+
+# Plot
+# ----------------------------------------------------------------------------
+
+xticks = np.arange(len(gas))
+
+sub = str.maketrans('0123456789', '₀₁₂₃₄₅₆₇₈₉')
+xlabels = [g.translate(sub) for g in gas]
+
+fig, ax = plt.subplots(tight_layout=True)
+ax.bar(xticks, hconv, color='firebrick', width=0.4)
+ax.set_axisbelow(True)
+ax.set_frame_on(False)
+ax.set_xticks(xticks)
+ax.set_xticklabels(xlabels)
+ax.set_ylabel('h [W/m²K]')
+ax.tick_params(bottom=False, left=False)
+ax.xaxis.grid(False)
+ax.yaxis.grid(True, color='0.9')
+
+plt.show()
