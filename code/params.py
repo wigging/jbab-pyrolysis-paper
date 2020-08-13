@@ -3,7 +3,7 @@ Parameters for the biomass particle, sand particle, and reactor. Units for
 each parameter are given in square brackets [].
 """
 
-# Feedstock material (biomass particle)
+# Feedstock (biomass particle)
 # ----------------------------------------------------------------------------
 
 # particle size distribution of biomass
@@ -16,16 +16,16 @@ dp_feed = [
     {'d': 543, 'mf': 2.7}
 ]
 
-# Bed material (sand particle)
+# Bed (sand particle)
 # ----------------------------------------------------------------------------
 
-# bed particle diameter [m]
-dp_bed = 0.000453
+# sand particle diameter [m]
+dp_bed = 0.000453   # 453 μm
 
-# density of a bed particle [kg/m³]
+# density of a sand particle [kg/m³]
 rhop_bed = 2500
 
-# sphericity of a bed particle [-]
+# sphericity of a sand particle [-]
 phi_bed = 0.94
 
 # Other
