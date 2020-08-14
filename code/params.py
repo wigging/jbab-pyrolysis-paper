@@ -16,6 +16,12 @@ dp_feed = [
     {'d': 543, 'mf': 2.7}
 ]
 
+# thermal conductivity for biomass particle, assume loblolly pine [W/mK]
+k_feed = 0.12
+
+# density of the biomass particle, assume loblolly pine [kg/m³]
+rhop_feed = 540
+
 # Bed (sand particle)
 # ----------------------------------------------------------------------------
 
