@@ -1,6 +1,6 @@
-# Modeling Gas Effects in a Bubbling Fluidized Bed Reactor for Biomass Pyrolysis
+# Modeling gas effects in a BFB reactor for biomass pyrolysis
 
-LaTeX and associated files for generating the paper titled "Modeling Gas Effects in a Bubbling Fluidized Bed Reactor for Biomass Pyrolysis".
+Code and LaTeX files associated with the paper "Modeling Gas Effects in a Bubbling Fluidized Bed Reactor for Biomass Pyrolysis" by Gavin Wiggins, Oluwafemi Oyedeji, and ?.
 
 ## Project structure
 
