@@ -3,6 +3,7 @@ here
 """
 
 import chemics as cm
+import matplotlib.pyplot as plt
 import numpy as np
 
 # Parameters
@@ -210,3 +211,32 @@ for i in range(len(gas)):
 
 # Plot
 # ----------------------------------------------------------------------------
+
+fig, ax = plt.subplots(tight_layout=True)
+
+for i, b in enumerate(bi):
+    if b < 1.0:
+        ax.plot(b, py2[i], 'o', label=gas[i])
+    elif b > 1.0:
+        ax.plot(b, py1[i], '^', label=gas[i])
+ax.set_xlabel('Biot Number, Bi [-]')
+ax.set_ylabel('Pyrolysis Number, Py [-]')
+
+ax.text(0.2, 0.93, 'Py II\nkinetics, isothermal', ha='center', transform=ax.transAxes)
+ax.text(0.8, 0.93, 'Py I\nkinetics', ha='center', transform=ax.transAxes)
+ax.text(0.2, 0.03, 'Py II\nconvection', ha='center', transform=ax.transAxes)
+ax.text(0.8, 0.03, 'Py I\nconduction', ha='center', transform=ax.transAxes)
+
+ax.axvline(1, c='k', ls='-.')
+ax.axvspan(10**-1, 10**1, color='0.9')
+ax.axhline(1, c='k', ls='-.')
+ax.axhspan(10**-1, 10**1, color='0.9')
+ax.grid(color='0.9')
+ax.set_frame_on(False)
+ax.set_xlim(10**-4, 10**4)
+ax.set_ylim(10**-4, 10**4)
+ax.set_xscale('log')
+ax.set_yscale('log')
+ax.legend(loc='best', frameon=False)
+
+plt.show()
