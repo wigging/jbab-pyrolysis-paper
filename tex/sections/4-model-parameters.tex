@@ -117,10 +117,29 @@ Table \ref{tab:cases} represents the CFD simulations conducted for this paper. E
         Parameter & Value \\
         \midrule
         CFD cell size, $\Delta_x \times \Delta_y \times \Delta_z$ (mm) & $4.3 \times 4.4 \times 4.3$ \\
-        time step, $\Delta_x$ (s) & varies \\
-        biomass parcel statistical weight & 10 \\
-        sand parcel statistical weight & 20 \\
-        gas phase equation of state & ideal \\
+        time step, $\Delta_x$ (s)                                      & varies \\
+        biomass parcel statistical weight                              & 10 \\
+        sand parcel statistical weight                                 & 20 \\
+        gas phase equation of state                                    & ideal \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}
+    \centering
+    \caption{Simulation cases for different gas mixtures. Columns denote gas flow rate in m$^3$/s at 500$^\circ$C. Additional $2.83\times10^{-5}$ m$^3$/s of N$_2$ at 500$^\circ$C supplied at fluidizing gas inlet for all cases. Additional $2.55\times10^{-5}$ m$^3$/s of N$_2$ at 25$^\circ$C supplied at biomass feed inlet for all cases.}
+    \begin{tabular}{llrrrrrr}
+        \toprule
+        ID & Case          & N$_2$    & H$_2$    & H$_2$O   & CO       & CO$_2$   & CH$_4$ \\
+        \midrule
+        0 & N$_2$          & 6.56e-04 & 0        & 0        & 0        & 0        & 0        \\
+        0 & H$_2$          & 0        & 6.37e-04 & 0        & 0        & 0        & 0        \\
+        0 & H$_2$O         & 0        & 0        & 6.37e-04 & 0        & 0        & 0        \\
+        0 & CO             & 0        & 0        & 0        & 6.37e-04 & 0        & 0        \\
+        0 & CO$_2$         & 0        & 0        & 0        & 0        & 6.37e-04 & 0        \\
+        0 & CH$_4$         & 0        & 0        & 0        & 0        & 0        & 6.37e-04 \\
+        0 & N$_2$ + CO     & 3.18e-04 & 0        & 0        & 3.18e-04 & 0        & 0        \\
+        0 & N$_2$ + CO$_2$ & 3.47e-04 & 0        & 0        & 0        & 3.18e-04 & 0        \\
         \bottomrule
     \end{tabular}
 \end{table}
