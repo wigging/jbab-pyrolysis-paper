@@ -77,12 +77,24 @@ As shown in Equation \ref{eq:nusselt}, the convective heat transfer coefficient 
 
 \begin{align}
     Nu &= 2 + 0.9\, Re^{0.62} \left(\frac{d_p}{d_b}\right)^{0.2} = \frac{h\, d_p}{k_g} \label{eq:nusselt} \\
-    Re &= \frac{\rho\, U_{mf}\, d_p}{\mu} \label{eq:reynolds}
+    Re &= \frac{\rho\, U_{mf}\, d_p}{\mu} \label{eq:reynolds} \\
 \end{align}
 
 % ----------------------------------------------------------------------------
 
-\subsection{Pyrolysis kinetics}
+\subsection{Pyrolysis numbers}
+
+As mentioned in the work of Pyle and Zaror \cite{Pyle-1984}, the rate of pyrolysis involves a balance between internal and external heat transfer due to heat transport and reaction. This balance is embodied by the dimensionless numbers Bi, Py$^\textrm{I}$, and Py$^\textrm{II}$ which are determined from Equations \ref{eq:biot}, \ref{eq:pynumber1}, and \ref{eq:pynumber2} respectively. The Biot number Bi represents the ratio of convective and conductive heat transport. The first pyrolysis number Py$^\textrm{I}$ demonstrates the ratio of heat transfer by conduction to the rate of heat loss due to products leaving the particle. The second pyrolysis number Py$^\textrm{II}$ reflects the effect of convective heat transfer to the external particle surface relative to the reaction heat loss. The Biot and pyrolysis numbers are calculated using the following parameters: h is the convective heat transfer coefficient in W/m$^2$K, R is the radius or characteristic length of the biomass particle in meters, k is the biomass thermal conductivity in W/mK, $\rho$ is the density of the biomass particle in kg/m$^3$, K is the total rate constant in 1/s for the primary reactions, and C$_\textrm{p}$ is the biomass heat capacity calculated from $103.1 + 3.867\,T$ where T is the biomass temperature in Kelvin.
+
+\begin{align}
+    Bi &= \frac{h\,R}{k} \label{eq:biot} \\
+    Py^{\textrm{I}} &= \frac{k}{\rho\,C_p\,R^2\,K} \label{eq:pynumber1} \\
+    Py^{\textrm{II}} &= \frac{h}{\rho\,C_p\,R\,K} \label{eq:pynumber2}
+\end{align}
+
+% ----------------------------------------------------------------------------
+
+\subsection{Biomass pyrolysis kinetics}
 
 A pyrolysis kinetics scheme based on the work of Di Blasi was implemented to predict the conversion of biomass into gas, tar, and char products \cite{Blasi-1993,Blasi-2001}. Figure \ref{fig:blasi} gives an overview of the scheme and its reaction mechanisms. Reactions 1--3 represent the primary conversion of biomass while reactions 4--5 are secondary reactions that reduce tar yield at long residence times.
 
