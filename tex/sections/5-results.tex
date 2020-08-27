@@ -133,6 +133,26 @@ A range of reaction temperatures were applied to the Di Blasi kinetics in the ba
 
 % ----------------------------------------------------------------------------
 
+\subsection{Limiting factors for biomass pyrolysis}
+
+Gas influence on the pyrolysis limiting regimes is shown in Figure \ref{fig:biot-pyro-gases} for a biomass particle diameter of 369.4 $\mu$m. The regime map suggests that gas properties have little effect on the limiting mode of pyrolysis. However, when comparing a range of particle diameters, the differences are more pronounced as seen in Figure \ref{fig:biot-pyro-diams}. For larger particles, conduction becomes the limiting mode of pyrolysis especially for the hydrogen gas. For smaller particles, nitrogen gas promotes isothermal conditions along with a kinetically limited pyrolysis.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/biot-pyro-gases.pdf}
+    \caption{Comparison of carrier gas effects on pyrolysis regime for a 369.4 $\mu$m biomass particle.}
+    \label{fig:biot-pyro-gases}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/biot-pyro-diams.pdf}
+    \caption{Comparison of nitrogen and hydrogen gas effects for biomass particles ranging from 10$\mu$m to 5 mm in diameter. Triangle markers symbolize 369.4 $\mu$m biomass particle diameter.}
+    \label{fig:biot-pyro-diams}
+\end{figure}
+
+% ----------------------------------------------------------------------------
+
 \subsection{CFD-DEM validation}
 
 The predicted yield of pyrolysis products (bio-oil, light gas, and biochar) was validated against experimental data reported by [XXX]. In their experimental work, [XXX] carried out biomass pyrolysis in the same NREL 2FBR fast pyrolysis system that is modeled and simulated in this research. Additionally, the process variables used in the experimental work are consistent with those implemented for the N$_2$ and H$_2$ cases in this research. Figure \ref{fig:cfd-validation} shows that the predicted yields of pyrolysis products closely follow the experimental data with absolute deviation ranging between 1\% and 6\%. The largest observed deviations occur in the prediction of bio-oil and are attributed to the non-closure of mass balance for the experimental data. The reported mass closure for the experimental data was about 94\%. A mass-proportional adjustment of the experimental data to enforce 100\% mass closure decreases the absolute deviation of bio-oil prediction to about 2\% or less.
