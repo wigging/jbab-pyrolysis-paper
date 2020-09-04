@@ -6,16 +6,18 @@ poise.
 import chemics as cm
 import matplotlib.pyplot as plt
 import numpy as np
+
 from funcs.mu_brokaw import mu_brokaw
 from funcs.mu_davidson import mu_davidson
+from funcs.mu_wilke import mu_wilke
 
 # Parameters
 # ----------------------------------------------------------------------------
 
 # H₂ and N₂ gas viscosity at 291.1 K (18°C) in units of P x 10^7
-# values from https://www.lmnoeng.com/Flow/GasViscosity.php
-mu_h2 = 8.7027205e-5 * 1e7
-mu_n2 = 1.7375524e-4 * 1e7
+# values taken from data points (see below)
+mu_h2 = 877
+mu_n2 = 1752
 
 # molecular weight [g/mol]
 mw_h2 = 2.016
@@ -56,22 +58,23 @@ for xh2 in data_trautz['x']:
 # Calculate gas mixture viscosity
 # ----------------------------------------------------------------------------
 
-# fractions of gas mixture components
-x_h2 = np.linspace(0, 1)
-x_n2 = 1 - x_h2
-
 # store calculated viscosity of gas mixture and associated mass fraction
 mu_h2n2 = {
     'brokaw': [],
     'davidson': [],
     'graham': [],
-    'herning': []
+    'herning': [],
+    'wilke': []
 }
 
 y_h2 = []
 
+# H₂ mole fractions for calculations
+# endpoints chosen to avoid division by zero
+x_h2 = np.linspace(0.0001, 0.9999)
+
 for xh2 in x_h2:
-    xn2 = 1 - xh2
+    xn2 = 1.0 - xh2
 
     mu0 = mu_brokaw([mu_h2, mu_n2], [mw_h2, mw_n2], [xh2, xn2])
     mu_h2n2['brokaw'].append(mu0)
@@ -84,6 +87,9 @@ for xh2 in x_h2:
 
     mu3 = cm.mu_herning([mu_h2, mu_n2], [mw_h2, mw_n2], [xh2, xn2])
     mu_h2n2['herning'].append(mu3)
+
+    mu4 = mu_wilke([mu_h2, mu_n2], [mw_h2, mw_n2], [xh2, xn2])
+    mu_h2n2['wilke'].append(mu4)
 
     yh2 = cm.molefrac_to_massfrac([xh2, xn2], [mw_h2, mw_n2])[0]
     y_h2.append(yh2)
@@ -99,6 +105,7 @@ ax1.plot(x_h2, mu_h2n2['brokaw'], label='Brokaw')
 ax1.plot(x_h2, mu_h2n2['davidson'], label='Davidson')
 ax1.plot(x_h2, mu_h2n2['graham'], label='Graham')
 ax1.plot(x_h2, mu_h2n2['herning'], label='Herning')
+ax1.plot(x_h2, mu_h2n2['wilke'], label='Wilke')
 ax1.set_xlabel('H₂ mole fraction [-]')
 ax1.set_ylabel('Dynamic viscosity [P x 10$^7$]')
 ax1.grid(color='0.9')
@@ -111,6 +118,7 @@ ax2.plot(y_h2, mu_h2n2['brokaw'], label='Brokaw')
 ax2.plot(y_h2, mu_h2n2['davidson'], label='Davidson')
 ax2.plot(y_h2, mu_h2n2['graham'], label='Graham')
 ax2.plot(y_h2, mu_h2n2['herning'], label='Herning')
+ax2.plot(y_h2, mu_h2n2['wilke'], label='Wilke')
 ax2.set_xlabel('H₂ mass fraction [-]')
 ax2.grid(color='0.9')
 ax2.legend(loc='best', frameon=False)

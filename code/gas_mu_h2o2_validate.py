@@ -6,16 +6,18 @@ poise.
 import chemics as cm
 import matplotlib.pyplot as plt
 import numpy as np
+
 from funcs.mu_brokaw import mu_brokaw
 from funcs.mu_davidson import mu_davidson
+from funcs.mu_wilke import mu_wilke
 
 # Parameters
 # ----------------------------------------------------------------------------
 
 # H₂ and O₂ gas viscosity at 293.6 K in units of P x 10^7
-# values from https://www.lmnoeng.com/Flow/GasViscosity.php
-mu_h2 = 8.75480454e-5 * 1e7
-mu_o2 = 2.0254787e-4 * 1e7
+# values taken from data points (see below)
+mu_h2 = 885
+mu_o2 = 2040
 
 # molecular weight [g/mol]
 mw_h2 = 2.016
@@ -25,7 +27,7 @@ mw_o2 = 31.998
 # ----------------------------------------------------------------------------
 
 # H₂/O₂ mixture data from Table 2 at 293.6 K (20°C) in Itterbeek 1947 paper
-# mu is gas viscosity in P x 10^7
+# mu is gas viscosity in units of P x 10^7
 # x is H₂ mole fraction of the H₂/O₂ mixture
 # y is H₂ mass fraction of the H₂/O₂ mixture
 data_itterbeek = {
@@ -43,19 +45,20 @@ for xh2 in data_itterbeek['x']:
 # Calculate gas mixture viscosity
 # ----------------------------------------------------------------------------
 
-# fractions of gas mixture components
-x_h2 = np.linspace(0, 1)
-x_o2 = 1 - x_h2
-
 # store calculated viscosity of gas mixture and associated mass fraction
 mu_h2o2 = {
     'brokaw': [],
     'davidson': [],
     'graham': [],
-    'herning': []
+    'herning': [],
+    'wilke': []
 }
 
 y_h2 = []
+
+# H₂ mole fractions for calculations
+# endpoints chosen to avoid division by zero
+x_h2 = np.linspace(0.0001, 0.9999)
 
 for xh2 in x_h2:
     xo2 = 1 - xh2
@@ -72,6 +75,9 @@ for xh2 in x_h2:
     mu3 = cm.mu_herning([mu_h2, mu_o2], [mw_h2, mw_o2], [xh2, xo2])
     mu_h2o2['herning'].append(mu3)
 
+    mu4 = mu_wilke([mu_h2, mu_o2], [mw_h2, mw_o2], [xh2, xo2])
+    mu_h2o2['wilke'].append(mu4)
+
     yh2 = cm.molefrac_to_massfrac([xh2, xo2], [mw_h2, mw_o2])[0]
     y_h2.append(yh2)
 
@@ -85,6 +91,7 @@ ax1.plot(x_h2, mu_h2o2['brokaw'], label='Brokaw')
 ax1.plot(x_h2, mu_h2o2['davidson'], label='Davidson')
 ax1.plot(x_h2, mu_h2o2['graham'], label='Graham')
 ax1.plot(x_h2, mu_h2o2['herning'], label='Herning')
+ax1.plot(x_h2, mu_h2o2['wilke'], label='Wilke')
 ax1.set_xlabel('H₂ mole fraction [-]')
 ax1.set_ylabel('Dynamic viscosity [P x 10$^7$]')
 ax1.grid(color='0.9')
@@ -96,6 +103,7 @@ ax2.plot(y_h2, mu_h2o2['brokaw'], label='Brokaw')
 ax2.plot(y_h2, mu_h2o2['davidson'], label='Davidson')
 ax2.plot(y_h2, mu_h2o2['graham'], label='Graham')
 ax2.plot(y_h2, mu_h2o2['herning'], label='Herning')
+ax2.plot(y_h2, mu_h2o2['wilke'], label='Wilke')
 ax2.set_xlabel('H₂ mass fraction [-]')
 ax2.grid(color='0.9')
 ax2.legend(loc='best', frameon=False)
