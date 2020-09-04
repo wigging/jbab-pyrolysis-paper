@@ -28,15 +28,42 @@ Gas viscosity ($\mu_{gas}$ as \textmugreek P) is determined from Equation \ref{e
     C_{p\,gas} = A + B\,T + C\,T^2 + D\,T^3 + E\,T^4 + F\,T^5 + G\,T^6
 \end{equation}
 
-Several methods are available to calculate the viscosity of a gas mixture. Equation \ref{eq:graham} calculates the mixture viscosity from the sum of the mole fraction and viscosity product of each gas component in the mixture \cite{Graham-1846} while Equation \ref{eq:herning} accounts for the molecular weight of each gas component \cite{Herning-1936}.
+Several methods are available to calculate the dynamic viscosity of a gas mixture. The simplest approach is Graham's model in Equation \ref{eq:graham} which sums the gas viscosities ($\mu_i$) and mole fractions ($x_i$) of each component \cite{Graham-1846}.
 
-\begin{equation}\label{eq:graham}
-    \mu_{mix} = \sum(x_i \cdot \mu_i)
+\begin{equation}
+    \mu_{\text{mix}} = \sum(x_i \; \mu_i)
+    \label{eq:graham}
 \end{equation}
 
-\begin{equation}\label{eq:herning}
-    \mu_{mix} = \frac{\sum(\mu_i \cdot x_i \cdot \sqrt{MW_i})}{\sum(x_i \cdot \sqrt{MW_i})}
+The Herning and Zipperer approach shown by Equation \ref{eq:herning}, sums the viscosities weighted by the square root of the molecular weight ($M_i$) for each component \cite{Herning-1936}. According to Davidson's report \cite{Davidson-1993}, this model is not recommended for gas mixtures containing significant amounts of hydrogen.
+
+\begin{equation}
+    \mu_{\text{mix}} = \sum \frac{\mu_i \; x_i \; \sqrt{M_i}}{x_i \; \sqrt{M_i}}
+    \label{eq:herning}
 \end{equation}
+
+Wilke's model represented by Equations \ref{eq:wilke-phi} and \ref{eq:wilke-mu} is based on a kinetic theory implementation which requires a coefficient ($\phi_{ij}$) for each gas component \cite{Wilke-1950}. The coefficients are used along with the mole fractions to calculate the overall mixture viscosity.
+
+\begin{align}
+    \phi_{ij} &= \frac{\left[1 + (\mu_i/\mu_j)^{1/2} (M_j/M_i)^{1/4}\right]^2}{(4/\sqrt{2}) \left[1 + (M_i/M_j)\right]^{1/2}} \label{eq:wilke-phi} \\
+    \mu_{\text{mix}} &= \sum_{i=1} \frac{\mu_i}{1 + \frac{1}{x_i} \sum_{\substack{j=1 \\j \neq i}} x_j \, \phi_{ij}} \label{eq:wilke-mu}
+\end{align}
+
+Brokaw provides a model for nonpolar and polar gas mixtures that utilizes the viscosities, molecular weights, and mole fractions of the mixture components \cite{Brokaw-1968}. The molecular weight ratios of the gas components are described by Equations \ref{eq:brokaw-mij} and \ref{eq:brokaw-aij}; the ratios are used in Equation \ref{eq:brokaw-mu} to calculate the overall mixture viscosity where $S_{ij} = 1$ for nonpolar gases.
+
+\begin{align}
+    m_{ij} &= \left[ 4 M_i M_j / (M_i + M_j)^2 \right]^{1/4} \label{eq:brokaw-mij} \\
+    A_{ij} &= m_{ij}\left( \frac{M_j}{M_i} \right)^{1/2} \left[ 1 + \frac{\frac{M_i}{M_j} - \left(\frac{M_i}{M_j} \right)^{0.45} }{ 2 \left(1 + \frac{M_i}{M_j} \right) + \frac{1 + \left(\frac{M_i}{M_j} \right)^{0.45}}{1 + m_{ij}} m_{ij}} \right] \label{eq:brokaw-aij} \\
+    \mu_{\text{mix}} &= \sum_{i=1} \frac{x_i \sqrt{\mu_i}}{\frac{x_i}{\sqrt{\mu_i}} + \sum_{\substack{j=1 \\ j \neq i}} \frac{S_{ij} \, A_{ij}}{\sqrt{\mu_j}} x_j} \label{eq:brokaw-mu}
+\end{align}
+
+The approach by Davidson estimates viscosity in terms of the fluidity of the gas mixture \cite{Davidson-1993}. This method utilizes the momentum efficiency of the gas components to predict the mixture fluidity which is the reciprocal of the gas viscosity as given by Equations \ref{eq:davidson-eij}, \ref{eq:davidson-f}, and \ref{eq:davidson-mu} respectively. The empirical constant $A$ was calculated as 0.375 using reported viscosities of 35 gas pairs \cite{Davidson-1993}.
+
+\begin{align}
+    E_{ij} &= \frac{2 \sqrt{M_i\, M_j}}{M_i + M_j} \label{eq:davidson-eij} \\
+    f &= \sum \frac{x_i\, x_j}{\sqrt{\mu_i\, \mu_j}} E_{ij}^A \label{eq:davidson-f} \\
+    \mu_{\text{mix}} &= 1 / f \label{eq:davidson-mu}
+\end{align}
 
 The Prandtl number is a dimensionless number representing the ratio of momentum diffusivity to thermal diffusivity. It is calculated from the equation shown below where $C_p$ is heat capacity (J/kg$\cdot$K), $\mu$ is dynamic gas viscosity (kg/m$\cdot$s), and $k$ is thermal conductivity (W/m$\cdot$K).
 
@@ -82,7 +109,7 @@ As shown in Equation \ref{eq:nusselt}, the convective heat transfer coefficient 
 
 % ----------------------------------------------------------------------------
 
-\subsection{Pyrolysis numbers}
+\subsection{Dimensionless numbers}
 
 As mentioned in the work of Pyle and Zaror \cite{Pyle-1984}, the rate of pyrolysis involves a balance between internal and external heat transfer due to heat transport and reaction. This balance is embodied by the dimensionless numbers Bi, Py$^\textrm{I}$, and Py$^\textrm{II}$ which are determined from Equations \ref{eq:biot}, \ref{eq:pynumber1}, and \ref{eq:pynumber2} respectively. The Biot number Bi represents the ratio of convective and conductive heat transport. The first pyrolysis number Py$^\textrm{I}$ demonstrates the ratio of heat transfer by conduction to the rate of heat loss due to products leaving the particle. The second pyrolysis number Py$^\textrm{II}$ reflects the effect of convective heat transfer to the external particle surface relative to the reaction heat loss. The Biot and pyrolysis numbers are calculated using the following parameters: h is the convective heat transfer coefficient in W/m$^2$K, R is the radius or characteristic length of the biomass particle in meters, k is the biomass thermal conductivity in W/mK, $\rho$ is the density of the biomass particle in kg/m$^3$, K is the total rate constant in 1/s for the primary reactions, and C$_\textrm{p}$ is the biomass heat capacity calculated from $103.1 + 3.867\,T$ where T is the biomass temperature in Kelvin.
 
