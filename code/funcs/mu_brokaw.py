@@ -59,15 +59,17 @@ def mu_brokaw(mu, mw, x):
 
     mij = (4 * np.outer(mw, mw) / (np.add.outer(mw, mw)**2))**0.25
 
-    num = np.divide.outer(mw, mw) - np.divide.outer(mw, mw)**0.45
-    den = 2 * (1 + np.divide.outer(mw, mw)) + (1 + np.divide.outer(mw, mw)**0.45) / (1 + mij) * mij
-    aij = mij * (1 / np.divide.outer(mw, mw)**0.5) * (1 + num / den)
+    mi_mj = np.divide.outer(mw, mw)  # Mi/Mj
+    num = mi_mj - mi_mj**0.45
+    den = 2 * (1 + mi_mj) + (1 + mi_mj**0.45) / (1 + mij) * mij
+    aij = mij * (mi_mj.T**0.5) * (1 + num / den)
 
     sij = 1.0
-    v = sij * aij * x / np.sqrt(mu)
+    sqrt_mu = np.sqrt(mu)
+    v = sij * aij * x / sqrt_mu
     vsum = np.sum(v, axis=1) - np.diagonal(v)
 
-    mu_mix = np.sum((x * np.sqrt(mu)) / (x / np.sqrt(mu) + vsum))
+    mu_mix = np.sum((x * sqrt_mu) / (x / sqrt_mu + vsum))
     return mu_mix
 
 

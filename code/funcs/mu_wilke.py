@@ -54,8 +54,9 @@ def mu_wilke(mu, mw, x):
     if not np.isclose(np.asarray(x).sum(), 1.0):
         raise ValueError('Sum of mole fractions must be 1.0')
 
-    num = (1 + (np.divide.outer(mu, mu))**0.5 * (1 / np.divide.outer(mw, mw))**0.25)**2
-    den = 4 / np.sqrt(2) * (1 + np.divide.outer(mw, mw))**0.5
+    mi_mj = np.divide.outer(mw, mw)  # Mi / Mj
+    num = (1 + (np.divide.outer(mu, mu))**0.5 * (mi_mj.T)**0.25)**2
+    den = 4 / np.sqrt(2) * (1 + mi_mj)**0.5
     phi = num / den
 
     v = x * phi
