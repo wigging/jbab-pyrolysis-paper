@@ -125,6 +125,6 @@ ax2.legend(loc='best', frameon=False)
 ax2.set_frame_on(False)
 ax2.tick_params(color='0.9')
 
-fig.savefig('results/gas-mu-h2n2-validate.pdf')
+fig.savefig('../tex/figures/gas-mu-h2n2-validate.pdf')
 
 plt.show()
