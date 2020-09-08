@@ -2,43 +2,43 @@
 
 \section{Modeling approach}
 
-Engineering correlations, reduced-order models, and CFD modeling techniques were used to investigate the effects of recycled gas on the operation of a fluidized-bed biomass pyrolysis reactor. The following sections discuss approaches implemented in this work for calculating gas properties and the associated effects on fluidization conditions and pyrolysis yields.
+Gas property equations along with models for calculating viscosity of a gas mixture are discussed in the following sections. Fluidization correlations relevant to bubbling fluidized bed reactors are also discussed. An overview of the biomass pyrolysis kinetics scheme is given and dimensionless numbers for understanding the controlling mechanisms for the problem are examined. Finally, equations pertaining to the CFD-DEM simulations are discussed.
 
 % ----------------------------------------------------------------------------
 
 \subsection{Gas properties}
 
-Density of the gas is calculated from the ideal gas law as shown in Equation \ref{eq:density} where $\rho_{gas}$ is density (kg/m$^3$), $P$ is pressure (Pa), $MW$ is molecular weight (g/mol), $R$ is the gas constant [(m$^3$ Pa) / (K mol)], and $T$ is temperature (K).
+Density of the gas is calculated from the ideal gas law as shown in Equation \ref{eq:density} where $\rho_\text{gas}$ is density (kg/m$^3$), $P$ is pressure (Pa), $M$ is molecular weight (g/mol), $R$ is the gas constant [(m$^3$ Pa) / (K mol)], and $T$ is temperature (K).
 
 \begin{equation}\label{eq:density}
-    \rho_{gas} = \frac{P\,MW}{R\,T}
+    \rho_\text{gas} = \frac{P\,M}{R\,T}
 \end{equation}
 
-Gas viscosity ($\mu_{gas}$ as \textmugreek P) is determined from Equation \ref{eq:viscosity}, thermal conductivity ($k_{gas}$ as W/m\,K) is estimated from Equation \ref{eq:thermlcond}, and heat capacity (C$_{p\,gas}$ as J/mol\,K) is calculated from Equation \ref{eq:heatcap}. Temperature of the gas in Kelvin is represented by $T$ while the regression coefficients $A$, $B$, $C$, $D$, $E$, $F$, and $G$ for each gas are obtained from Yaws' Handbook \cite{Yaws2014}.
+Gas viscosity ($\mu_\text{gas}$ as \textmugreek P) is determined from Equation \ref{eq:viscosity}, thermal conductivity ($k_{gas}$ as W/m\,K) is estimated from Equation \ref{eq:thermlcond}, and heat capacity (C$_{p\,gas}$ as J/mol\,K) is calculated from Equation \ref{eq:heatcap}. Temperature of the gas in Kelvin is represented by $T$ while the regression coefficients $A$, $B$, $C$, $D$, $E$, $F$, and $G$ for each gas are obtained from Yaws' Handbook \cite{Yaws2014}.
 
 \begin{equation}\label{eq:viscosity}
-    \mu_{gas} = A + B\,T + C\,T^2 + D\,T^3
+    \mu_\text{gas} = A + B\,T + C\,T^2 + D\,T^3
 \end{equation}
 
 \begin{equation}\label{eq:thermlcond}
-    k_{gas} = A + B\,T + C\,T^2 + D\,T^3
+    k_\text{gas} = A + B\,T + C\,T^2 + D\,T^3
 \end{equation}
 
 \begin{equation}\label{eq:heatcap}
-    C_{p\,gas} = A + B\,T + C\,T^2 + D\,T^3 + E\,T^4 + F\,T^5 + G\,T^6
+    C_\text{p\,gas} = A + B\,T + C\,T^2 + D\,T^3 + E\,T^4 + F\,T^5 + G\,T^6
 \end{equation}
 
 Several methods are available to calculate the dynamic viscosity of a gas mixture. The simplest approach is Graham's model in Equation \ref{eq:graham} which sums the gas viscosities ($\mu_i$) and mole fractions ($x_i$) of each component \cite{Graham-1846}.
 
 \begin{equation}
-    \mu_{\text{mix}} = \sum(x_i \; \mu_i)
+    \mu_\text{mix} = \sum(x_i \; \mu_i)
     \label{eq:graham}
 \end{equation}
 
 The Herning and Zipperer approach shown by Equation \ref{eq:herning}, sums the viscosities weighted by the square root of the molecular weight ($M_i$) for each component \cite{Herning-1936}. According to Davidson's report \cite{Davidson-1993}, this model is not recommended for gas mixtures containing significant amounts of hydrogen.
 
 \begin{equation}
-    \mu_{\text{mix}} = \sum \frac{\mu_i \; x_i \; \sqrt{M_i}}{x_i \; \sqrt{M_i}}
+    \mu_\text{mix} = \sum \frac{\mu_i \; x_i \; \sqrt{M_i}}{x_i \; \sqrt{M_i}}
     \label{eq:herning}
 \end{equation}
 
@@ -62,14 +62,8 @@ The approach by Davidson estimates viscosity in terms of the fluidity of the gas
 \begin{align}
     E_{ij} &= \frac{2 \sqrt{M_i\, M_j}}{M_i + M_j} \label{eq:davidson-eij} \\
     f &= \sum \frac{x_i\, x_j}{\sqrt{\mu_i\, \mu_j}} E_{ij}^A \label{eq:davidson-f} \\
-    \mu_{\text{mix}} &= 1 / f \label{eq:davidson-mu}
+    \mu_\text{mix} &= 1 / f \label{eq:davidson-mu}
 \end{align}
-
-The Prandtl number is a dimensionless number representing the ratio of momentum diffusivity to thermal diffusivity. It is calculated from the equation shown below where $C_p$ is heat capacity (J/kg$\cdot$K), $\mu$ is dynamic gas viscosity (kg/m$\cdot$s), and $k$ is thermal conductivity (W/m$\cdot$K).
-
-\begin{equation}
-    Pr = \frac{C_p\, \mu}{k}
-\end{equation}
 
 % ----------------------------------------------------------------------------
 
@@ -78,7 +72,7 @@ The Prandtl number is a dimensionless number representing the ratio of momentum 
 For a bed of particles, the minimum fluidization velocity $U_{mf}$ is the gas velocity at which the drag force of the upward moving gas equals the weight of the particles. Kunii and Levenspiel \cite{Levenspiel-1991} provide the following equation for calculating minimum fluidization velocity
 
 \begin{equation}
-    U_{mf} = \frac{Re_{p,mf} \mu}{d_p \rho_g}
+    U_\text{mf} = \frac{Re_\text{p,mf}\; \mu}{d_p\, \rho_g}
 \end{equation}
 
 \noindent where $\mu$ is gas viscosity (kg/m\,s), $d_p$ is particle diameter (m), $\rho_g$ is gas density (kg/m$^3$), and $Re_{p,mf}$ is the particle Reynolds number (-) at minimum fluidization conditions. The Reynolds number is calculated from the Archimedes number ($Ar$) and two dimensionless constants ($a, b$) which represent experimental coefficients. Different $U_{mf}$ correlations were evalutaed based on experimental data from Wen and Yu where $(a, b) = (33.7, 0.0408)$, from Richardson where $(a, b) = (25.7, 0.0365)$, and from Grace where $(a, b) = (27.2, 0.0408)$ \cite{Levenspiel-1991}.
@@ -118,6 +112,12 @@ As mentioned in the work of Pyle and Zaror \cite{Pyle-1984}, the rate of pyrolys
     Py^{\textrm{I}} &= \frac{k}{\rho\,C_p\,R^2\,K} \label{eq:pynumber1} \\
     Py^{\textrm{II}} &= \frac{h}{\rho\,C_p\,R\,K} \label{eq:pynumber2}
 \end{align}
+
+The Prandtl number is a dimensionless number representing the ratio of momentum diffusivity to thermal diffusivity. It is calculated from the equation shown below where $C_p$ is heat capacity (J/kg$\cdot$K), $\mu$ is dynamic gas viscosity (kg/m$\cdot$s), and $k$ is thermal conductivity (W/m$\cdot$K).
+
+\begin{equation}
+    Pr = \frac{C_p\, \mu}{k}
+\end{equation}
 
 % ----------------------------------------------------------------------------
 

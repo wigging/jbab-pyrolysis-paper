@@ -2,11 +2,11 @@
 
 \section{Results and discussion}
 
-This section provides results and related discussions for the effects of different fluidization gases on the operation and conversion of a bubbling fluidized bed reactor.
+This section provides results and related discussions for the effects of different fluidization gases on the operation of a bubbling fluidized bed reactor. Gas effects on the pyrolysis yields of the biomass feedstock are also presented and discussed.
 
 % ----------------------------------------------------------------------------
 
-\subsection{Comparison of gas properties}
+\subsection{Pure gas properties}
 
 Molecular weight, viscosity, density, thermal conductivity, heat capacity, and Prandtl number of the individual gases investigated in this paper are shown in Figure \ref{fig:gas-properties}. The gas properties were calculated at a pressure of 101,325 Pa and a temperature of 773.15 K (500$^\circ$C). The lightest gas in terms of molecular weight and density is hydrogen while the heaviest gas is carbon dioxide. The highest viscosity is noted for the nitrogen gas while hydrogen has the lowest viscosity. The largest thermal conductivity is for hydrogen at approximately 0.36 W/(m\,K) while the other gases remain below 0.12 W/(m\,K). The highest heat capacity is obtained for methane at 62 J/(mol\,K) while the lowest is for hydrogen at 29 J/(mol\,K). The Prandtl number is similar for all the gases except for water vapor.
 
@@ -17,20 +17,11 @@ Molecular weight, viscosity, density, thermal conductivity, heat capacity, and P
     \label{fig:gas-properties}
 \end{figure}
 
-Properties for molecular weight, viscosity, and density for the gas mixtures investigated in this paper are shown in Figure \ref{fig:mix-properties}. Similar to the individual gas properties, the mixture properties were calculated at 101,325 Pa and 773.15 K (500$^\circ$C). The fraction of each gas in the mixture is given by the values shown at the top of each column in the figure. For example, the hydrogen and nitrogen mixture is comprised of 80\% hydrogen and 20\% nitrogen which is labeled as $0.8 + 0.2$. As expected, the carbon dioxide mixture is the heaviest in terms of molecular weight and density.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{mix-properties.pdf}
-    \caption{Comparison of gas mixture properties for molecular weight, viscosity, and density at 101,325 Pa and 773.15 K. Fraction of each gas component is shown at the top of each column.}
-    \label{fig:mix-properties}
-\end{figure}
-
 % ----------------------------------------------------------------------------
 
-\subsection{Validating gas mixture viscosity}
+\subsection{Gas mixture properties}
 
-Comparisons of the calculated viscosity of a H$_2$/N$_2$ gas mixture to measured values obtained from literature are shown in Figure \ref{fig:gas-mu-h2n2-validate}. The models by Herning and Zipperer as well as Brokaw match well with the experimental data for a range of mixture ratios. This is contradictory to the Davidson report which does not recommend the Herning and Zipperer model for hydrogen mixtures \cite{Davidson-1993}. Similar results are obtained for the H$_2$/O$_2$ gas mixture shown in Figure \ref{fig:gas-mu-h2o2-validate}.
+Comparisons of the calculated viscosity of a H$_2$/N$_2$ gas mixture to measured values obtained from literature are shown in Figure \ref{fig:gas-mu-h2n2-validate}. The models by Herning and Zipperer as well as Brokaw match well with the experimental data for a range of mixture ratios. This is contradictory to the Davidson report which does not recommend the Herning and Zipperer model for hydrogen mixtures \cite{Davidson-1993}. The Davidson and Graham models significantly underpredict the mixture viscosity while the Wilke model tends to overestimate the viscosity. Similar results are obtained for a H$_2$/O$_2$ gas mixture as shown in Figure \ref{fig:gas-mu-h2o2-validate}.
 
 \begin{figure}[H]
     \centering
@@ -46,9 +37,18 @@ Comparisons of the calculated viscosity of a H$_2$/N$_2$ gas mixture to measured
     \label{fig:gas-mu-h2o2-validate}
 \end{figure}
 
+Properties for molecular weight, viscosity, and density for the gas mixtures investigated in this paper are shown in Figure \ref{fig:mix-properties}. Similar to the individual gas properties, the mixture properties were calculated at 101,325 Pa and 773.15 K (500$^\circ$C). The fraction of each gas in the mixture is given by the values shown at the top of each column in the figure. For example, the hydrogen and nitrogen mixture is comprised of 80\% hydrogen and 20\% nitrogen which is labeled as $0.8 + 0.2$. As expected, the carbon dioxide mixture is the heaviest in terms of molecular weight and density.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{mix-properties.pdf}
+    \caption{Comparison of gas mixture properties for molecular weight, viscosity, and density at 101,325 Pa and 773.15 K. Fraction of each gas component is shown at the top of each column.}
+    \label{fig:mix-properties}
+\end{figure}
+
 % ----------------------------------------------------------------------------
 
-\subsection{Fluidization effects}
+\subsection{Fluidization characteristics}
 
 Minimum fluidization velocity (Umf) of the bed material for the different fluidization gases is presented in Table \ref{tab:umf-sand}. Hydrogen requires about twice the gas velocity to fluidize the bed of sand compared to the nitrogen, carbon monoxide, and carbon dioxide gases. This is due to hydrogen's lower viscosity and much lower density compared to the other gases. Water vapor and methane require moderately higher fluidization velocities compared to the nitrogen gas. A comparison of Umf for the various fluidization gases is displayed in Figure \ref{fig:umf-usumf-gases}.
 
