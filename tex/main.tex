@@ -1,6 +1,4 @@
-% ----------------------------------------------------------------------------
-% Setup and configuration
-% ----------------------------------------------------------------------------
+% ------------------------- Setup and configuration -------------------------
 
 \documentclass{article}
 \usepackage[utf8]{inputenc}
@@ -37,9 +35,7 @@
 \usepackage{biblatex}
 \addbibresource{references.bib}
 
-% ----------------------------------------------------------------------------
-% Document
-% ----------------------------------------------------------------------------
+% ------------------------- Document -------------------------
 
 \title{Modeling Gas Effects in a Bubbling Fluidized Bed Reactor for Biomass Pyrolysis}
 \author{Gavin M. Wiggins, Oluwafemi A. Oyedeji, and ?}
@@ -48,7 +44,6 @@
 \begin{document}
 
 \maketitle
-\tableofcontents
 
 \input{sections/0-abstract}
 \input{sections/1-introduction}
@@ -56,14 +51,8 @@
 \input{sections/3-modeling-approach}
 \input{sections/4-model-parameters}
 \input{sections/5-results}
-
-\section{Conclusion}
-
-Gas effects in a fluidized bed biomass pyrolysis reactor using engineering correlations, low-order models, and CFD simulations were investigated for N2, H2, H2O, CO, CO2, and CH4 carrier gas mixtures. Our findings reveal viscosity of a gas mixture can be significantly underestimated depending on the model. Also, fluidization characteristics such as U$_\text{mf}$ are greatly affected by gas properties but the effect on biomass pyrolysis yields is negligible.
-
-\section{Source code}
-
-Python models used to generate results for this article are available on the CCPC GitHub at \url{https://github.com/ccpcode/gas-effects-bfb}. Functionality provided by the Chemics package was used for gas properties and various fluidization calculations. More information about Chemics is available at \url{https://chemics.github.io}.
+\input{sections/6-conclusion}
+\input{sections/7-source-code}
 
 \printbibliography
 

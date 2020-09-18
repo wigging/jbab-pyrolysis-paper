@@ -2,19 +2,19 @@
 
 \section{Modeling approach}
 
-Gas property equations along with models for calculating viscosity of a gas mixture are discussed in the following sections. Fluidization correlations relevant to bubbling fluidized bed reactors are also discussed. An overview of the biomass pyrolysis kinetics scheme is given and dimensionless numbers for understanding the controlling mechanisms for the problem are examined. Finally, equations pertaining to the CFD-DEM simulations are discussed.
+Our strategy to model gas effects in a bubbling fluidized bed reactor begins with determining gas properties such as density, dynamic viscosity, thermal conductivity, and heat capacity. Once the individual gas viscosity is known, the viscosity of a gas mixture is calculated using various mixture models. Next, fluidization correlations relevant to fluidized bed reactors are used to investigate the effects of the gas properties on the hydrodynamics of the system. Dimensionless numbers provide insight on the limiting mechanisms in regards to the pyrolysis of the biomass particles. Finally, CFD-DEM simulations provide residence times and product yields related to the different carrier gas properties.
 
 % ----------------------------------------------------------------------------
 
 \subsection{Gas properties}
 
-Density of the gas is calculated from the ideal gas law as shown in Equation \ref{eq:density} where $\rho_\text{gas}$ is density (kg/m$^3$), $P$ is pressure (Pa), $M$ is molecular weight (g/mol), $R$ is the gas constant [(m$^3$ Pa) / (K mol)], and $T$ is temperature (K).
+Gas density is calculated using the ideal gas law as shown in Equation \ref{eq:density} where $\rho_\text{gas}$ is density in kg/m$^3$, P is pressure in Pa, M is molecular weight as g/mol, R is the gas constant in units of (m$^3$ Pa) / (K mol), and T is temperature in Kelvin.
 
 \begin{equation}\label{eq:density}
     \rho_\text{gas} = \frac{P\,M}{R\,T}
 \end{equation}
 
-Gas viscosity ($\mu_\text{gas}$ as \textmugreek P) is determined from Equation \ref{eq:viscosity}, thermal conductivity ($k_{gas}$ as W/m\,K) is estimated from Equation \ref{eq:thermlcond}, and heat capacity (C$_{p\,gas}$ as J/mol\,K) is calculated from Equation \ref{eq:heatcap}. Temperature of the gas in Kelvin is represented by $T$ while the regression coefficients $A$, $B$, $C$, $D$, $E$, $F$, and $G$ for each gas are obtained from Yaws' Handbook \cite{Yaws2014}.
+Dynamic gas viscosity $\mu_\text{gas}$ is estimated by Equation \ref{eq:viscosity} in units of \textmugreek P. Gas thermal conductivity k$_\text{gas}$ as W/m\,K is calculated from Equation \ref{eq:thermlcond} and heat capacity C$_\text{p\,gas}$ as J/mol\,K is determined using Equation \ref{eq:heatcap}. Temperature is denoted by T in Kelvin while the regression coefficients A, B, C, D, E, F, and G for a particular gas are obtained from Yaws' Handbook \cite{Yaws2014}.
 
 \begin{equation}\label{eq:viscosity}
     \mu_\text{gas} = A + B\,T + C\,T^2 + D\,T^3
@@ -28,28 +28,28 @@ Gas viscosity ($\mu_\text{gas}$ as \textmugreek P) is determined from Equation \
     C_\text{p\,gas} = A + B\,T + C\,T^2 + D\,T^3 + E\,T^4 + F\,T^5 + G\,T^6
 \end{equation}
 
-Several methods are available to calculate the dynamic viscosity of a gas mixture. The simplest approach is Graham's model in Equation \ref{eq:graham} which sums the gas viscosities ($\mu_i$) and mole fractions ($x_i$) of each component \cite{Graham-1846}.
+Several methods are available to calculate the dynamic viscosity of a gas mixture. The simplest approach is Graham's model in Equation \ref{eq:graham} which sums the gas viscosities $\mu_\text{i}$ and mole fractions x$_\text{i}$ of each gas component \cite{Graham-1846}.
 
 \begin{equation}
     \mu_\text{mix} = \sum(x_i \; \mu_i)
     \label{eq:graham}
 \end{equation}
 
-The Herning and Zipperer approach shown by Equation \ref{eq:herning}, sums the viscosities weighted by the square root of the molecular weight ($M_i$) for each component \cite{Herning-1936}. According to Davidson's report \cite{Davidson-1993}, this model is not recommended for gas mixtures containing significant amounts of hydrogen.
+\noindent The Herning and Zipperer approach shown by Equation \ref{eq:herning}, sums the viscosities weighted by the square root of the molecular weight M$_\text{i}$ for each component \cite{Herning-1936}. According to Davidson's report \cite{Davidson-1993}, this model is not recommended for gas mixtures containing significant amounts of hydrogen.
 
 \begin{equation}
     \mu_\text{mix} = \sum \frac{\mu_i \; x_i \; \sqrt{M_i}}{x_i \; \sqrt{M_i}}
     \label{eq:herning}
 \end{equation}
 
-Wilke's model represented by Equations \ref{eq:wilke-phi} and \ref{eq:wilke-mu} is based on a kinetic theory implementation which requires a coefficient ($\phi_{ij}$) for each gas component \cite{Wilke-1950}. The coefficients are used along with the mole fractions to calculate the overall mixture viscosity.
+\noindent Wilke's model represented by Equations \ref{eq:wilke-phi} and \ref{eq:wilke-mu} is based on a kinetic theory implementation which requires a coefficient $\phi_\text{ij}$ for each gas component \cite{Wilke-1950}. The coefficients are used along with the mole fractions to calculate the overall mixture viscosity.
 
 \begin{align}
     \phi_{ij} &= \frac{\left[1 + (\mu_i/\mu_j)^{1/2} (M_j/M_i)^{1/4}\right]^2}{(4/\sqrt{2}) \left[1 + (M_i/M_j)\right]^{1/2}} \label{eq:wilke-phi} \\
     \mu_{\text{mix}} &= \sum_{i=1} \frac{\mu_i}{1 + \frac{1}{x_i} \sum_{\substack{j=1 \\j \neq i}} x_j \, \phi_{ij}} \label{eq:wilke-mu}
 \end{align}
 
-Brokaw provides a model for nonpolar and polar gas mixtures that utilizes the viscosities, molecular weights, and mole fractions of the mixture components \cite{Brokaw-1968}. The molecular weight ratios of the gas components are described by Equations \ref{eq:brokaw-mij} and \ref{eq:brokaw-aij}; the ratios are used in Equation \ref{eq:brokaw-mu} to calculate the overall mixture viscosity where $S_{ij} = 1$ for nonpolar gases.
+\noindent Brokaw provides a model for nonpolar and polar gas mixtures that utilizes the viscosities, molecular weights, and mole fractions of the mixture components \cite{Brokaw-1968}. The molecular weight ratios of the gas components are described by Equations \ref{eq:brokaw-mij} and \ref{eq:brokaw-aij}; the ratios are used in Equation \ref{eq:brokaw-mu} to calculate the overall mixture viscosity where S$_\text{ij} = 1$ for nonpolar gases.
 
 \begin{align}
     m_{ij} &= \left[ 4 M_i M_j / (M_i + M_j)^2 \right]^{1/4} \label{eq:brokaw-mij} \\
@@ -57,7 +57,7 @@ Brokaw provides a model for nonpolar and polar gas mixtures that utilizes the vi
     \mu_{\text{mix}} &= \sum_{i=1} \frac{x_i \sqrt{\mu_i}}{\frac{x_i}{\sqrt{\mu_i}} + \sum_{\substack{j=1 \\ j \neq i}} \frac{S_{ij} \, A_{ij}}{\sqrt{\mu_j}} x_j} \label{eq:brokaw-mu}
 \end{align}
 
-The approach by Davidson estimates viscosity in terms of the fluidity of the gas mixture \cite{Davidson-1993}. This method utilizes the momentum efficiency of the gas components to predict the mixture fluidity which is the reciprocal of the gas viscosity as given by Equations \ref{eq:davidson-eij}, \ref{eq:davidson-f}, and \ref{eq:davidson-mu} respectively. The empirical constant $A$ was calculated as 0.375 using reported viscosities of 35 gas pairs \cite{Davidson-1993}.
+\noindent Lastly, the approach by Davidson estimates viscosity in terms of the fluidity of the gas mixture \cite{Davidson-1993}. This method utilizes the momentum efficiency of the gas components to predict the mixture fluidity which is the reciprocal of the gas viscosity as given by Equations \ref{eq:davidson-eij}, \ref{eq:davidson-f}, and \ref{eq:davidson-mu} respectively. The empirical constant A was calculated as 0.375 using reported viscosities of 35 gas pairs \cite{Davidson-1993}.
 
 \begin{align}
     E_{ij} &= \frac{2 \sqrt{M_i\, M_j}}{M_i + M_j} \label{eq:davidson-eij} \\
@@ -69,20 +69,20 @@ The approach by Davidson estimates viscosity in terms of the fluidity of the gas
 
 \subsection{Fluidization correlations}
 
-For a bed of particles, the minimum fluidization velocity $U_{mf}$ is the gas velocity at which the drag force of the upward moving gas equals the weight of the particles. Kunii and Levenspiel \cite{Levenspiel-1991} provide the following equation for calculating minimum fluidization velocity
+For a bed of particles, the minimum fluidization velocity U$_\text{mf}$ is the gas velocity at which the drag force of the upward moving gas equals the weight of the particles. Kunii and Levenspiel \cite{Levenspiel-1991} provide the following equation for calculating minimum fluidization velocity
 
 \begin{equation}
     U_\text{mf} = \frac{Re_\text{p,mf}\; \mu}{d_p\, \rho_g}
 \end{equation}
 
-\noindent where $\mu$ is gas viscosity (kg/m\,s), $d_p$ is particle diameter (m), $\rho_g$ is gas density (kg/m$^3$), and $Re_{p,mf}$ is the particle Reynolds number (-) at minimum fluidization conditions. The Reynolds number is calculated from the Archimedes number ($Ar$) and two dimensionless constants ($a, b$) which represent experimental coefficients. Different $U_{mf}$ correlations were evalutaed based on experimental data from Wen and Yu where $(a, b) = (33.7, 0.0408)$, from Richardson where $(a, b) = (25.7, 0.0365)$, and from Grace where $(a, b) = (27.2, 0.0408)$ \cite{Levenspiel-1991}.
+\noindent where $\mu$ is gas viscosity in kg/m\,s, d$_\text{p}$ is particle diameter in meters, $\rho_\text{g}$ is gas density in kg/m$^3$, and Re$_\text{p,mf}$ is the particle Reynolds number at minimum fluidization conditions. The Reynolds number is calculated using the Archimedes number (Ar) as follows
 
 \begin{align}
     Re_{p,mf} &= \left( a^2 + b Ar \right)^{1/2} - a \\
     Ar &= \frac{d_p^3 \rho_g (\rho_s - \rho_g) g}{\mu^2}
 \end{align}
 
-According to Kunii and Levenspiel \cite{Levenspiel-1991}, the constants ($a, b$) can be derived from the Ergun pressure drop equation based on the constants $K_1$ and $K_2$ where $\epsilon_{mf}$ is the bed void fraction (-) at minimum fluidization and $\phi$ is sphericity (-) of the bed particles. For this paper, $U_{mf}$ is estimated based on the Ergun, Grace, Richardson, and Wen and Yu correlations.
+\noindent where a and b are dimensionless constants which represent experimental coefficients. Some U$_\text{mf}$ correlations in the literature are based on experimental data from Wen and Yu where a, b = 33.7, 0.0408; from Richardson where a, b = 25.7, 0.0365; and from Grace where a, b = 27.2, 0.0408 \cite{Levenspiel-1991}. However, Kunii and Levenspiel \cite{Levenspiel-1991} suggest the constants ($a, b$) can be derived from the Ergun pressure drop equation based on constants K$_1$ and K$_2$ where $\epsilon_\text{mf}$ is the bed void fraction at minimum fluidization and $\phi$ is sphericity of the bed particles. For this paper, U$_\text{mf}$ is estimated based on the Ergun, Grace, Richardson, and Wen and Yu correlations.
 
 \begin{equation}
     a = \frac{K_2}{2 K_1} \qquad
@@ -94,18 +94,18 @@ According to Kunii and Levenspiel \cite{Levenspiel-1991}, the constants ($a, b$)
     K_2 = \frac{150(1-\epsilon_{mf})}{\epsilon_{mf}^3 \phi^2}
 \end{equation}
 
-As shown in Equation \ref{eq:nusselt}, the convective heat transfer coefficient $h$ in W/m$^2$K can be determined from the Nusselt number $Nu$ where $Re$ is the Reynolds number, $d_p$ is the biomass particle diameter, $d_b$ is the sand particle diameter, and $k_g$ is the gas thermal conductivity W/mK; valid for $d_p < d_b$ \cite{Collier-2004}. The Reynolds number is determined from $\rho$ which is the gas density in kg/m$^3$, the minimum fluidization velocity $U_{mf}$ in m/s, and the gas viscosity $\mu$ in kg/m\,s \cite{Papadikis-2010}.
+As shown in Equation \ref{eq:nusselt}, the convective heat transfer coefficient h in units of W/m$^2$K can be determined from the Nusselt number Nu where Re is the Reynolds number, d$_\text{p}$ is the biomass particle diameter, d$_\text{b}$ is the sand particle diameter, and k$_\text{g}$ is the gas thermal conductivity in W/m\,K. This approach is valid for $\text{d}_\text{p} < \text{d}_\text{b}$ \cite{Collier-2004}. The Reynolds number is determined from $\rho$ which is the gas density in kg/m$^3$, the minimum fluidization velocity U$_\text{mf}$ in m/s, and the dynamic gas viscosity $\mu$ in kg/m\,s \cite{Papadikis-2010}.
 
 \begin{align}
     Nu &= 2 + 0.9\, Re^{0.62} \left(\frac{d_p}{d_b}\right)^{0.2} = \frac{h\, d_p}{k_g} \label{eq:nusselt} \\
-    Re &= \frac{\rho\, U_{mf}\, d_p}{\mu} \label{eq:reynolds} \\
+    Re &= \frac{\rho\, U_{mf}\, d_p}{\mu}
 \end{align}
 
 % ----------------------------------------------------------------------------
 
 \subsection{Dimensionless numbers}
 
-As mentioned in the work of Pyle and Zaror \cite{Pyle-1984}, the rate of pyrolysis involves a balance between internal and external heat transfer due to heat transport and reaction. This balance is embodied by the dimensionless numbers Bi, Py$^\textrm{I}$, and Py$^\textrm{II}$ which are determined from Equations \ref{eq:biot}, \ref{eq:pynumber1}, and \ref{eq:pynumber2} respectively. The Biot number Bi represents the ratio of convective and conductive heat transport. The first pyrolysis number Py$^\textrm{I}$ demonstrates the ratio of heat transfer by conduction to the rate of heat loss due to products leaving the particle. The second pyrolysis number Py$^\textrm{II}$ reflects the effect of convective heat transfer to the external particle surface relative to the reaction heat loss. The Biot and pyrolysis numbers are calculated using the following parameters: h is the convective heat transfer coefficient in W/m$^2$K, R is the radius or characteristic length of the biomass particle in meters, k is the biomass thermal conductivity in W/mK, $\rho$ is the density of the biomass particle in kg/m$^3$, K is the total rate constant in 1/s for the primary reactions, and C$_\textrm{p}$ is the biomass heat capacity calculated from $103.1 + 3.867\,T$ where T is the biomass temperature in Kelvin.
+As mentioned in the work of Pyle and Zaror \cite{Pyle-1984}, the rate of pyrolysis involves a balance between internal and external heat transfer due to heat transport and reaction. This balance is embodied by the dimensionless numbers Bi, Py$^\text{I}$, and Py$^\text{II}$ which are determined from Equations \ref{eq:biot}, \ref{eq:pynumber1}, and \ref{eq:pynumber2} respectively. The Biot number Bi represents the ratio of convective and conductive heat transport. The first pyrolysis number Py$^\text{I}$ demonstrates the ratio of heat transfer by conduction to the rate of heat loss due to products leaving the particle. The second pyrolysis number Py$^\text{II}$ is the effect of convective heat transfer to the external particle surface relative to the reaction heat loss. The Biot and pyrolysis numbers are calculated using the following parameters: h is the convective heat transfer coefficient in W/m$^2$K, R is the radius or characteristic length of the biomass particle in meters, k is the biomass thermal conductivity in W/mK, $\rho$ is the density of the biomass particle in kg/m$^3$, K is the total rate constant in 1/s for the primary reactions, and C$_\text{p}$ is the biomass heat capacity calculated from $103.1 + 3.867\,\text{T}$ where T is the biomass temperature in Kelvin.
 
 \begin{align}
     Bi &= \frac{h\,R}{k} \label{eq:biot} \\
@@ -113,7 +113,7 @@ As mentioned in the work of Pyle and Zaror \cite{Pyle-1984}, the rate of pyrolys
     Py^{\textrm{II}} &= \frac{h}{\rho\,C_p\,R\,K} \label{eq:pynumber2}
 \end{align}
 
-The Prandtl number is a dimensionless number representing the ratio of momentum diffusivity to thermal diffusivity. It is calculated from the equation shown below where $C_p$ is heat capacity (J/kg$\cdot$K), $\mu$ is dynamic gas viscosity (kg/m$\cdot$s), and $k$ is thermal conductivity (W/m$\cdot$K).
+The Prandtl number is a dimensionless number representing the ratio of momentum diffusivity to thermal diffusivity. It is calculated from the equation shown below where C$_\text{p}$ is heat capacity (J/kg$\cdot$K), $\mu$ is dynamic gas viscosity (kg/m$\cdot$s), and k is thermal conductivity (W/m$\cdot$K).
 
 \begin{equation}
     Pr = \frac{C_p\, \mu}{k}
@@ -123,7 +123,7 @@ The Prandtl number is a dimensionless number representing the ratio of momentum 
 
 \subsection{Biomass pyrolysis kinetics}
 
-A pyrolysis kinetics scheme based on the work of Di Blasi was implemented to predict the conversion of biomass into gas, tar, and char products \cite{Blasi-1993,Blasi-2001}. Figure \ref{fig:blasi} gives an overview of the scheme and its reaction mechanisms. Reactions 1--3 represent the primary conversion of biomass while reactions 4--5 are secondary reactions that reduce tar yield at long residence times.
+A pyrolysis kinetics scheme based on the work of Di Blasi was implemented to predict the conversion of biomass into gas, tar, and char products \cite{Blasi-1993,Blasi-2001}. Figure \ref{fig:blasi} gives an overview of the scheme and its reaction mechanisms. Reactions 1--3 represent the primary conversion of biomass while reactions 4--5 are secondary reactions that reduce tar yield at long residence times. Reaction 6 is the conversion of moisture in the biomass to water vapor.
 
 \begin{figure}[H]
     \centering
@@ -138,7 +138,7 @@ The pyrolysis reactions were modeled as first-order Arrhenius type equations whe
     r_i = C_i\,A_i\,e^{-E_i / R\,T}
 \end{equation}
 
-\noindent where $r_i$ is the rate of reaction $i$ such that $C_i$ is a mass based concentration, $A_i$ is the pre-factor (1/s), $E_i$ is the activation energy (kJ/mol), $R$ is the gas constant, and $T$ is the reaction temperature (K). Kinetic parameters for each reaction are listed in Table \ref{tab:kinetic-params} where $\Delta H$ is the heat of reaction (kJ/kg).
+\noindent where r$_\text{i}$ is the rate of reaction i such that C$_\text{i}$ is a mass based concentration, A$_\text{i}$ is the pre-factor (1/s), E$_\text{i}$ is the activation energy (kJ/mol), R is the gas constant, and T is the reaction temperature (K). Kinetic parameters for each reaction are listed in Table \ref{tab:kinetic-params} where $\Delta$H is the heat of reaction (kJ/kg).
 
 \begin{table}[H]
     \centering
