@@ -162,7 +162,7 @@ The pyrolysis reactions were modeled as first-order Arrhenius type equations whe
 
 \subsection{CFD-DEM simulation}
 
-A coarse-grained CFD-DEM model was implemented for biomass pyrolysis in MFiX, an open-source, Fortran-based code [X]. The implemented coarse-grained CFD-DEM model in this research is an extension of the standard MFiX release. Gas phase transport was described using conservation equations of mass, momentum, energy, and chemical species in the Eulerian framework (Equations \ref{eq:gas-trans-mass}--\ref{eq:gas-trans-chemical}, respectively).
+A coarse-grained CFD-DEM model was implemented for biomass pyrolysis in MFiX, an open-source, Fortran-based code \cite{Syamlal-1993}. The coarse-grained CFD-DEM model used in this work is an extension of the standard MFiX release. Gas phase transport was described using conservation equations of mass, momentum, energy, and chemical species in the Eulerian framework (Equations \ref{eq:gas-trans-mass}--\ref{eq:gas-trans-chemical}, respectively).
 
 \begin{align}
     \frac{d(\epsilon_g \rho_g)}{dt} + \nabla (\epsilon_g \rho_g u_g) &= S_\rho \label{eq:gas-trans-mass} \\
@@ -171,27 +171,31 @@ A coarse-grained CFD-DEM model was implemented for biomass pyrolysis in MFiX, an
     \frac{d(\epsilon_g \rho_g Y_i)}{dt} + \nabla (\epsilon_g \rho_g u_g Y_i) &= -\nabla (D_i \nabla Y_i) + S_{Y_i} \label{eq:gas-trans-chemical}
 \end{align}
 
-where $\epsilon_g$, $\rho_g$, $u_g$, $p$, $\tau$, $Q$, and $Y_i$ are gas phase volume fraction, density, velocity, pressure, stress tensor, conductive heat flux, and ith chemical species, respectively, $t$ is time, $g$ is acceleration due to gravity, $D_i$ is mass diffusion coefficient for species, $S_\rho$, $S_u$, $S_E$, and $S_{Y_i}$ are mass, momentum, energy, and chemical species source terms, respectively. Fixed quantities of discrete particles with identical initial conditions were lumped into a computational coarse-grained parcel (CGP), whose motion was governed by Newton’s second law of motion. All particle forces and contact dynamics were calculated on the parcel scale, whereas heat and mass transfers were calculated on particle scale and projected to the entire parcel. Accordingly, all particles in same coarse- grained parcel possess identical temperature, chemical species concentration, and momentum. The mass and diameter of each coarse-grained parcel was such that:
+\noindent where $\epsilon_\text{g}$, $\rho_\text{g}$, u$_\text{g}$, p, $\tau$, Q, and Y$_\text{i}$ are gas phase volume fraction, density, velocity, pressure, stress tensor, conductive heat flux, and ith chemical species, respectively; while t is time, g is acceleration due to gravity, D$_\text{i}$ is mass diffusion coefficient for species, S$_\rho$, S$_\text{u}$, S$_\text{E}$, and S$_\text{Yi}$ are mass, momentum, energy, and chemical species source terms, respectively.
+
+Fixed quantities of discrete particles with identical initial conditions were lumped into a computational coarse-grained parcel (CGP), whose motion was governed by Newton’s second law of motion. All particle forces and contact dynamics were calculated on the parcel scale, whereas heat and mass transfers were calculated on particle scale and projected to the entire parcel. Accordingly, all particles in same coarse-grained parcel possess identical temperature, chemical species concentration, and momentum. The mass and diameter of each coarse-grained parcel is such that
 
 \begin{align}
     m_{CGP} &= m_p W \\
     d_{CGP} &= d_p W^{1/3}
 \end{align}
 
-where $m_{CGP}$ is CGP mass, $m_p$ is distinct particle mass, $W$ parcel statistical weight, $d_{CGP}$ is CGP diameter, and $d_p$ is distinct particle diameter. Instantaneous accelerations (translational and rotational) for each coarse-grained parcel were calculated as:
+\noindent where m$_\text{CGP}$ is CGP mass, m$_\text{p}$ is distinct particle mass, W parcel statistical weight, d$_\text{CGP}$ is CGP diameter, and d$_\text{p}$ is distinct particle diameter. Instantaneous accelerations (translational and rotational) for each coarse-grained parcel were calculated as
 
 \begin{align}
     \frac{d u_{CGP}}{dt} &= g - \frac{F_p}{m_{CGP}} + \frac{F_c}{m_{CGP}} + \frac{F_d}{m_{CGP}} \\
     \frac{d \omega_{CGP}}{dt} &= \frac{T_{CGP}}{I_{CGP}}
 \end{align}
 
-where $u_{CGP}$ and $\omega_{CGP}$ are the CGP translational and rotational velocities, $g$ is acceleration due to gravity, $m_{CGP}$ is CGP mass, $T_{CGP}$ is net torque on the CGP, and $I_{CGP}$ is CGP moment of inertia. The term $F_p$ represents pressure gradient force and is calculated as product of the CGP volume and pressure gradient. The CGP collision forces $F_C$ (parcel-parcel and parcel-wall collisions) was modeled according linear spring-dashpot model \cite{Navarro-2013}. Since the number of CGP collisions is significantly lower than the number of collisions expected in system with distinct particles, the CGP coefficient of restitution was modified as a correction for energy dissipations during collisions. The proposed modification to the CGP coefficient of restitution is calculated following kinetic theory of granular flow \cite{Lu-2014} as:
+\noindent where u$_\text{CGP}$ and $\omega_\text{CGP}$ are the CGP translational and rotational velocities, g is acceleration due to gravity, m$_\text{CGP}$ is CGP mass, T$_\text{CGP}$ is net torque on the CGP, and I$_\text{CGP}$ is CGP moment of inertia. The term F$_\text{p}$ represents pressure gradient force and was calculated as a product of the CGP volume and pressure gradient. The CGP collision forces F$_\text{C}$ (parcel-parcel and parcel-wall collisions) were modeled according to the linear spring-dashpot model \cite{Navarro-2013}. Since the number of CGP collisions is significantly lower than the number of collisions expected in a system with distinct particles, the CGP coefficient of restitution was modified as a correction for energy dissipations during collisions. The proposed modification to the CGP coefficient of restitution made use of the kinetic theory of granular flow \cite{Lu-2014} as
 
 \begin{equation}
     e_{CGP} = \sqrt{1 + (e_p^2 - 1) W^{1/3}}
 \end{equation}
 
-where $e_{CGP}$ is CGP coefficient of restitution and $e_p$ is distinct particle coefficient of restitution. Two different drag models were used to estimate CGP drag force $F_d$ based on well-documented difference in the fluidization behavior of sand and biomass in the literature \cite{Oliveira-2013}. Drag force was estimated following Ganser-corrected Gidaspow drag model for sand (bed material) particles and a filtered drag model for biomass particles. Th Ganser correction \cite{Ganser-1993} was coupled to the Gidaspow model \cite{Gidaspow-1994} to account for non-sphericity of the sand particles as expressed below:
+\noindent where e$_\text{CGP}$ is CGP coefficient of restitution and e$_\text{p}$ is distinct particle coefficient of restitution.
+
+Two different drag models were used to estimate CGP drag force F$_\text{d}$ based on well-documented difference in the fluidization behavior of sand and biomass in the literature \cite{Oliveira-2013}. Drag force was estimated using the Ganser-corrected Gidaspow drag model for sand particles (bed material) and a filtered drag model for biomass particles. The Ganser correction \cite{Ganser-1993} was coupled to the Gidaspow model \cite{Gidaspow-1994} to account for non-sphericity of the sand particles as expressed below.
 
 \begin{equation}
     \beta_{Ganser} =
@@ -220,7 +224,7 @@ where $e_{CGP}$ is CGP coefficient of restitution and $e_p$ is distinct particle
     K_2 &= 10^{1.8148 (-log \phi)^{0.5743}}
 \end{align}
 
-The filtered drag model (modified Sarkar drag model) used in this research for biomass particles was proposed by Gao et al. \cite{Gao-2018} and was found by the authors to have relatively high prediction strength across multiple flow regimes in fluidized bed. The modified Sarkar drag model is derived fine-grid simulation with Wen-Yu drag model and can be computed as:
+The filtered drag model (modified Sarkar drag model) used in this work for biomass particles was proposed by Gao et al. \cite{Gao-2018} and was found by the authors to have relatively high prediction strength across multiple flow regimes in fluidized bed. The modified Sarkar drag model was derived from a fine-grid simulation using the Wen-Yu drag model and can be computed as follows:
 
 \begin{equation}
     \beta_{Sarkar} = \beta_{WenYu} (1 - H_{Sakar})
