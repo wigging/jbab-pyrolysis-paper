@@ -2,11 +2,11 @@
 
 \section{Model parameters}
 
-Parameters for the reduced-order model and CFD simulations are provides in Tables \ref{tab:params-part-size} and \ref{tab:params}. Biomass particle characteristics and properties are representative of loblolly pine. Bed particle characteristics are for typical sand material. Operating conditions and reactor dimensions are based on the previously discussed NREL 2FBR fluidized bed pyrolysis unit.
+Particle size distribution of the biomass feedstock along with the mass flow rate associated with each size bin is given in Table \ref{tab:params-part-size}. The chemical composition used for the Di Blasi kinetics model is shown in Table \ref{tab:params-chem-biomass}. Other parameters related to the biomass and sand particles along with reactor operation and simulation settings are provided in Table \ref{tab:params}. Biomass particle characteristics and properties are representative of loblolly pine while the bed particle characteristics are for a typical sand material. Operating conditions and reactor dimensions are based on the previously discussed NREL 2FBR fluidized bed pyrolysis unit. Table \ref{tab:cases} summarizes the CFD simulations conducted for this study. Each row represents a different simulation case that was performed for a particular gas composition.
 
 \begin{table}[H]
     \centering
-    \caption{Particle size distribution for biomass feedstock.}
+    \caption{Particle size distribution for the biomass feedstock.}
     \label{tab:params-part-size}
     \begin{tabular}{>{\centering}p{2.5cm} >{\raggedleft}p{2.2cm} >{\raggedleft\arraybackslash}p{2.5cm}}
         \toprule
@@ -22,44 +22,65 @@ Parameters for the reduced-order model and CFD simulations are provides in Table
 
 \begin{table}[H]
     \centering
-    \caption{Parameters for the biomass, sand (bed material), and reactor operation. Biomass $C_p$ calculated from particle composition.}
+    \caption{Chemical species composition of the biomass feedstock.}
+    \label{tab:params-chem-biomass}
+    \begin{tabular}{lrr}
+        \toprule
+        Species & Mass fraction (\%) & Density (kg/m$^3$) \\
+        \midrule
+        moisture & 4.0  & 1,000 \\
+        wood     & 95.9 & 500 \\
+        ash      & 0.1  & 2,000 \\
+        char     & 0.0  & 300 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Parameters for the biomass, sand (bed material), and reactor operation. Biomass C$_\text{p}$ calculated from particle composition. Parameters for simulation settings also given.}
     \label{tab:params}
     \begin{tabular}{lll}
         \toprule
         Parameter & Value & Description \\
         \midrule
         biomass particle \\
-        $e_{p}$    & 0.2        & particle-particle coefficient of restitution \\
-        $e_{w}$    & 0.2        & particle-wall coefficient of restitution \\
-        $e_{s}$    & 0.2        & particle-sand coefficient of restitution \\
-        $\mu_{p}$  & 0.1        & particle-particle coefficient of friction \\
-        $\mu_{w}$  & 0.2        & particle-wall coefficient of friction \\
-        $\mu_{s}$  & 0.1        & particle-sand coefficient of friction \\
-        $k_{n}$    & 100 N/m    & particle spring constant \\
+        e$_\text{p}$    & 0.2        & particle-particle coefficient of restitution \\
+        e$_\text{w}$    & 0.2        & particle-wall coefficient of restitution \\
+        e$_\text{s}$    & 0.2        & particle-sand coefficient of restitution \\
+        $\mu_\text{p}$  & 0.1        & particle-particle coefficient of friction \\
+        $\mu_\text{w}$  & 0.2        & particle-wall coefficient of friction \\
+        $\mu_\text{s}$  & 0.1        & particle-sand coefficient of friction \\
+        k$_\text{n}$    & 100 N/m    & particle spring constant \\
         \\
         sand particle \\
-        $d_{p}$       & 453 $\mu$m          & particle diameter \\
-        $\rho_{p}$    & 2500 kg/m$^3$       & particle density \\
-        $C_{p}$       & 830 kJ/(kg\,K)      & particle heat capacity \\
-        $\phi_{}$     & 0.94                & particle sphericity \\
-        $e_{p}$       & 0.61                & particle-particle coefficient of restitution \\
-        $e_{w}$       & 0.61                & particle-wall coefficient of restitution \\
-        $\mu_{p}$     & 0.1                 & particle-particle coefficient of friction \\
-        $\mu_{w}$     & 0.2                 & particle-wall coefficient of friction \\
-        $k_{n}$       & 100 N/m             & particle spring constant \\
+        d$_\text{p}$       & 453 $\mu$m          & particle diameter \\
+        $\rho_\text{p}$    & 2500 kg/m$^3$       & particle density \\
+        C$_\text{p}$       & 830 kJ/(kg\,K)      & particle heat capacity \\
+        $\phi$             & 0.94                & particle sphericity \\
+        e$_\text{p}$       & 0.61                & particle-particle coefficient of restitution \\
+        e$_\text{w}$       & 0.61                & particle-wall coefficient of restitution \\
+        $\mu_\text{p}$     & 0.1                 & particle-particle coefficient of friction \\
+        $\mu_\text{w}$     & 0.2                 & particle-wall coefficient of friction \\
+        k$_\text{n}$       & 100 N/m             & particle spring constant \\
         \\
         reactor operation \\
-        $d_\textrm{inner}$      & 5.25 cm       & inner reactor diameter \\
-        $H_\textrm{reactor}$    & 43.18 cm      & reactor height \\
-        $H_\textrm{static}$     & 10.16 cm      & static bed height \\
-        $p_\textrm{gas}$        & 101.325 kPa   & gas pressure \\
-        $T_\textrm{gas}$        & 773.15 K      & gas temperature \\
-        $Q_\textrm{gas}$        & 14 SLM        & inlet gas flowrate \\
+        d$_\text{inner}$      & 5.25 cm       & inner reactor diameter \\
+        H$_\text{reactor}$    & 43.18 cm      & reactor height \\
+        H$_\text{static}$     & 10.16 cm      & static bed height \\
+        p$_\text{gas}$        & 101.325 kPa   & gas pressure \\
+        T$_\text{gas}$        & 773.15 K      & gas temperature \\
+        Q$_\text{gas}$        & 14 SLM        & inlet gas flowrate \\
+        \\
+        simulation settings \\
+        $\Delta_\text{x} \times \Delta_\text{y} \times \Delta_\text{z}$ & $4.3 \times 4.4 \times 4.3$ mm & CFD cell size \\
+        $\Delta_\text{x}$   & varies & time step \\
+        wt$_\text{bio}$      & 10     & biomass parcel statistical weight \\
+        wt$_\text{sand}$     & 20     & sand parcel statistical weight \\
+        s$_\text{gas}$               & ideal  & gas phase equation of state \\
         \bottomrule
     \end{tabular}
 \end{table}
-
-Table \ref{tab:cases} represents the CFD simulations conducted for this paper. Each row is for a different simulation case which is performed for a particular gas composition.
 
 \begin{table}[H]
     \centering
@@ -92,37 +113,6 @@ Table \ref{tab:cases} represents the CFD simulations conducted for this paper. E
         \hline
     \end{tabular}
     \label{tab:cases}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \caption{Chemical species composition of biomass feedstock.}
-    \begin{tabular}{lrr}
-        \toprule
-        Species & Mass fraction (\%) & Density (kg/m$^3$) \\
-        \midrule
-        moisture & 4.0  & 1,000 \\
-        wood     & 95.9 & 500 \\
-        ash      & 0.1  & 2,000 \\
-        char     & 0.0  & 300 \\
-        \bottomrule
-    \end{tabular}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \caption{Simulation parameters settings.}
-    \begin{tabular}{ll}
-        \toprule
-        Parameter & Value \\
-        \midrule
-        CFD cell size, $\Delta_x \times \Delta_y \times \Delta_z$ (mm) & $4.3 \times 4.4 \times 4.3$ \\
-        time step, $\Delta_x$ (s)                                      & varies \\
-        biomass parcel statistical weight                              & 10 \\
-        sand parcel statistical weight                                 & 20 \\
-        gas phase equation of state                                    & ideal \\
-        \bottomrule
-    \end{tabular}
 \end{table}
 
 \begin{table}
