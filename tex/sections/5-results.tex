@@ -190,7 +190,7 @@ These results demonstrate that the CFD-DEM model implemented in this research is
 
 % ----------------------------------------------------------------------------
 
-\subsection{Fluidizing gas effect on pyrolysis performance}
+\subsection{Fluidizing gas effect on pyrolysis performance with constant flowrate}
 
 Figure \ref{fig:cfd-press-temp} presents the volume-time averaged pressure drop and temperature along the height of the fluidized bed reactor. The different fluidizing gases considered in this research demonstrated similar effects on the pressure drop profile along the reactor height. Overall, the averaged bed height – as evidenced by the inflection point on the pressure drop curve – was about 0.14 m, regardless of fluidized gas. Similarly, the total pressure drop across the reactor was consistently about 1440 Pa for all fluidizing gases and mixtures. The volume-time averaged gas temperature ranged between 495$^\circ$C and 500$^\circ$C, depending on position along the reactor height and fluidizing gas. Gas temperature generally dipped around the biomass inlet and at the dense-bed/dilute- phase interface. The most noticeable trend in gas temperature occurs in the dilute-phase, with increasing gas temperature along the height of the reactor. Also noteworthy is the fact that gas temperature in the dilute-phase was highest when H$_2$ was used as fluidizing gas. This observation is attributable to the large difference in the thermal conductivity of H$_2$ and the other fluidizing gases (Figure XXX). The impact of the difference in the thermal conductivity of fluidizing gases is also evident in the average particle temperature and mass loss profile (Figure \ref{fig:cfd-particle}). When H$_2$ was used as fluidizing gas, biomass particles experienced significantly higher heating rate, and consequently higher mass loss rate, compared to when other fluidizing gases were used. Biomass heating and mass loss rate follow the order: H$_2$ $>$ CH$_4$ $>$ H$_2$O $>$ CO$_2$ $>$ N$_2$ + CO$_2$ $>$ N$_2$ $>$ N$_2$ + CO $>$ CO, irrespective of the initial size of the biomass particle.
 
@@ -241,4 +241,36 @@ Furthermore, it was observed that tar conversion reactions (Reactions 4 and 5) s
     \includegraphics[width=0.8\textwidth]{figures/cfd-yields.pdf}
     \caption{Pyrolysis product distribution as affected by fluidizing gas. Product yields are calculated on a biomass basis.}
     \label{fig:cfd-yields}
+\end{figure}
+
+\subsection{Fluidizing gas effect on pyrolysis performance with constant $U/U_{mf}$}
+
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/cfd-constuumf-rtd-avg.png}
+    \caption{Average particle residence time as a function of H$_2$ mass fraction in fluidizing gas at constant $U/U_{mf}$.}
+    \label{fig:cfd-rtd_avg}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/cfd-constuumf-particle-temp-density.png}
+    \caption{Average particle temperature (left) and density (right) as a function of time in reactor for varying H$_2$ mass fraction at constant $U/U_{mf}$.}
+    \label{fig:cfd-constuumf-particle-temp-density}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/cfd-constuumf-reaction-rates.png}
+    \caption{Volume and time averaged chemical reaction rates as a function of H$_2$ mass fraction at constant $U/U_{mf}$.}
+    \label{fig:cfd-constuumf-reaction-rates}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/cfd-constuumf-yields.png}
+    \caption{Fraction of biomass converted and product yields as a function of H$_2$ mass fraction at constant $U/U_{mf}$.}
+    \label{fig:cfd-constuumf-yields}
 \end{figure}
