@@ -94,11 +94,19 @@ For a bed of particles, the minimum fluidization velocity U$_\text{mf}$ is the g
     K_2 = \frac{150(1-\epsilon_{mf})}{\epsilon_{mf}^3 \phi^2}
 \end{equation}
 
-As shown in Equation \ref{eq:nusselt}, the convective heat transfer coefficient h in units of W/m$^2$K can be determined from the Nusselt number Nu where Re is the Reynolds number, d$_\text{p}$ is the biomass particle diameter, d$_\text{b}$ is the sand particle diameter, and k$_\text{g}$ is the gas thermal conductivity in W/m\,K. This approach is valid for $\text{d}_\text{p} < \text{d}_\text{b}$ \cite{Collier-2004}. The Reynolds number is determined from $\rho$ which is the gas density in kg/m$^3$, the minimum fluidization velocity U$_\text{mf}$ in m/s, and the dynamic gas viscosity $\mu$ in kg/m\,s \cite{Papadikis-2010}.
+The terminal velocity of particles, U$_\text{t}$, is the minimum gas velocity to necessary to entrain a particle of size d$_\text{p}$ in the flow. This velocity can be estimated from the maximum velocity of a particle in free-fall through a fluid, which is given by Equation \ref{eq:terminal}. Here, Re$_\text{p}$ is the particle Reynolds number given by Equation \ref{eq:particleRe} and C$_\text{D}$ is the drag coefficient, which can be estimated from an emperical correlation developed by Haider and Levenspiel \cite{haider1989drag} and given by Equation \ref{eq:dragCoeff}.
+
+\begin{align}
+    U_{t} &= \left [\frac{4d_{p} \left (\rho_{s}-\rho_{g} \right )g}{3\rho_{g}C_{D}}\right ]^{1/2} \label{eq:terminal} \\
+    Re_{p} &= \frac{d_{p}U_{t}\rho_{g}}{\mu_{g}} \label{eq:particleRe} \\
+    C_{D} &= \frac{24}{Re_{p}}\left [ 1+\left ( 8.1716e^{-4.0655\phi } \right )Re_{p}^{0.0964+0.5565\phi} \right ]+\frac{73.69Re_{p}e^{-5.0748\phi}}{Re_{p}+5.378e^{6.2122\phi}} \label{eq:dragCoeff}
+\end{align}
+
+As shown in Equation \ref{eq:nusselt}, the convective heat transfer coefficient h in units of W/m$^2$K can be determined from the Nusselt number Nu where Re is the Reynolds number, d$_\text{p}$ is the biomass particle diameter, d$_\text{b}$ is the sand particle diameter, and k$_\text{g}$ is the gas thermal conductivity in W/m\,K. This approach is valid for $\text{d}_\text{p} < \text{d}_\text{b}$ \cite{Collier-2004}. The Reynolds number is determined from $\rho$ which is the gas density in kg/m$^3$, the gas velocity U$_\text{g}$ in m/s, and the dynamic gas viscosity $\mu$ in kg/m\,s \cite{Papadikis-2010}.
 
 \begin{align}
     Nu &= 2 + 0.9\, Re^{0.62} \left(\frac{d_p}{d_b}\right)^{0.2} = \frac{h\, d_p}{k_g} \label{eq:nusselt} \\
-    Re &= \frac{\rho\, U_{mf}\, d_p}{\mu}
+    Re &= \frac{\rho\, U_{g}\, d_p}{\mu}
 \end{align}
 
 % ----------------------------------------------------------------------------
