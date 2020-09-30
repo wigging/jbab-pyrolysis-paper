@@ -102,11 +102,13 @@ The terminal velocity of particles, U$_\text{t}$, is the minimum gas velocity to
     C_{D} &= \frac{24}{Re_{p}}\left [ 1+\left ( 8.1716e^{-4.0655\phi } \right )Re_{p}^{0.0964+0.5565\phi} \right ]+\frac{73.69Re_{p}e^{-5.0748\phi}}{Re_{p}+5.378e^{6.2122\phi}} \label{eq:dragCoeff}
 \end{align}
 
-As shown in Equation \ref{eq:nusselt}, the convective heat transfer coefficient h in units of W/m$^2$K can be determined from the Nusselt number Nu where Re is the Reynolds number, d$_\text{p}$ is the biomass particle diameter, d$_\text{b}$ is the sand particle diameter, and k$_\text{g}$ is the gas thermal conductivity in W/m\,K. This approach is valid for $\text{d}_\text{p} < \text{d}_\text{b}$ \cite{Collier-2004}. The Reynolds number is determined from $\rho$ which is the gas density in kg/m$^3$, the gas velocity U$_\text{g}$ in m/s, and the dynamic gas viscosity $\mu$ in kg/m\,s \cite{Papadikis-2010}.
+
+% based on results, it looks like h is a function of Umf and not U, so this was changed back
+As shown in Equation \ref{eq:nusselt}, the convective heat transfer coefficient h in units of W/m$^2$K can be determined from the Nusselt number Nu where Re is the Reynolds number, d$_\text{p}$ is the biomass particle diameter, d$_\text{b}$ is the sand particle diameter, and k$_\text{g}$ is the gas thermal conductivity in W/m\,K. This approach is valid for $\text{d}_\text{p} < \text{d}_\text{b}$ \cite{Collier-2004}. The Reynolds number is determined from $\rho$ which is the gas density in kg/m$^3$, the minimum fluidization velocity U$_\text{mf}$ in m/s, and the dynamic gas viscosity $\mu$ in kg/m\,s \cite{Papadikis-2010}.
 
 \begin{align}
     Nu &= 2 + 0.9\, Re^{0.62} \left(\frac{d_p}{d_b}\right)^{0.2} = \frac{h\, d_p}{k_g} \label{eq:nusselt} \\
-    Re &= \frac{\rho\, U_{g}\, d_p}{\mu}
+    Re &= \frac{\rho\, U_{mf}\, d_p}{\mu}
 \end{align}
 
 % ----------------------------------------------------------------------------
@@ -146,7 +148,7 @@ The pyrolysis reactions were modeled as first-order Arrhenius type equations whe
     r_i = C_i\,A_i\,e^{-E_i / R\,T}
 \end{equation}
 
-\noindent where r$_\text{i}$ is the rate of reaction i such that C$_\text{i}$ is a mass based concentration, A$_\text{i}$ is the pre-factor (1/s), E$_\text{i}$ is the activation energy (kJ/mol), R is the gas constant, and T is the reaction temperature (K). Kinetic parameters for each reaction are listed in Table \ref{tab:kinetic-params} where $\Delta$H is the heat of reaction (kJ/kg).
+\noindent where r$_\text{i}$ is the rate of reaction i such that C$_\text{i}$ is a mass based concentration, A$_\text{i}$ is the pre-factor (1/s), E$_\text{i}$ is the activation energy (kJ/mol), R is the gas constant, and T is the reaction temperature (K). Kinetic parameters for each reaction are listed in Table \ref{tab:kinetic-params} where $\Delta$H is the heat of reaction (kJ/kg). Based on the work performed by Lu et. al.\cite{lu2020bridging}, which found that the Di Blasi kinetics scheme overpredicts light gas production when using a coarse-grained DEM model, the pre-factor of reaction 4 was modified by a factor 0.2. The value of this factor was determined by comparisons with experiments.
 
 \begin{table}[H]
     \centering
@@ -158,7 +160,7 @@ The pyrolysis reactions were modeled as first-order Arrhenius type equations whe
         1           & $4.38 \times 10^9$    & 152.7      & -20               & \cite{Blasi-2001} \\
         2           & $3.27 \times 10^6$    & 111.7      & -20               & \cite{Blasi-2001} \\
         3           & $1.08 \times 10^{10}$ & 148.0      & 255               & \cite{Blasi-2001} \\
-        4           & $4.28 \times 10^6$    & 108.0      & -42               & \cite{Blasi-1993} \\
+        4           & $0.2\left( 4.28 \times 10^6 \right)$    & 108.0      & -42               & \cite{Blasi-1993} \\
         5           & $1.00 \times 10^6$    & 108.0      & -42               & \cite{Blasi-1993} \\
         6           & $5.13 \times 10^6$    & 87.6       & 2700              & ? \\
         \bottomrule
