@@ -2,13 +2,13 @@
 
 \section{Results and discussion}
 
-This section provides results and related discussions for the effects of different fluidization gases on the operation of a bubbling fluidized bed reactor. Gas effects on the pyrolysis yields of the biomass feedstock are also presented and discussed.
+This section provides results and related discussions for modeling the effects of different fluidization gases on the operation of a bubbling fluidized bed reactor. Gas effects on the pyrolysis yields of the biomass feedstock are also presented and discussed.
 
 % ----------------------------------------------------------------------------
 
 \subsection{Pure gas properties}
 
-Molecular weight, viscosity, density, thermal conductivity, heat capacity, and Prandtl number of the individual gases investigated in this paper are shown in Figure \ref{fig:gas-properties}. The gas properties were calculated at a pressure of 101,325 Pa and a temperature of 773.15 K (500$^\circ$C). The lightest gas in terms of molecular weight and density is hydrogen while the heaviest gas is carbon dioxide. The highest viscosity is noted for the nitrogen gas while hydrogen has the lowest viscosity. The largest thermal conductivity is for hydrogen at approximately 0.36 W/(m\,K) while the other gases remain below 0.12 W/(m\,K). The highest heat capacity is obtained for methane at 62 J/(mol\,K) while the lowest is for hydrogen at 29 J/(mol\,K). The Prandtl number is similar for all the gases except for water vapor.
+Molecular weight, viscosity, density, thermal conductivity, heat capacity, and the Prandtl number of the individual gases investigated in this paper are shown in Figure \ref{fig:gas-properties}. The gas properties were calculated at a pressure of 101,325 Pa and a temperature of 773.15 K (500$^\circ$C). The lightest gas in terms of molecular weight and density is hydrogen while the heaviest gas is carbon dioxide. The highest viscosity is noted for the nitrogen gas while hydrogen has the lowest viscosity. The largest thermal conductivity is for hydrogen at approximately 0.36 W/(m\,K) while the other gases remain below 0.12 W/(m\,K). The highest heat capacity is obtained for methane at 62 J/(mol\,K) while the lowest is for hydrogen at 29 J/(mol\,K). The Prandtl number is similar for all the gases except for water vapor.
 
 \begin{figure}[H]
     \centering
@@ -50,40 +50,40 @@ Properties for molecular weight, viscosity, and density for the gas mixtures inv
 
 \subsection{Fluidization characteristics}
 
-Minimum fluidization velocity (Umf) of the bed material for the different fluidization gases is presented in Table \ref{tab:umf-sand}. Hydrogen requires about twice the gas velocity to fluidize the bed of sand compared to the nitrogen, carbon monoxide, and carbon dioxide gases. This is due to hydrogen's lower viscosity and much lower density compared to the other gases. Water vapor and methane require moderately higher fluidization velocities compared to the nitrogen gas. A comparison of Umf for the various fluidization gases is displayed in Figure \ref{fig:umf-usumf-gases}.
+Minimum fluidization velocity (U$_\text{mf}$) of the bed material for the different fluidization gases is presented in Table \ref{tab:umf-sand}. Hydrogen requires about twice the gas velocity to fluidize the bed of sand compared to the nitrogen, carbon monoxide, and carbon dioxide gases. This is due to hydrogen's lower viscosity and much lower density compared to the other gases. Water vapor and methane require moderately higher fluidization velocities compared to the nitrogen gas. A comparison of U$_\text{mf}$ for the various fluidization gases is displayed in Figure \ref{fig:umf-usumf-gases}.
 
 \begin{table}[H]
     \centering
-    \caption{Minimum fluidization velocity (m/s) of the bed material calculated from various correlations for different fluidization gases. Last row represents the average Umf value for each gas.}
+    \caption{Minimum fluidization velocity (m/s) of the bed material calculated from various correlations for different fluidization gases. Last row represents the average U$_\text{mf}$ value for each gas.}
     \label{tab:umf-sand}
     \begin{tabular}{lrrrrrr}
         \toprule
-        $U_{mf}$ & N$_2$ & H$_2$ & H$_2$O & CO & CO$_2$ & CH$_4$ \\
+        U$_\text{mf}$ & N$_2$ & H$_2$ & H$_2$O & CO & CO$_2$ & CH$_4$ \\
         \midrule
-        Ergun       & 0.14 & 0.30 & 0.18 & 0.15 & 0.16 & 0.23 \\
-        Grace       & 0.10 & 0.21 & 0.13 & 0.11 & 0.11 & 0.16 \\
-        Richardson  & 0.10 & 0.20 & 0.12 & 0.10 & 0.11 & 0.15 \\
-        Wen and Yu  & 0.08 & 0.17 & 0.11 & 0.09 & 0.09 & 0.13 \\
-        average     & 0.11 & 0.22 & 0.14 & 0.11 & 0.12 & 0.17 \\
+        Ergun         & 0.14 & 0.30 & 0.18 & 0.15 & 0.16 & 0.23 \\
+        Grace         & 0.10 & 0.21 & 0.13 & 0.11 & 0.11 & 0.16 \\
+        Richardson    & 0.10 & 0.20 & 0.12 & 0.10 & 0.11 & 0.15 \\
+        Wen and Yu    & 0.08 & 0.17 & 0.11 & 0.09 & 0.09 & 0.13 \\
+        average       & 0.11 & 0.22 & 0.14 & 0.11 & 0.12 & 0.17 \\
         \bottomrule
     \end{tabular}
 \end{table}
 
-The superficial gas velocity ($U_s$) of the nitrogen gas flow is calculated as 0.3072 m/s which is based on the 14 SLM gas flow through the distributor plate. Using this value, the ratio of Us to Umf is shown in Table \ref{tab:us-umf-ratio} for different fluidization gases. The BFB pyrolysis reactor at NREL typically operates at a Us/Umf of 3 with nitrogen gas. For gases such as H$_2$, H$_2$O, CO, CO$_2$, and CH$_4$, the gas flow into the reactor must be increased to have similar fluidized bed characteristics as the nitrogen case. A comparison of the increased Us for each gas along with the associated Us/Umf is shown in Figure \ref{fig:us-usumf-gases}. As expected, the hydrogen gas flow must be approximately doubled compared to the nitrogen case to achieve similar fluidization of the bed material.
+The superficial gas velocity (U$_\text{s}$) of the nitrogen gas flow is calculated as 0.3072 m/s which is based on the 14 SLM gas flow through the distributor plate. Using this value, the ratio of U$_\text{s}$ to U$_\text{mf}$ is shown in Table \ref{tab:us-umf-ratio} for different fluidization gases. The BFB pyrolysis reactor at NREL typically operates at a U$_\text{s}$/U$_\text{mf}$ of 3 with nitrogen gas. For gases such as H$_2$, H$_2$O, CO, CO$_2$, and CH$_4$, the gas flow into the reactor must be increased to have similar fluidized bed characteristics as the nitrogen case. A comparison of the increased U$_\text{s}$ for each gas along with the associated U$_\text{s}$/U$_\text{mf}$ is shown in Figure \ref{fig:us-usumf-gases}. As expected, the hydrogen gas flow must be approximately doubled compared to the nitrogen case to achieve similar fluidization of the bed material.
 
 \begin{table}[H]
     \centering
-    \caption{Ratio of Us to Umf for different fluidization gases. Last row represents the average Us/Umf value for each gas.}
+    \caption{Ratio of U$_\text{s}$ to U$_\text{mf}$ for different fluidization gases. Last row represents the average U$_\text{s}$/U$_\text{mf}$ value for each gas.}
     \label{tab:us-umf-ratio}
     \begin{tabular}{lrrrrrr}
         \toprule
-        $U_s/U_{mf}$ & N$_2$ & H$_2$ & H$_2$O & CO & CO$_2$ & CH$_4$ \\
+        U$_\text{s}$/U$_\text{mf}$ & N$_2$ & H$_2$ & H$_2$O & CO & CO$_2$ & CH$_4$ \\
         \midrule
-        Ergun      & 2.13 & 1.04 & 1.67 & 2.02 & 1.97 & 1.34 \\
-        Grace      & 2.99 & 1.47 & 2.35 & 2.84 & 2.76 & 1.88 \\
-        Richardson & 3.16 & 1.55 & 2.48 & 3.00 & 2.91 & 1.98 \\
-        Wen and Yu & 3.69 & 1.82 & 2.90 & 3.50 & 3.39 & 2.32 \\
-        average    & 2.99 & 1.47 & 2.35 & 2.84 & 2.76 & 1.88 \\
+        Ergun                      & 2.13 & 1.04 & 1.67 & 2.02 & 1.97 & 1.34 \\
+        Grace                      & 2.99 & 1.47 & 2.35 & 2.84 & 2.76 & 1.88 \\
+        Richardson                 & 3.16 & 1.55 & 2.48 & 3.00 & 2.91 & 1.98 \\
+        Wen and Yu                 & 3.69 & 1.82 & 2.90 & 3.50 & 3.39 & 2.32 \\
+        average                    & 2.99 & 1.47 & 2.35 & 2.84 & 2.76 & 1.88 \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -91,26 +91,26 @@ The superficial gas velocity ($U_s$) of the nitrogen gas flow is calculated as 0
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/umf-usumf-gases.pdf}
-    \caption{Comparison of the minimum fluidization velocity (Umf) and the ratio of Us/Umf for different fluidization gases. Superficial gas velocity is Us.}
+    \caption{Comparison of the minimum fluidization velocity (U$_\text{mf}$) and the ratio of U$_\text{s}$/U$_\text{mf}$ for different fluidization gases. Superficial gas velocity is U$_\text{s}$.}
     \label{fig:umf-usumf-gases}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/us-usumf-gases.pdf}
-    \caption{Comparison of the superficial gas velocity (Us) and the associated Us/Umf for different fluidization gases. Minimum fluidization velocity is Umf.}
+    \caption{Comparison of the superficial gas velocity (U$_\text{s}$) and the associated U$_\text{s}$/U$_\text{mf}$ for different fluidization gases. Minimum fluidization velocity is U$_\text{mf}$.}
     \label{fig:us-usumf-gases}
 \end{figure}
 
-The Reynolds number was calculated using an average biomass particle diameter of 369.4 $\mu$m and the mean $U_{mf}$ value. Next, the Nusselt number along with the associated convective heat transfer coefficient were calculated for each carrier gas as shown in Table \ref{tab:biomass-hconv} and Figure \ref{fig:biomass-hconv}. The highest heat transfer coefficient is estimated for H$_2$ while the second highest result is for CH$_4$. This is largely due to the higher thermal conductivity of the hydrogen and methane compared to the other gases. Due to the higher heat transfer rate to the biomass particle in the hydrogen environment, one can expect the biomass to pyrolyze more quickly with the hydrogen carrier gas.
+The Reynolds number was calculated using an average biomass particle diameter of 369.4 $\mu$m and the mean U$_\text{mf}$ value. Next, the Nusselt number along with the associated convective heat transfer coefficient were calculated for each carrier gas as shown in Table \ref{tab:biomass-hconv} and Figure \ref{fig:biomass-hconv}. The highest heat transfer coefficient is estimated for H$_2$ while the second highest result is for CH$_4$. This is largely due to the higher thermal conductivity of the hydrogen and methane compared to the other gases. Due to the higher heat transfer rate to the biomass particle in the hydrogen environment, one can expect the biomass to pyrolyze more quickly with the hydrogen carrier gas.
 
 \begin{table}[H]
     \centering
-    \caption{Comparison of the Reynolds number, Nusselt number, and convective heat transfer coefficient ($h$) for different fluidization gases.}
+    \caption{Comparison of the Reynolds number, Nusselt number, and convective heat transfer coefficient (h) for different fluidization gases.}
     \label{tab:biomass-hconv}
     \begin{tabular}{lrrrr}
         \toprule
-        Gas & $U_{mf}$ & $Re$ & $Nu$ & $h$ \\
+        Gas & U$_\text{mf}$ & Re & Nu & h \\
         \midrule
         N$_2$  & 0.11 & 0.48 & 2.55 & 369.45  \\
         H$_2$  & 0.22 & 0.14 & 2.26 & 2224.25 \\
@@ -125,7 +125,7 @@ The Reynolds number was calculated using an average biomass particle diameter of
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/biomass_hconv.pdf}
-    \caption{Convective heat transfer coefficient ($h$) for different fluidization gases. Values based on average biomass particle size and average minimum fluidization velocity.}
+    \caption{Convective heat transfer coefficient (h) for different fluidization gases. Values based on average biomass particle size and average minimum fluidization velocity.}
     \label{fig:biomass-hconv}
 \end{figure}
 
@@ -244,10 +244,11 @@ Furthermore, it was observed that tar conversion reactions (Reactions 4 and 5) s
     \label{fig:cfd-yields}
 \end{figure}
 
+% ----------------------------------------------------------------------------
+
 \subsection{Fluidizing gas effect on pyrolysis performance with constant \texorpdfstring{U/U$_\text{mf}$}{U/Umf}}
 
-
-As discussed above, the value of U$_\text{s}$/U$_\text{mf}$ varies for each fluidizing gas composition when the flowrate is kept constant. As a result, the dynamic behavior of the bed, which U$_\text{s}$/U$_\text{mf}$ characterizes, varies with the gas composition. These differences are most pronounced between N$_2$ and H$_2$ which have U$_\text{s}$/U$_\text{mf}$ values of ~3.0 and ~1.5, respectively, when U$_\text{s}$ remains constant. To investigate the effect of gas properties on pyrolysis yields, the mass fraction of H$_2$ was varied between 0 and 1 (with the N$_2$ as the remaining fraction) while maintaining a constant U$_\text{s}$/U$_\text{mf}$ = 2.99. Figure \ref{fig:cfd-constuumf-particle-temp-density} shows the average particle temperature and mass as a function of time after injection into the reactor for each particle size in both N$_{2}$ and H$_{2}$ fluiding gas streams. Here it can be seen, as for the constant $U_\text{s}$ case, the larger heat transfer coefficient associated with the H$_2$ fluidizing gas (h$_\text{H2}$ = 2224.3, h$_\text{N2}$ = 368.5 W/m$^2$K) result in greater rates of heat transfer and mass loss. Additionally, the nearly identical time distributions of the particle temperature and mass for H$_2$ with constant U$_\text{s}$ and U$_\text{s}$/U$_\text{mf}$ indicates that total heat transfer to a particle in bubbling fluidized bed is independent of the gas velocity. This is consistent with previous results that while convection increases with gas velocity, this increase is offset by decreases in conduction between solids in the bed \cite{Collier-2004,zhou2009particle}.
+As discussed above, the value of U$_\text{s}$/U$_\text{mf}$ varies for each fluidizing gas composition when the flowrate is kept constant. As a result, the dynamic behavior of the bed, which U$_\text{s}$/U$_\text{mf}$ characterizes, varies with the gas composition. These differences are most pronounced between N$_2$ and H$_2$ which have U$_\text{s}$/U$_\text{mf}$ values of ~3.0 and ~1.5, respectively, when U$_\text{s}$ remains constant. To investigate the effect of gas properties on pyrolysis yields, the mass fraction of H$_2$ was varied between 0 and 1 (with the N$_2$ as the remaining fraction) while maintaining a constant U$_\text{s}$/U$_\text{mf}$ = 2.99. Figure \ref{fig:cfd-constuumf-particle-temp-density} shows the average particle temperature and mass as a function of time after injection into the reactor for each particle size in both N$_{2}$ and H$_{2}$ fluiding gas streams. Here it can be seen, as for the constant U$_\text{s}$ case, the larger heat transfer coefficient associated with the H$_2$ fluidizing gas (h$_\text{H2}$ = 2224.3, h$_\text{N2}$ = 368.5 W/m$^2$K) result in greater rates of heat transfer and mass loss. Additionally, the nearly identical time distributions of the particle temperature and mass for H$_2$ with constant U$_\text{s}$ and U$_\text{s}$/U$_\text{mf}$ indicates that total heat transfer to a particle in bubbling fluidized bed is independent of the gas velocity. This is consistent with previous results that while convection increases with gas velocity, this increase is offset by decreases in conduction between solids in the bed \cite{Collier-2004,zhou2009particle}.
 
 \begin{figure}[H]
     \centering
@@ -256,7 +257,7 @@ As discussed above, the value of U$_\text{s}$/U$_\text{mf}$ varies for each flui
     \label{fig:cfd-constuumf-particle-temp-density}
 \end{figure}
 
-At the reactor conditions and particle sizes investigated, the gas velocities are insufficient for biomass particles to elutriate from the reactor at their initial density. Therefore, the particle remains in the reactor until its density is sufficiently reduced from pyrolysis to be ejected from the reactor. This can be seen in Figure \ref{fig:cfd-constuumf-terminal-vel}, which contains the normalized terminal velocities, U$_\text{t}$/U$_\text{s}$, of each biomass particle size for N$_2$ and H$_2$ (both constant U$_\text{s}$ and U$_\text{s}$/U$_\text{mf}$) fluidizing gases as a function of particle density. For the N$_2$ fluidizing gas, the maximum densities at which U$_\text{s}$ > U$_text{t}$ are approximately 300, 200, 140 and 90 kg/m$^3$ for particle sizes of 278, 344, 426 and 543 $\mu$m, respectively. These maximum densities decrease to 150, 100, 65 and 40 kg/m$^3$ for H$_2$ at the same gas velocities, but are similar when the flows are increased to maintain a constant U$_\text{s}$/U$_\text{mf}$. This leads the residence time of particles being a function of both the terminal velocity of the particles for the given gas mixture, and the rate of heat transfer to the particles, which defines the rate of mass loss from pyrolysis. The result of this can be seen in Figure \ref{fig:cfd-constuumf-rtd}, which contains the average residence time for each particle diameter plotted against the H$_2$ mass fraction in the fluidizing gas. For increasing x$_\text{H2}$ and constant U$_\text{s}$/U$_\text{mf}$, the increasing heat transfer rates result in particles reaching densities necessary for elutriation faster. This, coupled with a nearly constant U$_\text{t}$/U$_\text{s}$, results in the average particle residence time decreasing as H$_2$ x$_\text{H2}$ increases, with the average for all biomass particles decreasing from 5.23s at x$_\text{H2}$ = 0 to 4.64s at x$_\text{H2}$ = 1. For constant U$_\text{s}$, the increased heat transfer rate of H$_2$ are offset by the higher normalized terminal velocity, resulting in the average particle residence time decreasing only ~2.4\% compared to those of the N$_2$ fluidizing gas.
+At the reactor conditions and particle sizes investigated, the gas velocities are insufficient for biomass particles to elutriate from the reactor at their initial density. Therefore, the particle remains in the reactor until its density is sufficiently reduced from pyrolysis. This can be seen in Figure \ref{fig:cfd-constuumf-terminal-vel}, which contains the normalized terminal velocities, U$_\text{t}$/U$_\text{s}$, of each biomass particle size for N$_2$ and H$_2$ (both constant U$_\text{s}$ and U$_\text{s}$/U$_\text{mf}$) fluidizing gases as a function of particle density. For the N$_2$ fluidizing gas, the maximum densities at which U$_\text{s}$ $>$ U$_\text{t}$ are approximately 300, 200, 140 and 90 kg/m$^3$ for particle sizes of 278, 344, 426 and 543 $\mu$m, respectively. These maximum densities decrease to 150, 100, 65 and 40 kg/m$^3$ for H$_2$ at the same gas velocities, but are similar when the flows are increased to maintain a constant U$_\text{s}$/U$_\text{mf}$. This suggests the residence time of the particles is a function of both the terminal velocity of the particles for the given gas mixture, and the rate of heat transfer to the particles, which defines the rate of mass loss from pyrolysis. The result of this can be seen in Figure \ref{fig:cfd-constuumf-rtd}, which contains the average residence time for each particle diameter plotted against the H$_2$ mass fraction in the fluidizing gas. For increasing x$_\text{H2}$ and constant U$_\text{s}$/U$_\text{mf}$, the increasing heat transfer rates result in particles reaching densities necessary for elutriation faster. This, coupled with a nearly constant U$_\text{t}$/U$_\text{s}$, results in the average particle residence time decreasing as H$_2$ x$_\text{H2}$ increases, with the average for all biomass particles decreasing from 5.23s at x$_\text{H2}$ = 0 to 4.64s at x$_\text{H2}$ = 1. For constant U$_\text{s}$, the increased heat transfer rate of H$_2$ are offset by the higher normalized terminal velocity, resulting in the average particle residence time decreasing only ~2.4\% compared to those of the N$_2$ fluidizing gas.
 
 \begin{figure}[H]
     \centering
@@ -268,7 +269,7 @@ At the reactor conditions and particle sizes investigated, the gas velocities ar
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/cfd-constuumf-rtd.pdf}
-    \caption{Average particle residence time as a function of H$_2$ mass fraction in fluidizing gas at constant U$_\text{s}$/U$_\text{mf}$. Average residence times for H$_2$ fluidizing gas with constant U$_\text{s}$ indicated by 'x' markers in plot.}
+    \caption{Average particle residence time as a function of H$_2$ mass fraction in fluidizing gas at constant U$_\text{s}$/U$_\text{mf}$. Average residence times for H$_2$ fluidizing gas with constant U$_\text{s}$ indicated by markers in the plot.}
     \label{fig:cfd-constuumf-rtd}
 \end{figure}
 
@@ -277,7 +278,7 @@ The effect of maintaining a constant U$_\text{s}$/U$_\text{mf}$ while increasing
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/cfd-constuumf-yields.pdf}
-    \caption{Fraction of biomass converted and product yields as a function of H$_2$ mass fraction at constant U$_\text{s}$/U$_\text{mf}$. Biomass converted and product yields for H$_2$ fluidizing gas with constant U$_\text{s}$ indicated by 'x' markers in plot.}
+    \caption{Fraction of biomass converted and product yields as a function of H$_2$ mass fraction at constant U$_\text{s}$/U$_\text{mf}$. Biomass converted and product yields for H$_2$ fluidizing gas with constant U$_\text{s}$ indicated by markers in the plot.}
     \label{fig:cfd-constuumf-yields}
 \end{figure}
 
@@ -287,6 +288,3 @@ The effect of maintaining a constant U$_\text{s}$/U$_\text{mf}$ while increasing
     \caption{Volume and time averaged secondary reaction rates as a function of H$_2$ mass fraction at constant U$_\text{s}$/U$_\text{mf}$. Reaction rates with H$_2$ fluidizing gas and constant U$_\text{s}$ included for comparison.}
     \label{fig:cfd-constuumf-reaction-rates}
 \end{figure}
-
-
-
