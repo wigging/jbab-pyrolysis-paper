@@ -8,13 +8,13 @@ Our strategy to model gas effects in a bubbling fluidized bed reactor begins wit
 
 \subsection{Gas properties}
 
-Gas density is calculated using the ideal gas law as shown in Equation \ref{eq:density} where $\rho_\text{gas}$ is density in kg/m$^3$, P is pressure in Pa, M is molecular weight as g/mol, R is the gas constant in units of (m$^3$ Pa) / (K mol), and T is temperature in Kelvin.
+Gas density is calculated using the ideal gas law as shown in Equation \ref{eq:density} where $\rho_\text{gas}$ is density (kg/m$^3$), P is pressure (Pa), M is molecular weight (g/mol), R is the gas constant (m$^3\cdot$Pa / K$\cdot$mol), and T is temperature (K).
 
 \begin{equation}\label{eq:density}
     \rho_\text{gas} = \frac{P\,M}{R\,T}
 \end{equation}
 
-Dynamic gas viscosity $\mu_\text{gas}$ is estimated by Equation \ref{eq:viscosity} in units of \textmugreek P. Gas thermal conductivity k$_\text{gas}$ as W/m\,K is calculated from Equation \ref{eq:thermlcond} and heat capacity C$_\text{p\,gas}$ as J/mol\,K is determined using Equation \ref{eq:heatcap}. Temperature is denoted by T in Kelvin while the regression coefficients A, B, C, D, E, F, and G for a particular gas are obtained from Yaws' Handbook \cite{Yaws2014}.
+Dynamic gas viscosity $\mu_\text{gas}$ is estimated by Equation \ref{eq:viscosity} in units of \textmugreek P. Gas thermal conductivity k$_\text{gas}$ as W/m$\cdot$K is calculated from Equation \ref{eq:thermlcond} and heat capacity C$_\text{p\,gas}$ as J/mol$\cdot$K is determined using Equation \ref{eq:heatcap}. In each equation, temperature is denoted by T in units of Kelvin while the regression coefficients A, B, C, D, E, F, and G for a particular gas were obtained from Yaws' Handbook \cite{Yaws2014}.
 
 \begin{equation}\label{eq:viscosity}
     \mu_\text{gas} = A + B\,T + C\,T^2 + D\,T^3
@@ -35,7 +35,7 @@ Several methods are available to calculate the dynamic viscosity of a gas mixtur
     \label{eq:graham}
 \end{equation}
 
-\noindent The Herning and Zipperer approach shown by Equation \ref{eq:herning}, sums the viscosities weighted by the square root of the molecular weight M$_\text{i}$ for each component \cite{Herning-1936}. According to Davidson's report \cite{Davidson-1993}, this model is not recommended for gas mixtures containing significant amounts of hydrogen.
+\noindent The Herning and Zipperer approach shown by Equation \ref{eq:herning}, sums the viscosities weighted by the square root of the molecular weight M$_\text{i}$ for each component \cite{Herning-1936}. According to Davidson's report \cite{Davidson-1993}, the Herning and Zipperer model is not recommended for gas mixtures containing significant amounts of hydrogen.
 
 \begin{equation}
     \mu_\text{mix} = \sum \frac{\mu_i \; x_i \; \sqrt{M_i}}{x_i \; \sqrt{M_i}}
@@ -75,7 +75,7 @@ For a bed of particles, the minimum fluidization velocity U$_\text{mf}$ is the g
     U_\text{mf} = \frac{Re_\text{p,mf}\; \mu}{d_p\, \rho_g}
 \end{equation}
 
-\noindent where $\mu$ is gas viscosity in kg/m\,s, d$_\text{p}$ is particle diameter in meters, $\rho_\text{g}$ is gas density in kg/m$^3$, and Re$_\text{p,mf}$ is the particle Reynolds number at minimum fluidization conditions. The Reynolds number is calculated using the Archimedes number (Ar) as follows
+\noindent where $\mu$ is gas viscosity (kg/m$\cdot$s), d$_\text{p}$ is particle diameter (m), $\rho_\text{g}$ is gas density (kg/m$^3$), and Re$_\text{p,mf}$ is the particle Reynolds number at minimum fluidization conditions. The Reynolds number is calculated using the Archimedes number (Ar) as follows
 
 \begin{align}
     Re_{p,mf} &= \left( a^2 + b Ar \right)^{1/2} - a \\
@@ -94,7 +94,7 @@ For a bed of particles, the minimum fluidization velocity U$_\text{mf}$ is the g
     K_2 = \frac{150(1-\epsilon_{mf})}{\epsilon_{mf}^3 \phi^2}
 \end{equation}
 
-The terminal velocity of particles, U$_\text{t}$, is the minimum gas velocity to necessary to entrain a particle of size d$_\text{p}$ in the flow. This velocity can be estimated from the maximum velocity of a particle in free-fall through a fluid, which is given by Equation \ref{eq:terminal}. Here, Re$_\text{p}$ is the particle Reynolds number given by Equation \ref{eq:particleRe} and C$_\text{D}$ is the drag coefficient, which can be estimated from an emperical correlation developed by Haider and Levenspiel \cite{haider1989drag} and given by Equation \ref{eq:dragCoeff}.
+The terminal velocity U$_\text{t}$ of a particle is the minimum gas velocity to entrain a particle of size d$_\text{p}$. This velocity can be estimated from the maximum velocity of a particle in free-fall through a fluid, which is given by Equation \ref{eq:terminal}. Here, Re$_\text{p}$ is the particle Reynolds number given by Equation \ref{eq:particleRe} and C$_\text{D}$ is the drag coefficient which was estimated from an emperical correlation developed by Haider and Levenspiel \cite{haider1989drag} and given by Equation \ref{eq:dragCoeff}.
 
 \begin{align}
     U_{t} &= \left [\frac{4d_{p} \left (\rho_{s}-\rho_{g} \right )g}{3\rho_{g}C_{D}}\right ]^{1/2} \label{eq:terminal} \\
@@ -102,9 +102,8 @@ The terminal velocity of particles, U$_\text{t}$, is the minimum gas velocity to
     C_{D} &= \frac{24}{Re_{p}}\left [ 1+\left ( 8.1716e^{-4.0655\phi } \right )Re_{p}^{0.0964+0.5565\phi} \right ]+\frac{73.69Re_{p}e^{-5.0748\phi}}{Re_{p}+5.378e^{6.2122\phi}} \label{eq:dragCoeff}
 \end{align}
 
-
 % based on results, it looks like h is a function of Umf and not U, so this was changed back
-As shown in Equation \ref{eq:nusselt}, the convective heat transfer coefficient h in units of W/m$^2$K can be determined from the Nusselt number Nu where Re is the Reynolds number, d$_\text{p}$ is the biomass particle diameter, d$_\text{b}$ is the sand particle diameter, and k$_\text{g}$ is the gas thermal conductivity in W/m\,K. This approach is valid for $\text{d}_\text{p} < \text{d}_\text{b}$ \cite{Collier-2004}. The Reynolds number is determined from $\rho$ which is the gas density in kg/m$^3$, the minimum fluidization velocity U$_\text{mf}$ in m/s, and the dynamic gas viscosity $\mu$ in kg/m\,s \cite{Papadikis-2010}.
+As shown in Equation \ref{eq:nusselt}, the convective heat transfer coefficient h in units of W/m$^2$K can be determined from the Nusselt number Nu where Re is the Reynolds number, d$_\text{p}$ is the biomass particle diameter, d$_\text{b}$ is the sand particle diameter, and k$_\text{g}$ is the gas thermal conductivity. According to Collier et al. \cite{Collier-2004}, this approach is valid for $\text{d}_\text{p} < \text{d}_\text{b}$. The Reynolds number was determined from the gas density $\rho$ (kg/m$^3$), the minimum fluidization velocity U$_\text{mf}$ (m/s), and the dynamic gas viscosity $\mu$ (kg/m$\cdot$s) \cite{Papadikis-2010}.
 
 \begin{align}
     Nu &= 2 + 0.9\, Re^{0.62} \left(\frac{d_p}{d_b}\right)^{0.2} = \frac{h\, d_p}{k_g} \label{eq:nusselt} \\
@@ -115,7 +114,7 @@ As shown in Equation \ref{eq:nusselt}, the convective heat transfer coefficient 
 
 \subsection{Dimensionless numbers}
 
-As mentioned in the work of Pyle and Zaror \cite{Pyle-1984}, the rate of pyrolysis involves a balance between internal and external heat transfer due to heat transport and reaction. This balance is embodied by the dimensionless numbers Bi, Py$^\text{I}$, and Py$^\text{II}$ which are determined from Equations \ref{eq:biot}, \ref{eq:pynumber1}, and \ref{eq:pynumber2} respectively. The Biot number Bi represents the ratio of convective and conductive heat transport. The first pyrolysis number Py$^\text{I}$ demonstrates the ratio of heat transfer by conduction to the rate of heat loss due to products leaving the particle. The second pyrolysis number Py$^\text{II}$ is the effect of convective heat transfer to the external particle surface relative to the reaction heat loss. The Biot and pyrolysis numbers are calculated using the following parameters: h is the convective heat transfer coefficient in W/m$^2$K, R is the radius or characteristic length of the biomass particle in meters, k is the biomass thermal conductivity in W/mK, $\rho$ is the density of the biomass particle in kg/m$^3$, K is the total rate constant in 1/s for the primary reactions, and C$_\text{p}$ is the biomass heat capacity calculated from $103.1 + 3.867\,\text{T}$ where T is the biomass temperature in Kelvin.
+As mentioned in the work of Pyle and Zaror \cite{Pyle-1984}, the rate of pyrolysis involves a balance between internal and external heat transfer due to heat transport and reaction. This balance is embodied by the dimensionless numbers Bi, Py$^\text{I}$, and Py$^\text{II}$ which are determined from Equations \ref{eq:biot}, \ref{eq:pynumber1}, and \ref{eq:pynumber2} respectively. The Biot number Bi represents the ratio of convective and conductive heat transport. The first pyrolysis number Py$^\text{I}$ demonstrates the ratio of heat transfer by conduction to the rate of heat loss due to products leaving the particle. The second pyrolysis number Py$^\text{II}$ is the effect of convective heat transfer to the external particle surface relative to the reaction heat loss. The Biot and pyrolysis numbers are calculated using the following parameters: h is the convective heat transfer coefficient (W/m$^2$K), R is the radius or characteristic length of the biomass particle (m), k is the biomass thermal conductivity (W/m$\cdot$K), $\rho$ is the density of the biomass particle (kg/m$^3$), K is the total rate constant in 1/s for the primary reactions, and C$_\text{p}$ is the biomass heat capacity calculated from $103.1 + 3.867\,\text{T}$ where T is the biomass temperature in Kelvin.
 
 \begin{align}
     Bi &= \frac{h\,R}{k} \label{eq:biot} \\
@@ -148,21 +147,21 @@ The pyrolysis reactions were modeled as first-order Arrhenius type equations whe
     r_i = C_i\,A_i\,e^{-E_i / R\,T}
 \end{equation}
 
-\noindent where r$_\text{i}$ is the rate of reaction i such that C$_\text{i}$ is a mass based concentration, A$_\text{i}$ is the pre-factor (1/s), E$_\text{i}$ is the activation energy (kJ/mol), R is the gas constant, and T is the reaction temperature (K). Kinetic parameters for each reaction are listed in Table \ref{tab:kinetic-params} where $\Delta$H is the heat of reaction (kJ/kg). Based on the work performed by Lu et. al.\cite{lu2020bridging}, which found that the Di Blasi kinetics scheme overpredicts light gas production when using a coarse-grained DEM model, the pre-factor of reaction 4 was modified by a factor 0.2. The value of this factor was determined by comparisons with experiments.
+\noindent where r$_\text{i}$ is the rate of reaction i such that C$_\text{i}$ is a mass based concentration, A$_\text{i}$ is the pre-factor (1/s), E$_\text{i}$ is the activation energy (kJ/mol), R is the gas constant, and T is the reaction temperature (K). Kinetic parameters for each reaction are listed in Table \ref{tab:kinetic-params} where $\Delta$H is the heat of reaction (kJ/kg). Based on the work performed by Lu et. al.\cite{lu2020bridging}, which found that the Di Blasi kinetics scheme overpredicts light gas production when using a coarse-grained DEM model, the pre-factor of reaction 4 was modified by a factor of 0.2. The value of this factor was determined by comparisons with experiments.
 
 \begin{table}[H]
     \centering
-    \caption{Kinetic parameters for the Di Blasi biomass pyrolysis scheme.}
-    \begin{tabular}{clrrc}
+    \caption{Kinetic parameters based on the Di Blasi biomass pyrolysis scheme where $\Delta$H$_\text{vap}$ is the heat of vaporization of water.}
+    \begin{tabular}{clrrr}
         \toprule
         Reaction    & A (1/s)               & E (kJ/mol) & $\Delta$H (kJ/kg) & Reference \\
         \midrule
-        1           & $4.38 \times 10^9$    & 152.7      & -20               & \cite{Blasi-2001} \\
-        2           & $3.27 \times 10^6$    & 111.7      & -20               & \cite{Blasi-2001} \\
-        3           & $1.08 \times 10^{10}$ & 148.0      & 255               & \cite{Blasi-2001} \\
-        4           & $0.2\left( 4.28 \times 10^6 \right)$    & 108.0      & -42               & \cite{Blasi-1993,lu2020bridging} \\
-        5           & $1.00 \times 10^6$    & 108.0      & -42               & \cite{Blasi-1993} \\
-        6           & $5.13 \times 10^6$    & 87.6       & 2700              & ? \\
+        1           & $4.38 \times 10^9$                    & 152.7 & -20                       & \cite{Blasi-2001} \\
+        2           & $3.27 \times 10^6$                    & 111.7 & -20                       & \cite{Blasi-2001} \\
+        3           & $1.08 \times 10^{10}$                 & 148.0 & 255                       & \cite{Blasi-2001} \\
+        4           & $0.2\left(4.28 \times 10^6 \right)$   & 108.0 & -42                       & \cite{Blasi-1993,lu2020bridging} \\
+        5           & $1.00 \times 10^6$                    & 108.0 & -42                       & \cite{Blasi-1993} \\
+        6           & $5.13 \times 10^6$                    & 87.6  & $\Delta$H$_\text{vap}$    & \cite{Chan-1985} \\
         \bottomrule
     \end{tabular}
     \label{tab:kinetic-params}

@@ -2,7 +2,7 @@
 
 \section{Model parameters}
 
-Particle size distribution of the biomass feedstock along with the mass flow rate associated with each size bin is given in Table \ref{tab:params-part-size}. The chemical composition used for the Di Blasi kinetics model is shown in Table \ref{tab:params-chem-biomass}. Other parameters related to the biomass and sand particles along with reactor operation and simulation settings are provided in Table \ref{tab:params}. Biomass particle characteristics and properties are representative of loblolly pine while the bed particle characteristics are for a typical sand material. Operating conditions and reactor dimensions are based on the previously discussed NREL 2FBR fluidized bed pyrolysis unit. Table \ref{tab:cases} summarizes the CFD simulations conducted for this study. Each row represents a different simulation case that was performed for a particular gas composition. The flowrate of each gas species used in the simulations is provided in Table \ref{tab:flowrates}. For cases 1-8, the total flowrate was kept constant, resulting in a constant superficial gas velocity inside the reactor. For cases 9-13, the gas flowrates were modified to maintain a constant U/U$_\text{mf}$ = 3 in each simulation. 
+Particle size distribution of the biomass feedstock along with the mass flow rate associated with each size bin is given in Table \ref{tab:params-part-size}. The initial biomass chemical composition used for the Di Blasi kinetics model is shown in Table \ref{tab:params-chem-biomass}. Other parameters related to the biomass and sand particles along with reactor operation and simulation settings are provided in Table \ref{tab:params}. Biomass particle characteristics and properties are representative of loblolly pine while the bed particle characteristics are for a typical sand material. Operating conditions and reactor dimensions are based on the previously discussed NREL 2FBR fluidized bed pyrolysis unit.
 
 \begin{table}[H]
     \centering
@@ -22,7 +22,7 @@ Particle size distribution of the biomass feedstock along with the mass flow rat
 
 \begin{table}[H]
     \centering
-    \caption{Chemical species composition of the biomass feedstock.}
+    \caption{Initial chemical composition of the biomass feedstock for the Di Blasi kinetics model.}
     \label{tab:params-chem-biomass}
     \begin{tabular}{lrr}
         \toprule
@@ -82,11 +82,10 @@ Particle size distribution of the biomass feedstock along with the mass flow rat
     \end{tabular}
 \end{table}
 
+Table \ref{tab:cases} summarizes the CFD simulations conducted for this study. Each row represents a different simulation case that was performed for a particular gas composition. The flowrate of each gas species used in the simulations is shown in Table \ref{tab:flowrates}. For cases 1--8, the total flowrate was kept constant, resulting in a constant superficial gas velocity inside the reactor. For cases 9--13, the gas flowrates were modified to maintain a constant U/U$_\text{mf}$ = 3 in each simulation.
 
-% No results are provided for cases with 20% each of N2, H2, CO, CO2 and CH4 and the case with 50% H2O and CO, so they have
-% been removed from the table
-
-% Updated caption to specify that it is in terms of volume percentage
+% No results are provided for cases with 20% each of N2, H2, CO, CO2 and CH4
+% and the case with 50% H2O and CO, so they have been removed from the table
 
 \begin{table}[H]
     \centering
@@ -116,7 +115,7 @@ Particle size distribution of the biomass feedstock along with the mass flow rat
 
 % I updated the flowrate used for N2 in Case 1 and Case 8 to exclude the constant 2.83e-5 m3/s flowrate of N2 since the remaining entries did not include this portion of the flow and it was confusing
 
-\begin{table}
+\begin{table}[H]
     \centering
     \caption{Simulation cases for different gas mixtures. Columns denote gas flow rate in m$^3$/s at 500$^\circ$C. Additionally, $2.83\times10^{-5}$ m$^3$/s of N$_2$ at 500$^\circ$C was supplied at the fluidizing gas inlet and $2.55\times10^{-5}$ m$^3$/s of N$_2$ at 25$^\circ$C was supplied at biomass feed inlet for all cases.}
     \begin{tabular}{llrrrrrr}
