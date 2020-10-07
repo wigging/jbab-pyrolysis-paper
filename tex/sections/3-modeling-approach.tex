@@ -147,7 +147,7 @@ The pyrolysis reactions were modeled as first-order Arrhenius type equations whe
     r_i = C_i\,A_i\,e^{-E_i / R\,T}
 \end{equation}
 
-\noindent where r$_\text{i}$ is the rate of reaction i such that C$_\text{i}$ is a mass based concentration, A$_\text{i}$ is the pre-factor (1/s), E$_\text{i}$ is the activation energy (kJ/mol), R is the gas constant, and T is the reaction temperature (K). Kinetic parameters for each reaction are listed in Table \ref{tab:kinetic-params} where $\Delta$H is the heat of reaction (kJ/kg). Based on the work performed by Lu et. al.\cite{lu2020bridging}, which found that the Di Blasi kinetics scheme overpredicts light gas production when using a coarse-grained DEM model, the pre-factor of reaction 4 was modified by a factor of 0.2. The value of this factor was determined by comparisons with experiments.
+\noindent where r$_\text{i}$ is the rate of reaction i such that C$_\text{i}$ is a mass based concentration, A$_\text{i}$ is the pre-factor (1/s), E$_\text{i}$ is the activation energy (kJ/mol), R is the gas constant, and T is the reaction temperature (K). Kinetic parameters for each reaction are listed in Table \ref{tab:kinetic-params} where $\Delta$H is the heat of reaction (kJ/kg). Based on the work performed by Lu et al.\cite{lu2020bridging}, the Di Blasi kinetics overpredict light gas production when using a coarse-grained DEM model. Consequently, we adjusted the pre-factor of reaction 4 by a factor of 0.2 which was determined by comparisons with NREL experiments.
 
 \begin{table}[H]
     \centering
