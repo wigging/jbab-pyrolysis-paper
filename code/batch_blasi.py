@@ -33,7 +33,7 @@ time = np.linspace(0, 25, num=1000)
 gas1 = ct.Solution('blasi.cti')
 gas1.TPY = temp, press, y0
 
-# use only the primary reactions by disabling the secondary reactions for tar
+# use only primary reactions by disabling the secondary reactions for tar
 gas1.set_multiplier(0, 3)    # disable reaction tar => gas
 gas1.set_multiplier(0, 4)    # disable reaction tar => char
 
@@ -61,13 +61,31 @@ for ti in time:
     sim2.advance(ti)
     states2.append(r2.thermo.state, t=ti)
 
+# Batch reactor with primary and secondary Di Blasi reactions (modified)
+# ----------------------------------------------------------------------------
+
+gas3 = ct.Solution('blasi.cti')
+gas3.TPY = temp, press, y0
+
+# apply factor of 0.2 to reaction tar => gas
+gas3.set_multiplier(0.2, 3)
+
+r3 = ct.IdealGasConstPressureReactor(gas3, energy='off')
+
+sim3 = ct.ReactorNet([r3])
+states3 = ct.SolutionArray(gas3, extra=['t'])
+
+for ti in time:
+    sim3.advance(ti)
+    states3.append(r3.thermo.state, t=ti)
+
 # Print
 # ----------------------------------------------------------------------------
 
 print(f"""
 --- Parameters ---
-T {temp} K
-P {press:,} Pa
+T   {temp} K
+P   {press:,} Pa
 """)
 
 print('--- Reactions (index, reaction) ---')
@@ -85,11 +103,17 @@ for sp in states2.species_names:
 print('\n--- Max tar yield (mass fraction) ---')
 print(f"{'tar':10} {max(states1('tar').Y[:, 0]):.4f}   primary")
 print(f"{'tar':10} {max(states2('tar').Y[:, 0]):.4f}   primary + secondary")
+print(f"{'tar':10} {max(states3('tar').Y[:, 0]):.4f}   primary + secondary (mod)")
+
+print('\n--- Max gas yield (mass fraction) ---')
+print(f"{'gas':10} {max(states1('gas').Y[:, 0]):.4f}   primary")
+print(f"{'gas':10} {max(states2('gas').Y[:, 0]):.4f}   primary + secondary")
+print(f"{'gas':10} {max(states3('gas').Y[:, 0]):.4f}   primary + secondary (mod)")
 
 # Plot
 # ----------------------------------------------------------------------------
 
-fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(8.4, 4.8), sharey=True, tight_layout=True)
+fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(10, 4.8), sharey=True, tight_layout=True)
 
 ax1.plot(states1.t, states1('biomass').Y[:, 0], label='biomass')
 ax1.plot(states1.t, states1('gas').Y[:, 0], label='gas')
@@ -107,8 +131,17 @@ ax2.plot(states2.t, states2('tar').Y[:, 0], label='tar')
 ax2.plot(states2.t, states2('char').Y[:, 0], label='char')
 ax2.set_xlabel('Time [s]')
 ax2.grid(color='0.9')
-ax2.legend(loc='best', frameon=False)
 ax2.set_frame_on(False)
 ax2.tick_params(color='0.9')
+
+ax3.plot(states3.t, states3('biomass').Y[:, 0], label='biomass')
+ax3.plot(states3.t, states3('gas').Y[:, 0], label='gas')
+ax3.plot(states3.t, states3('tar').Y[:, 0], label='tar')
+ax3.plot(states3.t, states3('char').Y[:, 0], label='char')
+ax3.set_xlabel('Time [s]')
+ax3.grid(color='0.9')
+ax3.legend(loc='best', frameon=False)
+ax3.set_frame_on(False)
+ax3.tick_params(color='0.9')
 
 plt.show()
