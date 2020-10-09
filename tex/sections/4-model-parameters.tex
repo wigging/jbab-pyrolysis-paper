@@ -82,59 +82,30 @@ Particle size distribution of the biomass feedstock along with the mass flow rat
     \end{tabular}
 \end{table}
 
-Table \ref{tab:cases} summarizes the CFD simulations conducted for this study. Each row represents a different simulation case that was performed for a particular gas composition. The flowrate of each gas species used in the simulations is shown in Table \ref{tab:flowrates}. For cases 1--8, the total flowrate was kept constant, resulting in a constant superficial gas velocity inside the reactor. For cases 9--13, the gas flowrates were modified to maintain a constant U/U$_\text{mf}$ = 3 in each simulation.
-
-% No results are provided for cases with 20% each of N2, H2, CO, CO2 and CH4
-% and the case with 50% H2O and CO, so they have been removed from the table
-
-\begin{table}[H]
-    \centering
-    \caption{Simulation cases for different gas mixtures where columns denote gas volume percentage. Note: Cases 9-13 represent H$_2$ mass fractions of 0.2, 0.4, 0.6, 0.8 and 1}
-    \begin{tabular}{crrrrrr}
-        \hline
-        Case    & N$_2$ & H$_2$     & H$_2$O    & CO    & CO$_2$    & CH$_4$    \\
-        \hline
-        1       & 100   & 0         & 0         & 0     & 0         & 0         \\
-        2       & 0     & 100       & 0         & 0     & 0         & 0         \\
-        3       & 0     & 0         & 100       & 0     & 0         & 0         \\
-        4       & 0     & 0         & 0         & 100   & 0         & 0         \\
-        5       & 0     & 0         & 0         & 0     & 100       & 0         \\
-        6       & 0     & 0         & 0         & 0     & 0         & 100       \\
-        7       & 50    & 0         & 0         & 0     & 50        & 0         \\
-        8       & 50    & 0         & 0         & 50    & 0         & 0         \\
-        9       & 22    & 78        & 0         & 0     & 0         & 0         \\
-        10      & 10    & 90        & 0         & 0     & 0         & 0         \\
-        11      & 5     & 95        & 0         & 0     & 0         & 0         \\
-        12      & 2     & 98        & 0         & 0     & 0         & 0         \\
-        13      & 0     & 100       & 0         & 0     & 0         & 0         \\
-        \hline
-    \end{tabular}
-    \label{tab:cases}
-\end{table}
-
+Table \ref{tab:flowrates} summarizes the CFD simulations conducted for this study. Each row represents a different simulation case that was performed for a particular gas composition. An additional $2.83\times10^{-5}$ m$^3$/s of N$_2$ at 500$^\circ$C was supplied at the fluidizing gas inlet and $2.55\times10^{-5}$ m$^3$/s of N$_2$ at 25$^\circ$C was supplied at the biomass feed inlet for all cases. For cases 1--8, the total flow rate was kept constant, resulting in a constant superficial gas velocity inside the reactor. For cases 9--13, the gas flow rates were modified to maintain a constant U/U$_\text{mf}$ = 3 in each simulation. Also, cases 9--13 represent H$_2$ mass fractions of 0.2, 0.4, 0.6, 0.8 and 1.
 
 % I updated the flowrate used for N2 in Case 1 and Case 8 to exclude the constant 2.83e-5 m3/s flowrate of N2 since the remaining entries did not include this portion of the flow and it was confusing
 
 \begin{table}[H]
     \centering
-    \caption{Simulation cases for different gas mixtures. Columns denote gas flow rate in m$^3$/s at 500$^\circ$C. Additionally, $2.83\times10^{-5}$ m$^3$/s of N$_2$ at 500$^\circ$C was supplied at the fluidizing gas inlet and $2.55\times10^{-5}$ m$^3$/s of N$_2$ at 25$^\circ$C was supplied at biomass feed inlet for all cases.}
+    \caption{CFD-DEM simulation cases for different gas mixtures. Columns denote gas flow rate in m$^3$/s at 500$^\circ$C.}
     \begin{tabular}{llrrrrrr}
         \toprule
-        ID  & Case                  & N$_2$     & H$_2$    & H$_2$O   & CO       & CO$_2$    & CH$_4$   \\
+        ID & Case                    & N$_2$     & H$_2$    & H$_2$O   & CO       & CO$_2$    & CH$_4$   \\
         \midrule
-        1   & N$_2$                 & 6.37e-04  & 0        & 0        & 0        & 0         & 0        \\
-        2   & H$_2$                 & 0         & 6.37e-04 & 0        & 0        & 0         & 0        \\
-        3   & H$_2$O                & 0         & 0        & 6.37e-04 & 0        & 0         & 0        \\
-        4   & CO                    & 0         & 0        & 0        & 6.37e-04 & 0         & 0        \\
-        5   & CO$_2$                & 0         & 0        & 0        & 0        & 6.37e-04  & 0        \\
-        6   & CH$_4$                & 0         & 0        & 0        & 0        & 0         & 6.37e-04 \\
-        7   & 0.5N$_2$ + 0.5CO      & 3.18e-04  & 0        & 0        & 3.18e-04 & 0         & 0        \\
-        8   & 0.5N$_2$ + 0.5CO$_2$  & 3.18e-04  & 0        & 0        & 0        & 3.18e-04  & 0        \\
-        9   & 0.22N$_2$ + 0.78H$_2$ & 1.42e-04  & 4.95e-04 & 0        & 0        & 0         & 0        \\
-        10  & 0.10N$_2$ + 0.90H$_2$ & 6.17e-05  & 5.75e-04 & 0        & 0        & 0         & 0        \\
-        11  & 0.05N$_2$ + 0.95H$_2$ & 2.89e-05  & 6.08e-04 & 0        & 0        & 0         & 0        \\
-        12  & 0.02N$_2$ + 0.98H$_2$ & 1.12e-05  & 6.26e-04 & 0        & 0        & 0         & 0        \\
-        13  & H$_2$                 & 0         & 6.37e-04 & 0        & 0        & 0         & 0        \\
+        1  & N$_2$                   & 6.37e-04  & 0        & 0        & 0        & 0         & 0        \\
+        2  & H$_2$                   & 0         & 6.37e-04 & 0        & 0        & 0         & 0        \\
+        3  & H$_2$O                  & 0         & 0        & 6.37e-04 & 0        & 0         & 0        \\
+        4  & CO                      & 0         & 0        & 0        & 6.37e-04 & 0         & 0        \\
+        5  & CO$_2$                  & 0         & 0        & 0        & 0        & 6.37e-04  & 0        \\
+        6  & CH$_4$                  & 0         & 0        & 0        & 0        & 0         & 6.37e-04 \\
+        7  & 0.5 N$_2$ + 0.5 CO      & 3.18e-04  & 0        & 0        & 3.18e-04 & 0         & 0        \\
+        8  & 0.5 N$_2$ + 0.5 CO$_2$  & 3.18e-04  & 0        & 0        & 0        & 3.18e-04  & 0        \\
+        9  & 0.22 N$_2$ + 0.78 H$_2$ & 1.42e-04  & 4.95e-04 & 0        & 0        & 0         & 0        \\
+        10 & 0.10 N$_2$ + 0.90 H$_2$ & 6.17e-05  & 5.75e-04 & 0        & 0        & 0         & 0        \\
+        11 & 0.05 N$_2$ + 0.95 H$_2$ & 2.89e-05  & 6.08e-04 & 0        & 0        & 0         & 0        \\
+        12 & 0.02 N$_2$ + 0.98 H$_2$ & 1.12e-05  & 6.26e-04 & 0        & 0        & 0         & 0        \\
+        13 & H$_2$                   & 0         & 6.37e-04 & 0        & 0        & 0         & 0        \\
         \bottomrule
     \end{tabular}
     \label{tab:flowrates}
