@@ -166,6 +166,8 @@ for i in range(len(gas)):
 # Plot
 # ----------------------------------------------------------------------------
 
+gas_labels = ['N₂', 'H₂', 'H₂O', 'CO', 'CO₂', 'CH₄']
+
 # Figure 1
 fig, ax = plt.subplots(tight_layout=True)
 for i in range(len(gas)):
@@ -173,9 +175,9 @@ for i in range(len(gas)):
     pyI = py1_gas[i]
     pyII = py2_gas[i]
     if bi < 1.0:
-        ax.plot(bi, pyII, 'o', label=gas[i])
+        ax.plot(bi, pyII, 'o', label=gas_labels[i])
     else:
-        ax.plot(bi, pyI, '^', label=gas[i])
+        ax.plot(bi, pyI, '^', label=gas_labels[i])
 ax.set_xlabel('Biot Number, Bi [-]')
 ax.set_ylabel('Pyrolysis Number, Py [-]')
 
