@@ -197,6 +197,23 @@ ax.set_yscale('log')
 ax.tick_params(color='0.9')
 plt.minorticks_off()
 
+# zoom region for Figure 1
+axins = ax.inset_axes([0.2, 0.2, 0.2, 0.2])
+for i in range(len(gas)):
+    bi = bi_gas[i]
+    pyI = py1_gas[i]
+    pyII = py2_gas[i]
+    if bi < 1.0:
+        axins.plot(bi, pyII, 'o', label=gas[i])
+    else:
+        axins.plot(bi, pyI, '^', label=gas[i])
+x1, x2, y1, y2 = 0.5, 0.75, 0.8, 1.2
+axins.set_xlim(x1, x2)
+axins.set_ylim(y1, y2)
+axins.set_xticklabels('')
+axins.set_yticklabels('')
+ax.indicate_inset_zoom(axins)
+
 # Figure 2
 fig, ax = plt.subplots(tight_layout=True)
 ax.plot(biot_n2, pyro_n2, marker='.')
