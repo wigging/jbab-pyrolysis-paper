@@ -183,7 +183,7 @@ These results demonstrate that the CFD-DEM model implemented in this research is
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/cfd-validation.pdf}
+    \includegraphics[width=0.8\textwidth]{figures/cfd-validation.png}
     \caption{CFD-DEM simulation validation against experimental data. Product yields are calculated on a biomass basis. Deviation between experiment and simulation given by $\sigma$.}
     \label{fig:cfd-validation}
 \end{figure}
@@ -197,27 +197,15 @@ Figure \ref{fig:cfd-press-temp} presents the volume-time averaged pressure drop 
 Furthermore, it was observed that tar conversion reactions (Reactions 4 and 5) slightly changed among fluidizing gas used, with the lowest being N$_2$ and the highest being H$_2$ (Figure \ref{fig:cfd-biooil}). This observation explains the reason why despite H$_2$ yielded the highest particle heating and mass loss rate (Figure \ref{fig:cfd-particle}), and one of the longest residence times (Figure \ref{fig:cfd-particle-time}), its bio-oil yield relative to biomass flow rate is negligibly different from the bio-oil yield with other fluidizing gases, especially N$_2$. Nevertheless, the fact that we found that fluidizing gas can notably increase biomass heating and mass loss rate (pyrolysis conversion rate) suggest potential process intensification implication because increased heating and pyrolysis rate represents a system where pyrolysis can be completed at an increased rate and consequently offering improved system throughput. Our findings suggest that the carrier gas can be combined with recirculated pyrolysis gas without detrimental consequences on pyrolysis performance.
 
 \begin{figure}[H]
-    \begin{subfigure}{0.55\textwidth}
-        \includegraphics[width=\textwidth]{figures/cfd-pressure.pdf}
-    \end{subfigure}
-    \begin{subfigure}{0.45\textwidth}
-        \includegraphics[width=\textwidth]{figures/cfd-temperature.pdf}
-    \end{subfigure}
+    \centering
+    \includegraphics[width=\textwidth]{figures/cfd-pressure-temp.png}
     \caption{Time-averaged distribution of gas phase pressure drop (left) and temperature (right) along the reactor height.}
     \label{fig:cfd-press-temp}
 \end{figure}
 
 \begin{figure}[H]
-    \begin{subfigure}{0.5\textwidth}
-        \includegraphics[width=\textwidth]{figures/cfd-particle-temp.pdf}
-    \end{subfigure}
-    \begin{subfigure}{0.5\textwidth}
-        \includegraphics[width=\textwidth]{figures/cfd-particle-mass.pdf}
-    \end{subfigure}
-    \begin{subfigure}{\textwidth}
-        \centering
-        \includegraphics[width=0.6\textwidth]{figures/cfd-particle-legend.pdf}
-    \end{subfigure}
+    \centering
+    \includegraphics[width=\textwidth]{figures/cfd-particle-mass.png}
     \caption{Average particle temperature (left) and mass loss profile (right) during pyrolysis. Line color represents fluidizing gas and line type is initial particle diameter.}
     \label{fig:cfd-particle}
 \end{figure}
@@ -231,7 +219,7 @@ Furthermore, it was observed that tar conversion reactions (Reactions 4 and 5) s
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/cfd-particle-time.pdf}
+    \includegraphics[width=\textwidth]{figures/cfd-particle-time.png}
     \caption{Cumulative particle residence time distribution as affected by fluidizing gas and initial particle diameter.}
     \label{fig:cfd-particle-time}
 \end{figure}
