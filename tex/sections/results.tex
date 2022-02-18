@@ -175,63 +175,81 @@ Gas influence on the pyrolysis limiting regimes is shown in Figure \ref{fig:biot
 
 \subsection{CFD-DEM validation}
 
-The predicted yield of pyrolysis products (bio-oil, light gas, and biochar) was validated against experimental data reported by [XXX]. In their experimental work, [XXX] carried out biomass pyrolysis in the same NREL 2FBR fast pyrolysis system that is modeled and simulated in this research. Additionally, the process variables used in the experimental work are consistent with those implemented for the N$_2$ and H$_2$ cases in this research. Figure \ref{fig:cfd-validation} shows that the predicted yields of pyrolysis products closely follow the experimental data with absolute deviation ranging between 1\% and 6\%. The largest observed deviations occur in the prediction of bio-oil and are attributed to the non-closure of mass balance for the experimental data. The reported mass closure for the experimental data was about 94\%. A mass-proportional adjustment of the experimental data to enforce 100\% mass closure decreases the absolute deviation of bio-oil prediction to about 2\% or less.
+The predicted yield of pyrolysis products (bio-oil, light gases, and biochar) was validated against experimental data of biomass pyrolysis using the same NREL 2FBR reactor system that was modeled and simulated in this work [XXX]. The process variables used in the experimental work are consistent with those implemented for the N$_2$ and H$_2$ cases (run ID = 1 and 2, respectively). Table \ref{tab:cfddem-validation} shows that the predicted yields of pyrolysis products closely follow the experimental data. The magnitude of the relative prediction deviation ranged between 5.7\% and 14.9\%. The CFD–DEM simulation seems to generally overestimate the yield of pyrolysis products, except in the case of the light gas yield for the H$_2$ case (run ID = 2). This skewness in the product yield predictions relative to experimental data is attributable to mass closure issues in the experimental data. The mass closure for the experimental data was about 94\%. A mass-proportional adjustment of the experimental data to enforce 100\% mass closure decreases the average prediction deviation by about a factor of 2.
 
-From a qualitative point of view, the implemented CFD-DEM simulation in this research was able to acceptably predict the increase in light gas yield and decrease in biochar yield when fluidizing gas was changed from N$_2$ to H$_2$, as seen in the experimental data. Predicted bio-oil yield slightly increased when fluidizing gas was changed from N$_2$ to H$_2$, contrary to experimental data showing a slight decrease. The relative change in bio-oil yield between N$_2$ to H$_2$ was however quite small for both experimental data (2\%) and CFD-DEM prediction (-1\%).
+\begin{table}[H]
+    \centering
+    \caption{CFD–DEM model validation against experimental data. Product yields were calculated on a biomass weight basis.}
+    \label{tab:cfddem-validation}
+    \begin{tabular}{cccccc}
+        \toprule
+               & Fluidizing & Pyrolysis & \multicolumn{2}{c}{Pyrolysis yield (wt.\%)} & Relative \\
+        Run ID & gas        & product   & Experiment & Simulation                     & deviation (\%) \\
+        \midrule
+        1 & N$_2$ & bio-oil & 70.2 & 74.3 & 5.8 \\
+        1 & N$_2$ & light gas & 11.6 & 12.5 & 7.7 \\
+        1 & N$_2$ & biochar & 12.5 & 13.2 & 5.7 \\
+        2 & H$_2$ & bio-oil & 68.8 & 74.8 & 8.8 \\
+        2 & H$_2$ & light gas & 14.0 & 13.1 & -6.0 \\
+        2 & H$_2$ & biochar & 10.5 & 12.1 & 14.9 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
-These results demonstrate that the CFD-DEM model implemented in this research is capable of realistically simulating the characteristic effects of fluidizing gas on the performance of lignocellulosic biomass pyrolysis.
+When the fluidizing gas was changed from N$_2$ to H$_2$, the developed CFD–DEM model was able to qualitatively predict the increase in the yield of light gases and decrease in the yield of biochar yield in consonance with the experimental data. The predicted bio-oil yield slightly increased when fluidizing gas was changed from N$_2$ to H$_2$, contrary to experimental data showing a decrease. The relative change in bio-oil yield between N$_2$ to H$_2$ was however nominal for both experimental data (2\%) and CFD–DEM prediction (1\%).
+
+\subsection{Fluidizing gas effect on pyrolysis performance at a constant flow rate}
+
+The yields of pyrolysis bio-oil, light gas, and biochar for the different fluidizing gases at a constant flow rate are compared in Figure \ref{fig:cfd-product-yield}. The observed differences in the pyrolysis product distribution among the fluidizing gases were minimal. The highest bio-oil yield of 75.1 wt.\% and lowest bio-oil yield of 73.5 wt.\% were obtained when pure CH$_4$ and CO were used as fluidizing gas, respectively. The bio-oil yield was slightly higher when any of H$_2$, CH$_4$, and CO replaced N$_2$ as the fluidizing gas. The evidence reviewed here suggests that light gas may be recirculated at a constant flow rate during pyrolysis without causing substantial losses in bio-oil yield.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/cfd-validation.png}
-    \caption{CFD-DEM simulation validation against experimental data. Product yields are calculated on a biomass basis. Deviation between experiment and simulation given by $\sigma$.}
-    \label{fig:cfd-validation}
+    \includegraphics[width=0.8\textwidth]{figures/cfd-product-yield.pdf}
+    \caption{Pyrolysis product distributions for different fluidizing gas at a constant flow rate. Product yields were calculated on a biomass weight basis. Run ID 1, 2, 3, 4, 5, 6, and 7 represent fluidizing gas N$_2$, H$_2$, CO, CO$_2$, CH$_4$, N$_2$/CO, and N$_2$/CO$_2$ respectively.}
+    \label{fig:cfd-product-yield}
 \end{figure}
 
-% ----------------------------------------------------------------------------
+A summary of the particle residence time for each fluidizing gas considered is given in Table \ref{tab:particle-restime}. It was unsurprising to find that the median particle residence time increased with increasing initial diameter of the biomass particles. The difference in particle residence time among the fluidizing gases also increased with increasing initial diameter of biomass particles. In other words, the impact of fluidizing gas on particle residence time is stronger for larger particles and weaker for smaller particles.
 
-\subsection{Fluidizing gas effect on pyrolysis performance with constant flowrate}
+\begin{table}[H]
+    \centering
+    \caption{Particle residence time of biomass particle for different fluidizing gas at a constant flow rate and different initial particle diameter where d$_p$ is initial biomass particle diameter.}
+    \label{tab:particle-restime}
+    \begin{tabular}{cccccc}
+        \toprule
+               & Fluidizing & \multicolumn{4}{c}{Median particle residence time (s)} \\
+        Run ID & gas        & d$_p$ = 278 $\mu m$ & d$_p$ = 344 $\mu m$ & d$_p$ = 426 $\mu m$ & d$_p$ = 543 $\mu m$ \\
+        \midrule
+        1 & N$_2$        & 5.9 & 7.3  & 8.8  & 10.9 \\
+        2 & H$_2$        & 7.9 & 13.6 & 34.3 & 77.4 \\
+        3 & CO           & 6.8 & 8.1  & 9.7  & 12.2 \\
+        4 & CO$_2$       & 6.5 & 7.7  & 9.1  & 10.5 \\
+        5 & CH$_4$       & 6.5 & 8.7  & 12.6 & 21.8 \\
+        6 & N$_2$/CO     & 6.6 & 8.0  & 9.5  & 11.4 \\
+        7 & N$_2$/CO$_2$ & 6.4 & 7.7  & 8.9  & 10.8 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
-Figure \ref{fig:cfd-press-temp} presents the volume-time averaged pressure drop and temperature along the height of the fluidized bed reactor. The different fluidizing gases considered in this research demonstrated similar effects on the pressure drop profile along the reactor height. Overall, the averaged bed height – as evidenced by the inflection point on the pressure drop curve – was about 0.14 m, regardless of fluidized gas. Similarly, the total pressure drop across the reactor was consistently about 1440 Pa for all fluidizing gases and mixtures. The volume-time averaged gas temperature ranged between 495$^\circ$C and 500$^\circ$C, depending on position along the reactor height and fluidizing gas. Gas temperature generally dipped around the biomass inlet and at the dense-bed/dilute- phase interface. The most noticeable trend in gas temperature occurs in the dilute-phase, with increasing gas temperature along the height of the reactor. Also noteworthy is the fact that gas temperature in the dilute-phase was highest when H$_2$ was used as fluidizing gas. This observation is attributable to the large difference in the thermal conductivity of H$_2$ compared to the other fluidization gases (see Figure \ref{fig:gas-properties}). The impact of the difference in the thermal conductivity of fluidizing gases is also evident in the average particle temperature and mass loss profile (Figure \ref{fig:cfd-particle}). When H$_2$ was used as fluidizing gas, biomass particles experienced significantly higher heating rate, and consequently higher mass loss rate, compared to when other fluidizing gases were used. Biomass heating and mass loss rate follow the order: H$_2$ $>$ CH$_4$ $>$ H$_2$O $>$ CO$_2$ $>$ N$_2$ + CO$_2$ $>$ N$_2$ $>$ N$_2$ + CO $>$ CO, irrespective of the initial size of the biomass particle.
-
-Furthermore, it was observed that tar conversion reactions (Reactions 4 and 5) slightly changed among fluidizing gas used, with the lowest being N$_2$ and the highest being H$_2$ (Figure \ref{fig:cfd-biooil}). This observation explains the reason why despite H$_2$ yielded the highest particle heating and mass loss rate (Figure \ref{fig:cfd-particle}), and one of the longest residence times (Figure \ref{fig:cfd-particle-time}), its bio-oil yield relative to biomass flow rate is negligibly different from the bio-oil yield with other fluidizing gases, especially N$_2$. Nevertheless, the fact that we found that fluidizing gas can notably increase biomass heating and mass loss rate (pyrolysis conversion rate) suggest potential process intensification implication because increased heating and pyrolysis rate represents a system where pyrolysis can be completed at an increased rate and consequently offering improved system throughput. Our findings suggest that the carrier gas can be combined with recirculated pyrolysis gas without detrimental consequences on pyrolysis performance.
+Figure \ref{fig:cfd-temp-void-biooil} shows the gas phase temperature, void volume fraction, and bio-oil degradation rates profile along the reactor height for different fluidizing gas at a constant flow rate. The gas-phase temperature was higher in the freeboard than in the bed. This is attributed to the fact that enthalpy for biomass pyrolysis reactions is drawn from inside the bed because pyrolysis reactions occur predominantly inside the bed. Additionally, the gas temperature was relatively unchanged along the reactor height within the bed whereas, in the freeboard, the gas temperature increased towards the reactor outlet. Also noteworthy is the fact that the gas temperature along the reactor height was consistently highest when H$_2$ was used as fluidizing gas (Figure \ref{fig:cfd-temp-void-biooil}a). This observation is attributable to the large difference in the thermal conductivity of H$_2$ compared to the other fluidization gases (Figure \ref{fig:gas-properties}). The average height of the fluidized bed was about 0.14 m for all the fluidizing gases considered, except for H$_2$ which produced a lower bed height (Figure \ref{fig:cfd-temp-void-biooil}b). The bed height was determined as the position along the reactor height where the void volume fraction approached 0.7.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{figures/cfd-pressure-temp.png}
-    \caption{Time-averaged distribution of gas phase pressure drop (left) and temperature (right) along the reactor height.}
-    \label{fig:cfd-press-temp}
+    \includegraphics[width=\textwidth]{figures/cfd-temp-void-biooil.pdf}
+    \caption{Profile of (a) fluid temperature, (b) fluid volume fraction, (c) bio-oil cracking reaction rate, (d) bio-oil repolymerization reaction rate along the reactor height for different fluidizing gas at a constant flow rate. The reactor height (0.43 m) is denoted by the letter H. Run ID 1, 2, 3, 4, 5, 6, and 7 represent fluidizing gas N$_2$, H$_2$, CO, CO$_2$, CH$_4$, N$_2$/CO, and N$_2$/CO$_2$ respectively.}
+    \label{fig:cfd-temp-void-biooil}
 \end{figure}
+
+The observed degradation rates for both the particle and vapor phases were substantially affected by the fluidizing gas used. The shape of the bio-oil cracking rate profile along the reactor height was similar to that of the bio-oil repolymerization rate for all the fluidizing gases considered (Figure \ref{fig:cfd-temp-void-biooil}c and Figure \ref{fig:cfd-temp-void-biooil}d). Bio-oil degradation rates were higher in the freeboard than in the bed. The overall bio-oil degradation rates with H$_2$ as the fluidizing gas were substantially higher than those observed with other fluidizing gases. The reactor volume-averaged bio-oil cracking and repolymerization rates were $1.17\times10^{-3}$ and $1.37\times10^{-3}$ kg/s·m$^3$ for H$_2$, respectively $9.92\times10^{-4}$ and $1.16\times10^{-3}$ kg/s·m$^3$ for N$_2$, respectively. This data demonstrates that bio-oil degradation rates were 18\% higher when H$_2$ replaced N$_2$ as the fluidizing gas. This observation explains the reason why despite H$_2$ yielding the highest particle heating and mass-loss rates (Figure \ref{fig:cfd-masspercent}), and one of the longest residence times (Table \ref{tab:particle-restime}), its bio-oil yield is marginally different from the bio-oil yield with other fluidizing gases, especially N$_2$. When H$_2$ was used as fluidizing gas, biomass particles experienced significantly higher heating rates, and consequently higher mass-loss rates, compared to when other fluidizing gases were used. The impact of fluidizing gas on the heating and mass-loss rates was higher for larger particles. Generally, biomass heating and mass-loss rates follow the order: H$_2$ $>$ CH$_4$ $>$ CO $>$ N$_2$ $>$ N$_2$/CO $>$ N$_2$/CO$_2$ $>$ CO$_2$ which correlates well with the effective thermal conductivity of the fluidizing gas.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{figures/cfd-particle-mass.png}
-    \caption{Average particle temperature (left) and mass loss profile (right) during pyrolysis. Line color represents fluidizing gas and line type is initial particle diameter.}
-    \label{fig:cfd-particle}
+    \includegraphics[width=\textwidth]{figures/cfd-masspercent.pdf}
+    \caption{Average biomass particle thermogravimetry curve for different fluidizing gas at a constant flow rate (a) particle size = 278 $\mu m$, (b) particle size = 344 $\mu m$, (c) particle size = 426 $\mu m$, and (d) particle size = 543 $\mu m$. Run ID 1, 2, 3, 4, 5, 6, and 7 represent fluidizing gas N$_2$, H$_2$, CO, CO$_2$, CH$_4$, N$_2$/CO, and N$_2$/CO$_2$ respectively.}
+    \label{fig:cfd-masspercent}
 \end{figure}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{figures/cfd-biooil.pdf}
-    \caption{Time-average bio-oil cracking and polymerization rates.}
-    \label{fig:cfd-biooil}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{figures/cfd-particle-time.png}
-    \caption{Cumulative particle residence time distribution as affected by fluidizing gas and initial particle diameter.}
-    \label{fig:cfd-particle-time}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{figures/cfd-yields.pdf}
-    \caption{Pyrolysis product distribution as affected by fluidizing gas. Product yields are calculated on a biomass basis.}
-    \label{fig:cfd-yields}
-\end{figure}
-
-% ----------------------------------------------------------------------------
+Overall, our findings indicate that light gas produced during pyrolysis can be recirculated as fluidizing gas at a constant flow rate without detrimental consequences on pyrolysis performance. Additionally, we demonstrated that fluidizing gas can notably increase biomass heating and mass-loss rates (pyrolysis conversion rate). This suggests potential process intensification implications because heating and mass-loss rates represent a major bottleneck in conventional pyrolysis systems. Achieving increased heating and mass-loss rates may lead to significant improvement in process throughput and scaleup.
 
 \subsection{Fluidizing gas effect on pyrolysis performance with constant \texorpdfstring{U$_\text{s}$/U$_\text{mf}$}{Us/Umf}}
 
