@@ -50,112 +50,48 @@ def run_n2h2():
         print('')
 
 
-def run_n2co():
+def run_umf_mix(sp_mix, y):
     """
-    Calculate Umf for a N2/CO gas mixture.
+    Calculate Umf for a given gas mixture `sp_mix` and mass fraction `y`.
     """
-    print('\n--- Umf for N2/CO gas mixture ---\n')
 
-    # Mass fraction for N2/CO
-    y_n2co = (0.5, 0.5)
+    mw1 = cm.mw(sp_mix[0])  # Molecular weight for gas species 1
+    mw2 = cm.mw(sp_mix[1])  # Molecular weight for gas species 2
 
-    # Molecular weight for N2 and CO
-    mw_n2 = cm.mw('N2')
-    mw_co = cm.mw('CO')
+    mu1 = cm.mu_gas(sp_mix[0], temp) / 1e7  # Viscosity for gas species 1
+    mu2 = cm.mu_gas(sp_mix[1], temp) / 1e7  # Viscosity for gas species 2
 
-    # Viscosity for N2 and CO
-    mu_n2 = cm.mu_gas('N2', temp) / 1e7
-    mu_co = cm.mu_gas('CO', temp) / 1e7
-
-    # Molecular weight of mixture
-    xs = cm.massfrac_to_molefrac(y_n2co, (mw_n2, mw_co))
-    mw_mixture = cm.mw_mix((mw_n2, mw_co), xs)
+    # Molecular weight of mixture, g/mol
+    x = cm.massfrac_to_molefrac(y, (mw1, mw2))
+    mw_mixture = cm.mw_mix((mw1, mw2), x)
 
     # Viscosity and density of mixture
-    mu_mixture = cm.mu_herning((mu_n2, mu_co), (mw_n2, mw_co), xs)
+    mu_mixture = cm.mu_herning((mu1, mu2), (mw1, mw2), x)
     rho_mixture = cm.rhog(mw_mixture, press, temp)
 
-    # Minimum fluidization velocity of mixture
+    # Minimum fluidization velocity of mixture, m/s
     umf_mixture = cm.umf_ergun(dp_bed, ep, mu_mixture, phi_bed, rho_mixture, rhop_bed)
 
-    print('ys   ', y_n2co)
-    print('xs   ', xs)
+    print(f'\n--- Umf for {sp_mix} gas mixture ---\n')
+    print('y    ', y)
+    print('x    ', x)
     print('umf  ', round(umf_mixture, 4), 'm/s')
 
 
-def run_n2co2():
+def run_umf(sp):
     """
-    Calculate Umf for a N2/CO2 mixture.
+    Calculate Umf for a given gas species `sp`.
     """
-    print('\n--- Umf for N2/CO2 gas mixture ---\n')
 
-    # Mass fraction for N2/CO2
-    y_n2co2 = (0.5, 0.5)
+    mw = cm.mw(sp)                  # Molecular weight, g/mol
+    mu = cm.mu_gas(sp, temp) / 1e7  # Gas viscosity, kg/(ms)
+    rho = cm.rhog(mw, press, temp)  # Gas density, kg/m³
 
-    # Molecular weight for N2 and CO2
-    mw_n2 = cm.mw('N2')
-    mw_co2 = cm.mw('CO2')
+    # Minimum fluidization velocity, m/s
+    umf = cm.umf_ergun(dp_bed, ep, mu, phi_bed, rho, rhop_bed)
 
-    # Viscosity for N2 and CO2
-    mu_n2 = cm.mu_gas('N2', temp) / 1e7
-    mu_co2 = cm.mu_gas('CO2', temp) / 1e7
-
-    # Molecular weight of mixture
-    xs = cm.massfrac_to_molefrac(y_n2co2, (mw_n2, mw_co2))
-    mw_mixture = cm.mw_mix((mw_n2, mw_co2), xs)
-
-    # Viscosity and density of mixture
-    mu_mixture = cm.mu_herning((mu_n2, mu_co2), (mw_n2, mw_co2), xs)
-    rho_mixture = cm.rhog(mw_mixture, press, temp)
-
-    # Minimum fluidization velocity of mixture
-    umf_mixture = cm.umf_ergun(dp_bed, ep, mu_mixture, phi_bed, rho_mixture, rhop_bed)
-
-    print('ys   ', y_n2co2)
-    print('xs   ', xs)
-    print('umf  ', round(umf_mixture, 4), 'm/s')
-
-
-def run_n2():
-    """
-    Calculate Umf for N2 gas.
-    """
-    print('\n--- Umf for N2 gas ---\n')
-
-    # Molecular weight for N2
-    mw_n2 = cm.mw('N2')
-
-    # Viscosity for N2
-    mu_n2 = cm.mu_gas('N2', temp) / 1e7
-
-    # Density of N2
-    rho_n2 = cm.rhog(mw_n2, press, temp)
-
-    # Minimum fluidization velocity
-    umf_n2 = cm.umf_ergun(dp_bed, ep, mu_n2, phi_bed, rho_n2, rhop_bed)
-
-    print('umf  ', round(umf_n2, 4), 'm/s')
-
-
-def run_h2():
-    """
-    Calculate Umf for H2 gas.
-    """
-    print('\n--- Umf for H2 gas ---\n')
-
-    # Molecular weight for H2
-    mw_h2 = cm.mw('H2')
-
-    # Viscosity for H2
-    mu_h2 = cm.mu_gas('H2', temp) / 1e7
-
-    # Density of H2
-    rho_h2 = cm.rhog(mw_h2, press, temp)
-
-    # Minimum fluidization velocity
-    umf_h2 = cm.umf_ergun(dp_bed, ep, mu_h2, phi_bed, rho_h2, rhop_bed)
-
-    print('umf  ', round(umf_h2, 4), 'm/s')
+    print(f'\n--- Umf for {sp} gas ---\n')
+    print('umf  ', round(umf, 4), 'm/s')
 
 
 def main():
@@ -168,10 +104,12 @@ def main():
     print('temp     ', temp, 'K')
 
     run_n2h2()
-    run_n2co()
-    run_n2co2()
-    run_n2()
-    run_h2()
+
+    run_umf_mix(('N2', 'CO'), (0.5, 0.5))
+    run_umf_mix(('N2', 'CO2'), (0.5, 0.5))
+
+    run_umf('N2')
+    run_umf('H2')
 
 
 if __name__ == '__main__':
