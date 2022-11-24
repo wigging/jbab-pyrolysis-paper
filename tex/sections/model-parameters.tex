@@ -12,10 +12,9 @@ Particle size distribution of the biomass feedstock along with the mass flow rat
         \toprule
         Sauter mean diameter (\textmugreek m) & Mass fraction (\%) & Mass flow rate (kg/hr) \\
         \midrule
-        278 & 12.1 & 0.018 \\
-        344 & 51.0 & 0.076 \\
-        426 & 34.2 & 0.051 \\
-        543 & 2.7  & 0.004 \\
+        278 & 34.3 & 0.051 \\
+        344 & 50.7 & 0.076 \\
+        426 & 12.0 & 0.018 \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -29,7 +28,7 @@ Particle size distribution of the biomass feedstock along with the mass flow rat
         Species & Mass fraction (\%) & Density (kg/m$^3$) \\
         \midrule
         moisture & 4.0  & 1,000 \\
-        wood     & 95.9 & 500 \\
+        wood     & 95.9 & 550 \\
         ash      & 0.1  & 2,000 \\
         char     & 0.0  & 300 \\
         \bottomrule
@@ -73,38 +72,39 @@ Particle size distribution of the biomass feedstock along with the mass flow rat
         Q$_\text{gas}$        & 14 SLM        & inlet gas flowrate \\
         \\
         simulation settings \\
-        $\Delta_\text{x} \times \Delta_\text{y} \times \Delta_\text{z}$ & $4.3 \times 4.4 \times 4.3$ mm & CFD cell size \\
+        $\Delta_\text{x} \times \Delta_\text{y} \times \Delta_\text{z}$ & $2.0 \times 2.0 \times 2.0$ mm & CFD cell size \\
         $\Delta_\text{x}$   & varies & time step \\
-        wt$_\text{bio}$      & 10     & biomass parcel statistical weight \\
+        wt$_\text{bio}$      & 5     & biomass parcel statistical weight \\
         wt$_\text{sand}$     & 20     & sand parcel statistical weight \\
         s$_\text{gas}$               & ideal  & gas phase equation of state \\
         \bottomrule
     \end{tabular}
 \end{table}
 
-Table \ref{tab:flowrates} summarizes the CFD simulations conducted for this study. Each row represents a different simulation case that was performed for a particular gas composition. An additional $2.83\times10^{-5}$ m$^3$/s of N$_2$ at 500$^\circ$C was supplied at the fluidizing gas inlet and $2.55\times10^{-5}$ m$^3$/s of N$_2$ at 25$^\circ$C was supplied at the biomass feed inlet for all cases. For cases 1--7, the total flow rate was kept constant, resulting in a constant superficial gas velocity inside the reactor. For cases 8--12, the gas flow rates were modified to maintain a constant U$_\text{s}$/U$_\text{mf}$ of 3 in each simulation. Also, cases 8--12 represent H$_2$ mass fractions of 0.2, 0.4, 0.6, 0.8 and 1. Pure hydrogen is modeled because of its drastically different properties compared to the other gases (see following section); however, its applicability in experiments is limited due to safety concerns.
+Table \ref{tab:flowrates} summarizes the CFD simulations conducted for this study. Each row represents a different simulation case that was performed for a particular gas composition. An additional $2.83\times10^{-5}$ m$^3$/s of N$_2$ at 500$^\circ$C was supplied at the fluidizing gas inlet and $2.55\times10^{-5}$ m$^3$/s of N$_2$ at 25$^\circ$C was supplied at the biomass feed inlet for all cases. For cases 1--7, the total flow rate was kept constant, resulting in a constant superficial gas velocity inside the reactor. For cases 8--12, the gas flow rates were modified to maintain a constant fluidization number (U$_\text{s}$/U$_\text{mf}$) of 3 in each simulation. Also, cases 8--12 represent H$_2$ mass fractions of 0.2, 0.4, 0.6, 0.8 and 1. Pure hydrogen is modeled because of its drastically different properties compared to the other gases (see following section); however, its applicability in experiments is limited due to safety concerns.
 
 % I updated the flowrate used for N2 in Case 1 and Case 8 to exclude the constant 2.83e-5 m3/s flowrate of N2 since the remaining entries did not include this portion of the flow and it was confusing
 
 \begin{table}[H]
     \centering
-    \caption{CFD-DEM simulation cases for different gas mixtures. Columns denote gas flow rate in m$^3$/s at 500$^\circ$C.}
-    \begin{tabular}{llrrrrrr}
+    \caption{CFD--DEM simulation cases for the different gas mixtures.}
+    \begin{tabular}{lllccccc}
         \toprule
-        ID & Case                    & N$_2$    & H$_2$   & H$_2$O   & CO      & CO$_2$   & CH$_4$  \\
+           &               & U$_\text{s}$ (m/s)  &\multicolumn{5}{c}{Mass fraction (--)}  \\
+        ID & Gas mixture   & at 500$^\circ$C     & N$_2$ & H$_2$ & CO  & CO$_2$ & CH$_4$  \\
         \midrule
-        1  & N$_2$                   & 6.37e-4  & 0       & 0        & 0       & 0        & 0       \\
-        2  & H$_2$                   & 0        & 6.37e-4 & 0        & 0       & 0        & 0       \\
-        3  & CO                      & 0        & 0       & 0        & 6.37e-4 & 0        & 0       \\
-        4  & CO$_2$                  & 0        & 0       & 0        & 0       & 6.37e-4  & 0       \\
-        5  & CH$_4$                  & 0        & 0       & 0        & 0       & 0        & 6.37e-4 \\
-        6  & 0.5 N$_2$ + 0.5 CO      & 3.18e-4  & 0       & 0        & 3.18e-4 & 0        & 0       \\
-        7  & 0.5 N$_2$ + 0.5 CO$_2$  & 3.18e-4  & 0       & 0        & 0       & 3.18e-4  & 0       \\
-        8  & 0.22 N$_2$ + 0.78 H$_2$ & 1.42e-4  & 4.95e-4 & 0        & 0       & 0        & 0       \\
-        9  & 0.10 N$_2$ + 0.90 H$_2$ & 6.17e-5  & 5.75e-4 & 0        & 0       & 0        & 0       \\
-        10 & 0.05 N$_2$ + 0.95 H$_2$ & 2.89e-5  & 6.08e-4 & 0        & 0       & 0        & 0       \\
-        11 & 0.02 N$_2$ + 0.98 H$_2$ & 1.12e-5  & 6.26e-4 & 0        & 0       & 0        & 0       \\
-        12 & H$_2$                   & 0        & 6.37e-4 & 0        & 0       & 0        & 0       \\
+        1  & N$_2$         & $6.61\times10^{-4}$ & 1.0   & 0.0   & 0.0 & 0.0    & 0.0     \\
+        2  & H$_2$         & $6.61\times10^{-4}$ & 0.0   & 1.0   & 0.0 & 0.0    & 0.0     \\
+        3  & CO            & $6.61\times10^{-4}$ & 0.0   & 0.0   & 1.0 & 0.0    & 0.0     \\
+        4  & CO$_2$        & $6.61\times10^{-4}$ & 0.0   & 0.0   & 0.0 & 1.0    & 0.0     \\
+        5  & CH$_4$        & $6.61\times10^{-4}$ & 0.0   & 0.0   & 0.0 & 0.0    & 1.0     \\
+        6  & N$_2$/CO      & $6.61\times10^{-4}$ & 0.5   & 0.0   & 0.5 & 0.0    & 0.0     \\
+        7  & N$_2$/CO$_2$  & $6.61\times10^{-4}$ & 0.5   & 0.0   & 0.0 & 0.5    & 0.0     \\
+        8  & N$_2$/H$_2$   & $8.65\times10^{-4}$ & 0.8   & 0.2   & 0.0 & 0.0    & 0.0     \\
+        9  & N$_2$/H$_2$   & $1.02\times10^{-3}$ & 0.6   & 0.4   & 0.0 & 0.0    & 0.0     \\
+        10 & N$_2$/H$_2$   & $1.15\times10^{-3}$ & 0.4   & 0.6   & 0.0 & 0.0    & 0.0     \\
+        11 & N$_2$/H$_2$   & $1.24\times10^{-3}$ & 0.2   & 0.8   & 0.0 & 0.0    & 0.0     \\
+        12 & H$_2$         & $1.32\times10^{-3}$ & 0.0   & 1.0   & 0.0 & 0.0    & 0.0     \\
         \bottomrule
     \end{tabular}
     \label{tab:flowrates}

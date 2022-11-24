@@ -2,7 +2,7 @@
 
 \section{Modeling approach}
 
-Our strategy to model gas effects in a bubbling fluidized bed reactor begins with determining gas properties such as density, dynamic viscosity, thermal conductivity, and heat capacity. Once the individual gas viscosity is known, the viscosity of a gas mixture is calculated using various mixture models. Next, fluidization correlations relevant to fluidized bed reactors are used to investigate the effects of the gas properties on the hydrodynamics of the system. Dimensionless numbers provide insight on the limiting mechanisms in regards to the pyrolysis of the biomass particles. Finally, CFD-DEM simulations provide residence times and product yields related to the different carrier gas scenarios.
+Our strategy to model and understand gas effects in a bubbling fluidized bed reactor begins with determining gas properties such as density, dynamic viscosity, thermal conductivity, and heat capacity. Once the individual gas viscosity is known, the viscosity of a gas mixture is calculated using various mixture models. Next, fluidization correlations relevant to fluidized bed reactors are used to investigate the effects of the gas properties on the hydrodynamics of the system. Dimensionless numbers provide insight on the limiting mechanisms in regards to the pyrolysis of the biomass particles. Finally, CFD-DEM simulations provide residence times and product yields related to the different carrier gas scenarios.
 
 % ----------------------------------------------------------------------------
 
@@ -132,22 +132,22 @@ The Prandtl number is a dimensionless number representing the ratio of momentum 
 
 \subsection{Biomass pyrolysis kinetics}
 
-A pyrolysis kinetics scheme based on the work of Di Blasi was implemented to predict the conversion of biomass into gas, tar, and char products \cite{Blasi-1993,Blasi-2001}. Figure \ref{fig:blasi} gives an overview of the scheme and its reaction mechanisms. Reactions 1--3 represent the primary conversion of biomass while reactions 4--5 are secondary reactions that reduce tar yield at long residence times. Reaction 6 is the conversion of moisture in the biomass to water vapor.
+A pyrolysis kinetics scheme based on the work of Di Blasi was implemented to predict the conversion of biomass into gas, bio-oil, and char products \cite{Blasi-1993,Blasi-2001}. Figure \ref{fig:blasi} gives an overview of the scheme and its reaction mechanisms. Reactions 1--3 represent the primary conversion of biomass while reactions 4--5 are secondary reactions that reduce bio-oil yield at long residence times. Reaction 6 is the conversion of moisture in the biomass to water vapor.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.3\textwidth]{kinetics.pdf}
-    \caption{Diagram of the Di Blasi pyrolysis kinetics scheme for conversion of biomass to gas, tar, and char products.}
+    \includegraphics[width=1.0\textwidth]{kinetics.png}
+    \caption{Diagram of the Di Blasi pyrolysis kinetics scheme for conversion of biomass to gas, bio-oil, and char products.}
     \label{fig:blasi}
 \end{figure}
 
-The pyrolysis reactions were modeled as first-order Arrhenius type equations where the reaction rate is given as
+\noindent The pyrolysis reactions were modeled as first-order Arrhenius type equations where the reaction rate is given as
 
 \begin{equation}
     r_i = C_i\,A_i\,e^{-E_i / R\,T}
 \end{equation}
 
-\noindent where r$_\text{i}$ is the rate of reaction i such that C$_\text{i}$ is a mass based concentration, A$_\text{i}$ is the pre-factor (1/s), E$_\text{i}$ is the activation energy (kJ/mol), R is the gas constant, and T is the reaction temperature (K). Kinetic parameters for each reaction are listed in Table \ref{tab:kinetic-params} where $\Delta$H is the heat of reaction (kJ/kg). Based on the work performed by Lu et al.\cite{lu2020bridging}, the Di Blasi kinetics overpredict light gas production when using a coarse-grained DEM model. Consequently, we adjusted the pre-factor of reaction 4 by a factor of 0.2 which was determined by comparisons with NREL experiments.
+\noindent where r$_\text{i}$ is the rate of reaction i such that C$_\text{i}$ is a mass based concentration, A$_\text{i}$ is the pre-factor (1/s), E$_\text{i}$ is the activation energy (kJ/mol), R is the gas constant, and T is the reaction temperature (K). Kinetic parameters for each reaction are listed in Table \ref{tab:kinetic-params} where $\Delta$H is the heat of reaction (kJ/kg). Based on the work performed by Lu et al.\cite{lu2020bridging}, the Di Blasi kinetics overpredict light gas production when using a coarse-grained DEM model. Consequently, we modified the pre-factor parameter for reaction 4 by a factor of 0.2 which was determined by comparisons with NREL experiments \cite{French-2021}.
 
 \begin{table}[H]
     \centering
@@ -166,6 +166,8 @@ The pyrolysis reactions were modeled as first-order Arrhenius type equations whe
     \end{tabular}
     \label{tab:kinetic-params}
 \end{table}
+
+\noindent The char resulting from the pyrolysis reactions participate in surface reaction wih gas phas chemical species, including char--H$_2$O, char--CO$_2$, and char--H$_2$ reactions. The char surface reaction model assumes the reactions follows the unreacted-core shrinking model \cite{Chyou-2013}, accounting for diffusion effects on the char reaction rates. The kinetics paramters for the three char surface reactions (char--H$_2$O, char--CO$_2$, and char--H$_2$) were obtained from Wen and Chaung \cite{Wen1979entr}.
 
 % ----------------------------------------------------------------------------
 
