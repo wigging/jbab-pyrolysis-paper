@@ -147,7 +147,7 @@ A pyrolysis kinetics scheme based on the work of Di Blasi was implemented to pre
     r_i = C_i\,A_i\,e^{-E_i / R\,T}
 \end{equation}
 
-\noindent where r$_\text{i}$ is the rate of reaction i such that C$_\text{i}$ is a mass based concentration, A$_\text{i}$ is the pre-factor (1/s), E$_\text{i}$ is the activation energy (kJ/mol), R is the gas constant, and T is the reaction temperature (K). Kinetic parameters for each reaction are listed in Table \ref{tab:kinetic-params} where $\Delta$H is the heat of reaction (kJ/kg). Based on the work performed by Lu et al.\cite{lu2020bridging}, the Di Blasi kinetics overpredict light gas production when using a coarse-grained DEM model. Consequently, we modified the pre-factor parameter for reaction 4 by a factor of 0.2 which was determined by comparisons with NREL experiments \cite{French-2021}.
+\noindent where r$_\text{i}$ is the rate of reaction i such that C$_\text{i}$ is a mass based concentration of the reactant species, A$_\text{i}$ is the pre-factor (1/s), E$_\text{i}$ is the activation energy (kJ/mol), R is the gas constant, and T is the reaction temperature (K). Kinetic parameters for each reaction are listed in Table \ref{tab:kinetic-params} where $\Delta$H is the heat of reaction (kJ/kg). Based on the work performed by Lu et al.\cite{lu2020bridging}, the Di Blasi kinetics overpredict light gas production when using a coarse-grained DEM model. Consequently, we modified the pre-factor parameter for reaction 4 by a factor of 0.2 which was determined by comparisons with NREL experiments \cite{French-2021}.
 
 \begin{table}[H]
     \centering
