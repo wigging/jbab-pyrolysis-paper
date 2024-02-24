@@ -100,12 +100,6 @@ Our strategy to model and understand gas effects in a bubbling fluidized bed rea
 
 \subsection{Gas properties}
 
-Gas density is calculated using the ideal gas law as shown in Equation \ref{eq:density} where $\rho_\text{gas}$ is density (kg/m$^3$), P is pressure (Pa), M is molecular weight (g/mol), R is the gas constant (m$^3\cdot$Pa / K$\cdot$mol), and T is temperature (K).
-
-\begin{equation}\label{eq:density}
-    \rho_\text{gas} = \frac{P\,M}{R\,T}
-\end{equation}
-
 Dynamic gas viscosity $\mu_\text{gas}$ is estimated by Equation \ref{eq:viscosity} in units of \textmugreek P. Gas thermal conductivity k$_\text{gas}$ as W/m$\cdot$K is calculated from Equation \ref{eq:thermlcond} and heat capacity C$_\text{p\,gas}$ as J/mol$\cdot$K is determined using Equation \ref{eq:heatcap}. In each equation, temperature is denoted by T in units of Kelvin while the regression coefficients A, B, C, D, E, F, and G for a particular gas were obtained from Yaws' Handbook for each gas property \cite{Yaws2014}.
 
 \begin{equation}\label{eq:viscosity}
@@ -499,17 +493,6 @@ Table \ref{tab:flowrates} summarizes the CFD simulations conducted for this stud
 
 This section provides results and related discussions for modeling the effects of different fluidization gases on the operation of a bubbling fluidized bed reactor. Gas effects on the pyrolysis yields of the biomass feedstock are also presented and discussed.
 
-\subsection{Pure gas properties}
-
-Molecular weight, viscosity, density, thermal conductivity, heat capacity, and the Prandtl number of the individual gases investigated in this paper are shown in Figure \ref{fig:gas-properties}. The gas properties were calculated at a pressure of 101,325 Pa and a temperature of 773.15 K (500$^\circ$C). The lightest gas in terms of molecular weight and density is hydrogen while the heaviest gas is carbon dioxide. The highest viscosity is noted for the nitrogen gas while hydrogen has the lowest viscosity. The largest thermal conductivity is for hydrogen at approximately 0.36 W/m$\cdot$K while the other gases remain below 0.12 W/m$\cdot$K. The highest heat capacity is obtained for methane at 62 J/mol$\cdot$K while the lowest is for hydrogen at 29 J/mol$\cdot$K. The Prandtl number is similar for all the gases except for water vapor.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{gas-properties.pdf}
-    \caption{Comparison of molecular weight (MW), viscosity ($\mu$), density ($\rho$), thermal conductivity (k), heat capacity (Cp), and Prandtl number (Pr) for each gas at 101,325 Pa and 773.15 K (500$^\circ$C).}
-    \label{fig:gas-properties}
-\end{figure}
-
 \subsection{Gas mixture properties}
 
 Comparisons of the calculated viscosity of a H$_2$/N$_2$ gas mixture to measured values obtained from literature are shown in Figure \ref{fig:gas-mu-h2n2-validate}. The models by Herning and Zipperer as well as Brokaw match well with the experimental data for a range of mixture ratios. This is contradictory to the Davidson report which does not recommend the Herning and Zipperer model for hydrogen mixtures \cite{Davidson-1993}. The Davidson and Graham models significantly underpredict the mixture viscosity while the Wilke model tends to overestimate the viscosity. Similar results are obtained for a H$_2$/O$_2$ gas mixture as shown in Figure \ref{fig:gas-mu-h2o2-validate}.
@@ -801,6 +784,21 @@ We thank the US Department of Energy’s (DOE) Bioenergy Technologies Office (BE
 % ----------------------------------------------------------------------------
 
 \section{Supplemental material}
+
+\textcolor{blue}{Gas density is calculated using the ideal gas law as shown in Equation \ref{eq:density} where $\rho_\text{gas}$ is density (kg/m$^3$), P is pressure (Pa), M is molecular weight (g/mol), R is the gas constant (m$^3\cdot$Pa / K$\cdot$mol), and T is temperature (K).}
+
+\begin{equation}\label{eq:density}
+    \rho_\text{gas} = \frac{P\,M}{R\,T}
+\end{equation}
+
+\textcolor{blue}{Molecular weight, viscosity, density, thermal conductivity, heat capacity, and the Prandtl number of the individual gases investigated in this paper are shown in Figure \ref{fig:gas-properties}. The gas properties were calculated at a pressure of 101,325 Pa and a temperature of 773.15 K (500$^\circ$C). The lightest gas in terms of molecular weight and density is hydrogen while the heaviest gas is carbon dioxide. The highest viscosity is noted for the nitrogen gas while hydrogen has the lowest viscosity. The largest thermal conductivity is for hydrogen at approximately 0.36 W/m$\cdot$K while the other gases remain below 0.12 W/m$\cdot$K. The highest heat capacity is obtained for methane at 62 J/mol$\cdot$K while the lowest is for hydrogen at 29 J/mol$\cdot$K. The Prandtl number is similar for all the gases except for water vapor.}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{gas-properties.pdf}
+    \caption{Comparison of molecular weight (MW), viscosity ($\mu$), density ($\rho$), thermal conductivity (k), heat capacity (Cp), and Prandtl number (Pr) for each gas at 101,325 Pa and 773.15 K (500$^\circ$C).}
+    \label{fig:gas-properties}
+\end{figure}
 
 The Di Blasi kinetics were put to use in a batch reactor model to investigate the time scales associated with the reaction mechanisms. Figure \ref{fig:batch-blasi} is an overview of the biomass conversion and pyrolysis yields using the Di Blasi kinetics in a batch reactor at 773.15 K (500$^\circ$C). At this temperature, without the effects of secondary reactions, the kinetics offer a maximum achievable tar yield of 78\% within 5 seconds. However, if secondary reactions occur during the entire pyrolysis process then a maximum tar yield of only 53\% is possible. Modifying the pre-factor term for reaction 4 by a factor of 0.2, decreases the gas yield while increasing tar and char yields. The Di Blasi kinetics suggest that minimizing the extent of secondary reactions is critical to producing the maximum possible tar yield.
 
