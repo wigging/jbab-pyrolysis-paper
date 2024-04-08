@@ -55,7 +55,7 @@
 
 \section*{Abstract}
 
-Fast pyrolysis of biomass in a fluidized bed reactor is typically conducted in a nitrogen gas environment. Recycling product gas can improve the economics of operating such a system by reducing reliance on pure process streams, but much less is known about how recycling pyrolysis product gas may affect fluidization behavior and pyrolysis kinetics. Therefore, gas effects in a fluidized bed biomass pyrolysis reactor were investigated using engineering correlations, low-order models, and CFD simulations for N$_2$, H$_2$, CO, CO$_2$, and CH$_4$ carrier gas mixtures. Our findings reveal viscosity of a gas mixture can be significantly underestimated depending on the model and correlation. Furthermore, fluidization characteristics such as U$_\textrm{mf}$ and gas-solid convective heat transfer can be greatly affected by the gas properties. \textcolor{blue}{By utilizing H$_2$ as the fluidizing gas (instead of N$_2$)}, while maintaining a constant fluidization ratio (U$_\text{s}$/U$_\text{mf}$), the bio-oil yields can be increased \textcolor{blue}{$\sim$5\%.} This is due to the lower density H$_2$ producing similar hydrodynamics as N$_2$ at higher gas flow rates. These higher flow rates result in shorter gas residence times, and as a result, less secondary reactions that convert bio-oil to light gases and char. \textcolor{blue}{Model results also suggest that bio-oil yield is not significantly affected by the type of carrier gas used, with bio-oil yield varying by $\sim$2\% across different gas mixtures while maintaining constant flow rate. This indicates that biomass pyrolysis can be carried out using recycled pyrolytic gas as a carrier gas.}
+Fast pyrolysis of biomass in a fluidized bed reactor is typically conducted in a nitrogen gas environment. Recycling product gas can improve the economics of operating such a system by reducing reliance on pure process streams, but much less is known about how recycling pyrolysis product gas may affect fluidization behavior and pyrolysis kinetics. Therefore, gas effects in a fluidized bed biomass pyrolysis reactor were investigated using engineering correlations, low-order models, and CFD simulations for N$_2$, H$_2$, CO, CO$_2$, and CH$_4$ carrier gas mixtures. Our findings reveal viscosity of a gas mixture can be significantly underestimated depending on the model and correlation. Furthermore, fluidization characteristics such as Umf and gas-solid convective heat transfer can be greatly affected by the gas properties. By utilizing H$_2$ as the fluidizing gas (instead of N$_2$), while maintaining a constant fluidization ratio (U$_\text{s}$/U$_\text{mf}$), the bio-oil yields can be increased $\sim$5\%. This is due to the lower density H$_2$ producing similar hydrodynamics as N$_2$ at higher gas flow rates. These higher flow rates result in shorter gas residence times, and as a result, less secondary reactions that convert bio-oil to light gases and char. Model results also suggest that bio-oil yield is not significantly affected by the type of carrier gas used, with bio-oil yield varying by $\sim$2\% across different gas mixtures while maintaining constant flow rate. This indicates that recycled pyrolytic gas can be used as the carrier gas for biomass pyrolysis.
 
 % Introduction
 % ----------------------------------------------------------------------------
@@ -217,7 +217,7 @@ A pyrolysis kinetics scheme based on the work of Di Blasi was implemented to pre
 \begin{figure}[H]
     \centering
     \includegraphics[width=1.0\textwidth]{kinetics.pdf}
-    \caption{\textcolor{blue}{Diagram of the Di Blasi pyrolysis kinetics scheme for conversion of biomass to gas, bio-oil, and char products. Solid arrows depict primary pyrolysis reactions, dashed arrows depict bio-oil degradation reactions, and the dotted arrow depicts moisture vaporization.}}
+    \caption{Diagram of the Di Blasi pyrolysis kinetics scheme for conversion of biomass to gas, bio-oil, and char products. Solid arrows depict primary pyrolysis reactions, dashed arrows depict bio-oil degradation reactions, and the dotted arrow depicts moisture vaporization.}
     \label{fig:blasi}
 \end{figure}
 
@@ -652,7 +652,7 @@ The yields of pyrolysis bio-oil, light gas, and biochar for the different fluidi
 \begin{figure}[H]
     \centering
     \includegraphics[width=1.0\textwidth]{figures/cfd-product-yield.pdf}
-    \caption{Pyrolysis product distributions for different fluidizing gas at a constant flow rate. Product yields were calculated on a biomass weight basis.}
+    \caption{Pyrolysis product distributions for different fluidizing gases at a constant flow rate. Product yields were calculated on a biomass weight basis.}
     \label{fig:cfd-product-yield}
 \end{figure}
 
@@ -660,7 +660,7 @@ A summary of the particle residence time for each fluidizing gas considered is g
 
 \begin{table}[H]
     \centering
-    \caption{Particle residence time of biomass particle for different fluidizing gas at a constant flow rate and different initial particle diameter where d$_p$ is initial biomass particle diameter.}
+    \caption{Particle residence time of biomass particle for different fluidizing gases at a constant flow rate and different initial particle diameter where d$_p$ is initial biomass particle diameter.}
     \label{tab:particle-restime}
     \begin{tabular}{cccccc}
         \toprule
@@ -683,7 +683,7 @@ Figure \ref{fig:cfd-temp-void-biooil} shows the gas phase temperature and void v
 \begin{figure}[H]
     \centering
     \includegraphics[width=1.0\textwidth]{figures/cfd-temp-void-biooil.pdf}
-    \caption{Profile of (a) fluid temperature and (b) fluid volume fraction along the reactor height for different fluidizing gas at a constant flow rate. The reactor height (0.43 m) is denoted by the letter H.}
+    \caption{Profile of (a) fluid temperature and (b) fluid volume fraction along the reactor height for different fluidizing gases at a constant flow rate. The reactor height (0.43 m) is denoted by the letter H.}
     \label{fig:cfd-temp-void-biooil}
 \end{figure}
 
@@ -692,14 +692,14 @@ Char surface reactions were negligible under the pyrolysis conditions explored i
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{heterogeneous-profiles.pdf}
-    \caption{Heterogeneous reaction rate profiles inside the reactor as affected by different fluidizing gas at a constant velocity. (a) Biomass pyrolysis reaction rate profile, (b) Biomass tarring reaction rate profile, (c) Char--CO$_2$ surface reaction rate profile, and (d) Char--H$_2$O surface reaction rate profile. The reactor height (0.43 m) is denoted by the letter H.}
+    \caption{Heterogeneous reaction rate profiles inside the reactor as affected by different fluidizing gases at a constant velocity. (a) Biomass pyrolysis reaction rate profile, (b) Biomass tarring reaction rate profile, (c) Char--CO$_2$ surface reaction rate profile, and (d) Char--H$_2$O surface reaction rate profile. The reactor height (0.43 m) is denoted by the letter H.}
     \label{fig:heterogeneous-profiles}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{homogeneous-profiles.pdf}
-    \caption{Homogeneous reaction rate profiles inside the reactor as affected by different fluidizing gas at a constant velocity. (a) Bio-oil cracking reaction rate profile, (b) Bio-oil repolymerization reaction rate profile, (c) CH$_4$ steam reforming reaction rate profile, (d) Forward water gas shift (WGS) reaction rate profile, and (e) Reverse water gas shift reaction rate profile. The reactor height (0.43 m) is denoted by the letter H.}
+    \caption{Homogeneous reaction rate profiles inside the reactor as affected by different fluidizing gases at a constant velocity. (a) Bio-oil cracking reaction rate profile, (b) Bio-oil repolymerization reaction rate profile, (c) CH$_4$ steam reforming reaction rate profile, (d) Forward water gas shift (WGS) reaction rate profile, and (e) Reverse water gas shift reaction rate profile. The reactor height (0.43 m) is denoted by the letter H.}
     \label{fig:homogeneous-profiles}
 \end{figure}
 
@@ -708,7 +708,7 @@ The observed degradation rates for both the particle and vapor phases were subst
 \begin{figure}[H]
     \centering
     \includegraphics[width=1.0\textwidth]{figures/cfd-masspercent.pdf}
-    \caption{Average biomass particle thermogravimetry curve for different fluidizing gas at a constant flow rate (a) nominal particle size = 296 $\mu m$, (b) nominal particle size = 333 $\mu m$, (c) nominal particle size = 371 $\mu m$, and (d) nominal particle size = 408 $\mu m$.}
+    \caption{Average biomass particle thermogravimetry curve for different fluidizing gases at a constant flow rate (a) nominal particle size = 296 $\mu m$, (b) nominal particle size = 333 $\mu m$, (c) nominal particle size = 371 $\mu m$, and (d) nominal particle size = 408 $\mu m$.}
     \label{fig:cfd-masspercent}
 \end{figure}
 
@@ -721,7 +721,7 @@ As discussed in Section \ref{sec:fluidization-charact}, the value of U$_\text{s}
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{figures/cfd-constuumf-particle-temp-density.pdf}
-    \caption{Average particle temperature (left) and density (right) as a function of residence time in reactor for N$_2$ and H$_2$ carrier gasses. For H$_2$ carrier gas, results with both constant U$_\text{s}$ and U$_\text{s}$/U$_\text{mf}$ are provided.}
+    \caption{Average particle temperature (left) and density (right) as a function of residence time in reactor for N$_2$ and H$_2$ carrier gases. For H$_2$ carrier gas, results with both constant U$_\text{s}$ and U$_\text{s}$/U$_\text{mf}$ are provided.}
     \label{fig:cfd-constuumf-particle-temp-density}
 \end{figure}
 
@@ -730,7 +730,7 @@ At the reactor conditions and particle sizes investigated, the gas velocities ar
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/cfd-constuumf-terminal-vel.pdf}
-    \caption{Particle diameter and density at which terminal velocity, U$_\text{t}$ is equal to the superficial gas velocity, U$_\text{s}$, for N$_2$ and H$_2$ carrier gasses. For H$_2$ carrier gas, results with both constant U$_\text{s}$ and U$_\text{s}$/U$_\text{mf}$ are provided.}
+    \caption{Particle diameter and density at which terminal velocity, U$_\text{t}$ is equal to the superficial gas velocity, U$_\text{s}$, for N$_2$ and H$_2$ carrier gases. For H$_2$ carrier gas, results with both constant U$_\text{s}$ and U$_\text{s}$/U$_\text{mf}$ are provided.}
     \label{fig:cfd-constuumf-terminal-vel}
 \end{figure}
 
@@ -764,7 +764,7 @@ The effect of maintaining a constant U$_\text{s}$/U$_\text{mf}$ while increasing
 
 Gas effects in a fluidized bed biomass pyrolysis reactor using engineering correlations, low-order models, and CFD simulations were investigated for N$_2$, H$_2$, H$_2$O, CO, CO$_2$, and CH$_4$ carrier gas mixtures. Our findings reveal the importance of evaluating models and correlations for determining properties of a gas mixture. Two of the gas mixture models available in the literature (Brokaw as well as Herning \& Zipperer) compared well to experimental viscosity data. This contradicts results reported by Davidson who does not recommend the Herning and Zipperer method for hydrogen gas mixtures. The models from Davidson, Graham, and Wilke significantly underestimate the viscosity of the hydrogen mixtures investigated in this paper.
 
-Fluidization characteristics and gas-solid heat transfer in a bubbling fluidized bed reactor can be greatly affected by the carrier gas properties. Based on our results, hydrogen gas requires approximately twice the flow rate of nitrogen gas to reach similar fluidization conditions in a BFB reactor. We also found that the thermal properties of the hydgrogen gas improves its convective heat transfer capability thus increasing its potential to pyrolyze biomass compared to a nitrogen gas environment. From our simulations, we found that the yield of bio-oil is independent of the carrier gas mixture when the flow rate is constant, with the average tar yield varying less than 2\% across each of the mixtures investigated. \textcolor{blue}{Furthermore, the utilization of H$_2$ as the fluidizing gas, while maintaining a constant U$_\text{s}$/U$_\text{mf}$, was shown to increase the bio-oil yields by $\sim$5\% when compared to the use of N$_2$.} This is due to the lower density H$_2$ producing similar hydrodynamics as N$_2$ at higher gas flowrates. These higher flowrates result in shorter gas residence times, and as a result, less secondary reactions converting bio-oil to light gases and char.
+Fluidization characteristics and gas-solid heat transfer in a bubbling fluidized bed reactor can be greatly affected by the carrier gas properties. Based on our results, hydrogen gas requires approximately twice the flow rate of nitrogen gas to reach similar fluidization conditions in a BFB reactor. We also found that the thermal properties of the hydgrogen gas improves its convective heat transfer capability thus increasing its potential to pyrolyze biomass compared to a nitrogen gas environment. From our simulations, we found that the yield of bio-oil is independent of the carrier gas mixture when the flow rate is constant, with the average tar yield varying less than 2\% across each of the mixtures investigated. Furthermore, the utilization of H$_2$ as the fluidizing gas, while maintaining a constant U$_\text{s}$/U$_\text{mf}$, was shown to increase the bio-oil yields by $\sim$5\% when compared to the use of N$_2$. This is due to the lower density H$_2$ producing similar hydrodynamics as N$_2$ at higher gas flowrates. These higher flowrates result in shorter gas residence times, and as a result, less secondary reactions converting bio-oil to light gases and char.
 
 % Source code
 % ----------------------------------------------------------------------------
@@ -778,20 +778,22 @@ Python code for calculating gas properties, fluidization characteristics, and fo
 
 \section{Acknowledgments}
 
-We thank the US Department of Energy’s (DOE) Bioenergy Technologies Office (BETO) for funding and supporting this work through the Feedstock-Conversion Interface Consortium (FCIC). This article used resources of the Compute and Data Environment for Science (CADES) at the Oak Ridge National Laboratory, which is supported by the Office of Science of the U.S. Department of Energy under Contract No. DE-AC05-00OR22725. This manuscript has been authored by UT-Battelle, LLC, under contract DE-AC05-00OR22725 with the US Department of Energy (DOE). The US government retains and the publisher, by accepting the article for publication, acknowledges that the US government retains a nonexclusive, paid-up, irrevocable, worldwide license to publish or reproduce the published form of this manuscript, or allow others to do so, for US government purposes. DOE will provide public access to these results of federally sponsored research in accordance with the DOE Public Access Plan (http://energy.gov/downloads/doe-public-access-plan).
+We thank the US Department of Energy’s (DOE) Bioenergy Technologies Office (BETO) for funding and supporting this work through the Feedstock-Conversion Interface Consortium (FCIC).
+
+This article used resources of the Compute and Data Environment for Science (CADES) at the Oak Ridge National Laboratory, which is supported by the Office of Science of the U.S. Department of Energy under Contract No. DE-AC05-00OR22725. This manuscript has been authored by UT-Battelle, LLC, under contract DE-AC05-00OR22725 with the US Department of Energy (DOE). The US government retains and the publisher, by accepting the article for publication, acknowledges that the US government retains a nonexclusive, paid-up, irrevocable, worldwide license to publish or reproduce the published form of this manuscript, or allow others to do so, for US government purposes. DOE will provide public access to these results of federally sponsored research in accordance with the DOE Public Access Plan (http://energy.gov/downloads/doe-public-access-plan).
 
 % Supplemental material
 % ----------------------------------------------------------------------------
 
 \section{Supplemental material}
 
-\textcolor{blue}{Gas density is calculated using the ideal gas law as shown in Equation \ref{eq:density} where $\rho_\text{gas}$ is density (kg/m$^3$), P is pressure (Pa), M is molecular weight (g/mol), R is the gas constant (m$^3\cdot$Pa / K$\cdot$mol), and T is temperature (K).}
+Gas density is calculated using the ideal gas law as shown in Equation \ref{eq:density} where $\rho_\text{gas}$ is density (kg/m$^3$), P is pressure (Pa), M is molecular weight (g/mol), R is the gas constant (m$^3\cdot$Pa / K$\cdot$mol), and T is temperature (K).
 
 \begin{equation}\label{eq:density}
     \rho_\text{gas} = \frac{P\,M}{R\,T}
 \end{equation}
 
-\textcolor{blue}{Molecular weight, viscosity, density, thermal conductivity, heat capacity, and the Prandtl number of the individual gases investigated in this paper are shown in Figure \ref{fig:gas-properties}. The gas properties were calculated at a pressure of 101,325 Pa and a temperature of 773.15 K (500$^\circ$C). The lightest gas in terms of molecular weight and density is hydrogen while the heaviest gas is carbon dioxide. The highest viscosity is noted for the nitrogen gas while hydrogen has the lowest viscosity. The largest thermal conductivity is for hydrogen at approximately 0.36 W/m$\cdot$K while the other gases remain below 0.12 W/m$\cdot$K. The highest heat capacity is obtained for methane at 62 J/mol$\cdot$K while the lowest is for hydrogen at 29 J/mol$\cdot$K. The Prandtl number is similar for all the gases except for water vapor.}
+Molecular weight, viscosity, density, thermal conductivity, heat capacity, and the Prandtl number of the individual gases investigated in this paper are shown in Figure \ref{fig:gas-properties}. The gas properties were calculated at a pressure of 101,325 Pa and a temperature of 773.15 K (500$^\circ$C). The lightest gas in terms of molecular weight and density is hydrogen while the heaviest gas is carbon dioxide. The highest viscosity is noted for the nitrogen gas while hydrogen has the lowest viscosity. The largest thermal conductivity is for hydrogen at approximately 0.36 W/m$\cdot$K while the other gases remain below 0.12 W/m$\cdot$K. The highest heat capacity is obtained for methane at 62 J/mol$\cdot$K while the lowest is for hydrogen at 29 J/mol$\cdot$K. The Prandtl number is similar for all the gases except for water vapor.
 
 \begin{figure}[H]
     \centering
