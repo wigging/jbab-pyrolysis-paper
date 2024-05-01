@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the article from the preferred-citation section."
+preferred-citation:
+  authors:
+    - family-names: Wiggins
+      given-names: Gavin
+    - family-names: Oyedeji
+      given-names: Oluwafemi
+    - family-names: Mills
+      given-names: Zachary
+  title: "Modeling hydrodynamic and biomass pyrolysis effects of recycled product gases in a bubbling fluidized bed reactor"
+  journal: "Biomass and Bioenergy"
+  volume: 184
+  pages: 107172
+  year: 2024
+  type: article
+  doi: 10.1016/j.biombioe.2024.107172
